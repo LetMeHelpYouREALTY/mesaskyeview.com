@@ -45,6 +45,10 @@ See [Environment Variables](Environment-Variables).
 
 If DNS uses Cloudflare: **DNS only (gray cloud)** when origin is Vercel — orange-cloud proxy can cause SSL issues.
 
+**Do not use Cloudflare Pages for production** on this site; Vercel is canonical. The GitHub workflow `Cloudflare Pages Deployment` is manual-only (`workflow_dispatch`) so pushes to `main` do not fail on missing CF secrets.
+
+Optional manual deploy: Actions → Cloudflare Pages Deployment → Run workflow → enable `deploy_pages` (requires `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, and a `mesaskyeview-com` Pages project).
+
 ## Latest production deploy
 
 Inspect deployments in Vercel dashboard or:

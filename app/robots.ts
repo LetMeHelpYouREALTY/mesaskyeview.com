@@ -1,12 +1,20 @@
-import { MetadataRoute } from "next";
+import { headers } from "next/headers";
+import type { MetadataRoute } from "next";
+import { getCanonicalSiteUrl, getDomainConfig } from "@/lib/domain-config";
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const requestHost = headers().get("host") || "";
+  const config = getDomainConfig(requestHost);
+  const siteUrl = getCanonicalSiteUrl(config);
+  const canonicalHost = new URL(siteUrl).host;
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://heyberkshire.com/sitemap.xml",
+    host: canonicalHost,
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

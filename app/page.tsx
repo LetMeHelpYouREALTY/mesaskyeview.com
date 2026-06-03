@@ -1,42 +1,29 @@
 import Navbar from "@/components/layouts/Navbar";
-import RealScoutListings from "@/components/realscout/RealScoutListings";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import FAQSection from "@/components/sections/FAQSection";
-import Footer from "@/components/layouts/Footer";
 import Link from "next/link";
 import { Phone, Home as HomeIcon, TrendingUp, Shield, Users } from "lucide-react";
+import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { createPageMetadata } from "@/lib/page-metadata";
+import { agentInfo } from "@/lib/site-config";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return createPageMetadata(config, {
+    title: `${config.heroHeadline} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`,
+    description: config.description,
+    pathname: "/",
+    keywords: config.keywords,
+  });
+}
 
 export default async function Home() {
   const config = await getPageDomainConfig();
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    name: `Dr. Jan Duffy - ${config.neighborhood} Real Estate`,
-    url: `https://${config.domain !== "default" ? config.domain : "heyberkshire.com"}`,
-    telephone: "+17022221964",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "9406 W Lake Mead Blvd, Suite 100",
-      addressLocality: "Las Vegas",
-      addressRegion: "NV",
-      postalCode: "89134",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "200",
-    },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       <Navbar />
       <main>
         {/* Domain-Aware Hero */}
@@ -145,9 +132,7 @@ export default async function Home() {
             </div>
           </div>
         </section>
-
-        <RealScoutListings />
-        <WhyChooseUs />
+<WhyChooseUs />
         <ReviewsSection />
         <FAQSection />
 
@@ -181,7 +166,6 @@ export default async function Home() {
           </div>
         </section>
       </main>
-      <Footer />
-    </>
+</>
   );
 }

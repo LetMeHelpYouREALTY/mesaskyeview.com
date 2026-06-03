@@ -1,22 +1,26 @@
 import Navbar from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
-import RealScoutListings from "@/components/realscout/RealScoutListings";
 import Link from "next/link";
 import { Phone, Mountain, Users, Home as HomeIcon, GraduationCap } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Berkshire Hathaway HomeServices Skye Canyon | Northwest Las Vegas",
-  description:
-    "Find Skye Canyon homes with Berkshire Hathaway HomeServices Nevada Properties. Dr. Jan Duffy specializes in this premier northwest community. Median price $550K. Call (702) 500-1942.",
-  keywords: [
-    "Berkshire Hathaway HomeServices Skye Canyon",
-    "Skye Canyon homes for sale",
-    "Skye Canyon Las Vegas",
-    "northwest Las Vegas homes",
-    "new construction Skye Canyon",
-  ],
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return createPageMetadata(config, {
+    title: "Skye Canyon & Mesa at Skyeview Homes | Dr. Jan Duffy | BHHS Nevada",
+    description:
+      "Skye Canyon and Mesa at Skyeview homes for sale in Northwest Las Vegas. New construction, resales, and expert buyer representation from Dr. Jan Duffy. Call (702) 500-1942.",
+    pathname: "/neighborhoods/skye-canyon",
+    keywords: [
+      "Mesa at Skyeview homes",
+      "Skye Canyon homes for sale",
+      "Skye Canyon Las Vegas",
+      "Century Communities Skye Canyon",
+      "northwest Las Vegas new construction",
+    ],
+  });
+}
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -390,8 +394,6 @@ export default function SkyeCanyonPage() {
         </div>
         <div className="text-center text-sm text-slate-500 mt-8">Last Updated: January 2026</div>
       </main>
-      <RealScoutListings />
-      <Footer />
-    </>
+</>
   );
 }

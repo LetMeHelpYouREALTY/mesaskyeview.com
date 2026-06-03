@@ -2,30 +2,65 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { headers } from "next/headers";
-import { getDomainConfig } from "@/lib/domain-config";
+import { getCanonicalSiteUrl, getDomainConfig, getContactEmail } from "@/lib/domain-config";
+import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
+import { getGoogleSiteVerification } from "@/lib/env";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import SiteChrome from "@/components/layouts/SiteChrome";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 export async function generateMetadata(): Promise<Metadata> {
   const domain = headers().get("x-domain") || "";
   const config = getDomainConfig(domain);
+  const siteUrl = getCanonicalSiteUrl(config);
+  const googleVerification = getGoogleSiteVerification();
+
   return {
+    metadataBase: new URL(siteUrl),
     title: `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`,
     description: config.description,
     keywords: config.keywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    },
+    ...(googleVerification
+      ? { verification: { google: googleVerification } }
+      : {}),
     openGraph: {
       title: config.heroHeadline,
       description: config.description,
       type: "website",
+      url: siteUrl,
+      siteName: `Dr. Jan Duffy — ${config.neighborhood}`,
+      locale: "en_US",
     },
   };
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const domain = headers().get("x-domain") || "";
+  const config = getDomainConfig(domain);
+  const jsonLdGraph = generateSearchConsoleJsonLd(config);
+
   return (
     <html lang="en" className={GeistSans.className}>
       <head>
-        {/* WidgetTracker */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
+        />
+        <Script
+          src="https://em.realscout.com/website.js"
+          type="module"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="afterInteractive"
+        />
         <Script id="widget-tracker" strategy="afterInteractive">{`
           (function(w,i,d,g,e,t){w["WidgetTrackerObject"]=g;(w[g]=w[g]||function()
           {(w[g].q=w[g].q||[]).push(arguments);}),(w[g].ds=1*new Date());(e="script"),
@@ -37,7 +72,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</Script>
       </head>
       <body>
+        <GoogleAnalytics />
         {children}
+        <SiteChrome />
         <Analytics />
       </body>
     </html>

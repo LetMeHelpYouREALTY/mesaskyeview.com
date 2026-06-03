@@ -16,6 +16,8 @@ export interface DomainConfig {
   ctaBadge: string;
   ctaHeadline: string;
   ctaSubheadline: string;
+  /** Domain-specific lead email; falls back to homes@heyberkshire.com */
+  contactEmail?: string;
 }
 
 const REALSCOUT_AGENT_ID = "QWdlbnQtMjI1MDUw";
@@ -43,6 +45,29 @@ export const DOMAIN_CONFIGS: Record<string, DomainConfig> = {
   "samaritanpharma.com": { domain: "samaritanpharma.com", neighborhood: "Las Vegas", tagline: "Las Vegas Real Estate", description: "Las Vegas real estate services from Dr. Jan Duffy, BHHS Nevada Properties.", heroHeadline: "Las Vegas Homes for Sale", heroSubheadline: "Expert Las Vegas real estate guidance from Dr. Jan Duffy.", keywords: ["Las Vegas homes for sale", "Las Vegas real estate", "Dr Jan Duffy"], pageType: "search", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Las Vegas Expert", ctaHeadline: "Find Your Las Vegas Home", ctaSubheadline: "30+ years of experience working for you." },
   "searchforhomesinhenderson.com": { domain: "searchforhomesinhenderson.com", neighborhood: "Henderson", tagline: "Search Homes in Henderson NV", description: "Search Henderson NV homes for sale. Expert Henderson real estate guidance from Dr. Jan Duffy.", heroHeadline: "Search Homes in Henderson, NV", heroSubheadline: "One of America's safest cities with award-winning master-planned communities.", keywords: ["Henderson NV homes for sale", "Henderson real estate", "search Henderson homes"], pageType: "search", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Henderson Specialist", ctaHeadline: "Find Your Henderson Home", ctaSubheadline: "Green Valley, MacDonald Highlands, Anthem — I know every Henderson neighborhood." },
   "searchforlasvegashomes.com": { domain: "searchforlasvegashomes.com", neighborhood: "Las Vegas", tagline: "Search Las Vegas Homes for Sale", description: "Search all Las Vegas homes for sale. MLS listings updated daily. Dr. Jan Duffy, BHHS.", heroHeadline: "Search Las Vegas Homes for Sale", heroSubheadline: "Every MLS listing in the Las Vegas Valley — updated daily.", keywords: ["search Las Vegas homes", "Las Vegas MLS", "homes for sale Las Vegas NV"], pageType: "search", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "MLS Search Expert", ctaHeadline: "Start Your Home Search", ctaSubheadline: "Tell me what you're looking for and I'll send you matches before they hit the market." },
+  "mesaskyeview.com": {
+    domain: "mesaskyeview.com",
+    neighborhood: "Mesa at Skyeview",
+    tagline: "Mesa at Skyeview Homes for Sale",
+    description:
+      "New construction and resale homes at Mesa at Skyeview in Skye Canyon, Las Vegas. Century Communities floor plans, builder incentives, and expert buyer representation from Dr. Jan Duffy.",
+    heroHeadline: "Mesa at Skyeview Homes for Sale",
+    heroSubheadline:
+      "One-story new homes in Skye Canyon — open layouts, smart home tech, pool, fitness center, and mountain access.",
+    keywords: [
+      "Mesa at Skyeview homes",
+      "Mesa Skyeview Las Vegas",
+      "Skye Canyon new construction",
+      "Century Communities Skye Canyon",
+    ],
+    pageType: "community",
+    realscoutAgentId: REALSCOUT_AGENT_ID,
+    ctaBadge: "Mesa at Skyeview Expert",
+    ctaHeadline: "Find Your Mesa at Skyeview Home",
+    ctaSubheadline:
+      "Quick move-ins, to-be-built plans, and resale listings — I'll help you compare every option in the community.",
+    contactEmail: "DrDuffySells@MesaSkyeview.com",
+  },
   "skyecanyonhomeexpert.com": { domain: "skyecanyonhomeexpert.com", neighborhood: "Skye Canyon", tagline: "Skye Canyon Home Expert", description: "Skye Canyon homes for sale in Northwest Las Vegas. Dr. Jan Duffy, Skye Canyon specialist.", heroHeadline: "Skye Canyon Home Expert", heroSubheadline: "Northwest Las Vegas' most exciting master-planned community.", keywords: ["Skye Canyon homes", "Skye Canyon Las Vegas", "Northwest Las Vegas new construction"], pageType: "community", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Skye Canyon Expert", ctaHeadline: "Your Skye Canyon Expert", ctaSubheadline: "New construction lots, resales, builder incentives — I know Skye Canyon inside and out." },
   "skyecanyonrealestateexpert.com": { domain: "skyecanyonrealestateexpert.com", neighborhood: "Skye Canyon", tagline: "Skye Canyon Real Estate Expert", description: "Expert Skye Canyon real estate guidance. Find new and resale homes in Skye Canyon Las Vegas.", heroHeadline: "Skye Canyon Real Estate Expert", heroSubheadline: "Get insider access to every lot, every floor plan, and every builder incentive in Skye Canyon.", keywords: ["Skye Canyon real estate", "Skye Canyon NW Las Vegas", "Skye Canyon new homes"], pageType: "community", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Skye Canyon Specialist", ctaHeadline: "Work With the Skye Canyon Expert", ctaSubheadline: "No one knows Skye Canyon better. Let me find you the best deal available." },
   "speedycashhomeoffers.com": { domain: "speedycashhomeoffers.com", neighborhood: "Las Vegas", tagline: "Fast Cash Home Offers Las Vegas", description: "Sell your Las Vegas home fast for cash. Get a competitive offer from Dr. Jan Duffy's network.", heroHeadline: "Fast Cash Offers for Las Vegas Homes", heroSubheadline: "Close in as few as 7 days. No repairs, no showings, no hassle.", keywords: ["cash home offer Las Vegas", "sell house fast Las Vegas", "Las Vegas cash buyers"], pageType: "search", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Cash Offer Specialist", ctaHeadline: "Get Your Cash Offer Today", ctaSubheadline: "Call 702-222-1964 for a no-obligation cash offer on your Las Vegas home." },
@@ -71,6 +96,25 @@ export const DEFAULT_CONFIG: DomainConfig = {
 };
 
 export function getDomainConfig(hostname: string): DomainConfig {
-  const clean = hostname.replace(/^www\./, "").toLowerCase();
+  const clean = hostname.replace(/^www\./, "").toLowerCase().split(":")[0];
   return DOMAIN_CONFIGS[clean] ?? DEFAULT_CONFIG;
+}
+
+/** Production canonical URLs (match Vercel domain redirects). */
+const CANONICAL_SITE_URL: Record<string, string> = {
+  "mesaskyeview.com": "https://www.mesaskyeview.com",
+};
+
+const DEFAULT_CONTACT_EMAIL = "homes@heyberkshire.com";
+const DEFAULT_SITE_URL = "https://heyberkshire.com";
+
+export function getCanonicalSiteUrl(config: DomainConfig): string {
+  if (config.domain === "default") {
+    return process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL;
+  }
+  return CANONICAL_SITE_URL[config.domain] ?? `https://${config.domain}`;
+}
+
+export function getContactEmail(config: DomainConfig): string {
+  return config.contactEmail ?? DEFAULT_CONTACT_EMAIL;
 }

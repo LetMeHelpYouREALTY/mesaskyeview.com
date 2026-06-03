@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { getContactEmail } from "@/lib/domain-config";
 
-export default function Footer() {
+export default async function Footer() {
+  const config = await getPageDomainConfig();
+  const contactEmail = getContactEmail(config);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -190,10 +194,10 @@ export default function Footer() {
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-blue-400 flex-shrink-0" />
                 <Link
-                  href="mailto:homes@heyberkshire.com"
+                  href={`mailto:${contactEmail}`}
                   className="text-slate-300 hover:text-white transition-colors text-sm"
                 >
-                  Homes@HeyBerkshire.com
+                  {contactEmail}
                 </Link>
               </li>
             </ul>

@@ -1,10 +1,10 @@
 import Navbar from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
-import RealScoutListings from "@/components/realscout/RealScoutListings";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import type { Metadata } from "next";
 import SchemaScript from "@/components/SchemaScript";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { createPageMetadata } from "@/lib/page-metadata";
 import {
   generateBreadcrumbSchema,
   generateFAQSchema,
@@ -12,18 +12,22 @@ import {
   combineSchemas,
 } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  title: "FAQ | Berkshire Hathaway HomeServices Las Vegas Real Estate",
-  description:
-    "Frequently asked questions about Las Vegas real estate, Berkshire Hathaway HomeServices, buying, selling, and working with Dr. Jan Duffy at BHHS Nevada Properties.",
-  keywords: [
-    "Berkshire Hathaway HomeServices FAQ",
-    "Las Vegas real estate questions",
-    "buying a home Las Vegas",
-    "selling a home Henderson",
-    "BHHS agent questions",
-  ],
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return createPageMetadata(config, {
+    title: `FAQ | ${config.neighborhood} Real Estate | Dr. Jan Duffy`,
+    description:
+      "Frequently asked questions about Las Vegas real estate, buying, selling, and working with Dr. Jan Duffy at Berkshire Hathaway HomeServices Nevada Properties.",
+    pathname: "/faq",
+    keywords: [
+      "Berkshire Hathaway HomeServices FAQ",
+      "Las Vegas real estate questions",
+      `${config.neighborhood} homes FAQ`,
+      "buying a home Las Vegas",
+      "BHHS agent questions",
+    ],
+  });
+}
 
 // Breadcrumb items
 const breadcrumbs = [
@@ -241,8 +245,6 @@ export default function FAQPage() {
         {/* Last Updated */}
         <div className="text-center text-sm text-slate-500 mt-8">Last Updated: January 2026</div>
       </main>
-      <RealScoutListings />
-      <Footer />
-    </>
+</>
   );
 }

@@ -12,6 +12,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { FollowUpBossClient } from '@/lib/fub/client';
 import { leadFormLimiter, getClientId, checkRateLimit, getRateLimitHeaders } from '@/lib/rate-limit';
+import { getFubApiKey, getFubSystemKey } from '@/lib/env';
 
 export interface LeadCaptureRequest {
   // Required
@@ -134,8 +135,8 @@ export async function POST(request: NextRequest) {
 
     // Initialize FUB client
     const fub = new FollowUpBossClient({
-      apiKey: process.env.FUB_API_KEY || '',
-      systemKey: process.env.FUB_SYSTEM_KEY,
+      apiKey: getFubApiKey(),
+      systemKey: getFubSystemKey(),
     });
 
     // Check for existing lead (deduplication)

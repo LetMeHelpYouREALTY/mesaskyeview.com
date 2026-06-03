@@ -8,6 +8,9 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import { agentInfo } from "@/lib/site-config";
 import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import MesaskyeviewHeroBackground from "@/components/mesaskyeview/MesaskyeviewHeroBackground";
+import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -28,10 +31,14 @@ export default async function Home() {
       <main>
         {/* Domain-Aware Hero */}
         <section className="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-30"
-            style={{ backgroundImage: "url('/Image/hero_bg_1.jpg')" }}
-          />
+          {isMesa ? (
+            <MesaskyeviewHeroBackground />
+          ) : (
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30"
+              style={{ backgroundImage: "url('/Image/hero_bg_1.jpg')" }}
+            />
+          )}
           <div className="relative z-10 container mx-auto px-4 text-center">
             {config.ctaBadge && (
               <span className="inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-6">
@@ -71,6 +78,9 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {isMesa && <MesaskyeviewPhotoGallery />}
+        {isMesa && <DrJanDuffyProfileCard config={config} showPortrait />}
 
         {/* Value Proposition */}
         <section className="py-16 md:py-20 bg-white">

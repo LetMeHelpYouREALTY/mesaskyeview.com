@@ -2,6 +2,8 @@ import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import { businessInfo } from "@/lib/gbp-schema";
 import { mesaAtSkyeviewCommunity, MESA_HOME_BRAND, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { mesaHyperlocalPhotos } from "@/lib/mesaskyeview-photos";
+import { drJanDuffyPhotos } from "@/lib/agent-photos";
 
 function mesaGeoQuery(): string {
   const { latitude, longitude } = mesaAtSkyeviewCommunity;
@@ -32,6 +34,7 @@ export function generateMesaAtSkyeviewPlaceSchema(siteUrl: string) {
     alternateName: MESA_HOME_BRAND,
     description: `New construction and resale homes at ${c.name} in ${c.masterPlan}, ${c.city}, ${c.state} ${c.zip}. Realtor services by Dr. Jan Duffy.`,
     url: `${siteUrl}/neighborhoods/skye-canyon`,
+    image: mesaHyperlocalPhotos.map((p) => `${siteUrl}${p.src}`),
     hasMap: MESA_DIRECTIONS_URL,
     address: {
       "@type": "PostalAddress",
@@ -112,6 +115,7 @@ export function generateMesaContactPageSchema(config: DomainConfig) {
         "@type": "RealEstateAgent",
         "@id": `${siteUrl}/#organization`,
         name: `Dr. Jan Duffy | ${MESA_SITE_BRAND}`,
+        image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
         telephone: businessInfo.phone.tel,
         email,
         url: siteUrl,

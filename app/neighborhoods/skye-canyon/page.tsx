@@ -5,6 +5,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import { isMesaskyeviewDomain, MESA_HOME_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
+import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -129,7 +130,16 @@ export default async function SkyeCanyonPage() {
               </div>
             )}
           </div>
+        </div>
 
+        {isMesa && (
+          <MesaskyeviewPhotoGallery
+            title="Mesa at Skyeview & Skye Canyon"
+            description="See the community, Skye Canyon setting, and model-home interiors buyers tour with Dr. Jan Duffy at 8544 Vanhoy Crk St, Las Vegas NV 89166."
+          />
+        )}
+
+        <div className="container mx-auto px-4">
           {/* Market Stats */}
           <section className="mb-16 bg-slate-900 text-white rounded-2xl p-8 md:p-12 max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">

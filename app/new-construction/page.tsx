@@ -18,6 +18,7 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
+import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 
 const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices New Construction Las Vegas | Buyer's Guide",
@@ -290,7 +291,16 @@ export default async function NewConstructionPage() {
               </div>
             </div>
           </div>
+        </div>
 
+        {isMesa && (
+          <MesaskyeviewPhotoGallery
+            title="Mesa at Skyeview new construction"
+            description="One-story plans, open interiors, and Skye Canyon surroundings—photos from Mesa at Skyeview (89166). Register Dr. Jan before your first model visit."
+          />
+        )}
+
+        <div className="container mx-auto px-4">
           {/* Why Free Representation */}
           <section className="mb-16 bg-blue-600 text-white rounded-2xl p-8 md:p-12 max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">

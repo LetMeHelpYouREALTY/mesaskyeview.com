@@ -16,6 +16,10 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import DrJanDuffyPhoto from "@/components/agent/DrJanDuffyPhoto";
+import { drJanDuffyPhotos } from "@/lib/agent-photos";
+import { getCanonicalSiteUrl } from "@/lib/domain-config";
+import { agentInfo } from "@/lib/site-config";
 
 const pageMetadataBase = {
   title: "About Dr. Jan Duffy | Berkshire Hathaway HomeServices Las Vegas",
@@ -42,17 +46,18 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-// Person Schema for Dr. Jan Duffy
-const personSchema = {
+function buildPersonSchema(siteUrl: string, email: string) {
+  return {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  name: "Dr. Jan Duffy",
-  jobTitle: "REALTOR®",
+  name: agentInfo.name,
+  jobTitle: agentInfo.title,
+  image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
   description:
-    "Licensed real estate agent with Berkshire Hathaway HomeServices Nevada Properties, serving Las Vegas, Henderson, and Summerlin since 2008.",
+    "Licensed real estate agent with Berkshire Hathaway HomeServices Nevada Properties, serving Las Vegas, Henderson, Summerlin, and Mesa at Skyeview since 2008.",
   telephone: "+17025001942",
-  email: "homes@heyberkshire.com",
-  url: "https://heyberkshire.com/about",
+  email,
+  url: `${siteUrl}/about`,
   worksFor: {
     "@type": "RealEstateAgent",
     name: "Berkshire Hathaway HomeServices Nevada Properties",
@@ -73,12 +78,15 @@ const personSchema = {
     "Las Vegas real estate",
     "Henderson properties",
     "Summerlin homes",
+    "Mesa at Skyeview",
+    "Skye Canyon new construction",
     "Luxury real estate",
     "Investment properties",
     "55+ communities",
     "California relocation",
   ],
 };
+}
 
 const specializations = [
   {
@@ -122,13 +130,18 @@ const areasServed = [
   "Spring Valley",
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const config = await getPageDomainConfig();
+  const siteUrl = getCanonicalSiteUrl(config);
+  const personSchema = buildPersonSchema(siteUrl, config.contactEmail ?? agentInfo.email);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />      <main className="pb-16">
+      />
+      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -231,14 +244,11 @@ export default function AboutPage() {
 
               {/* Stats & Credentials */}
               <div className="space-y-6">
-                {/* Agent Photo Placeholder */}
-                <div className="bg-gradient-to-br from-blue-100 to-slate-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">👩‍💼</div>
-                    <p className="text-slate-600 font-semibold">Dr. Jan Duffy</p>
-                    <p className="text-sm text-slate-500">BHHS Nevada Properties</p>
-                  </div>
-                </div>
+                <DrJanDuffyPhoto
+                  variant="headshot"
+                  priority
+                  className="aspect-[3/4] shadow-lg ring-1 ring-slate-200"
+                />
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 gap-4">

@@ -15,6 +15,8 @@ import {
   getMesaCommunityDirectionsUrl,
   getMesaCommunityMapsEmbedUrl,
 } from "@/lib/mesa-at-skyeview-schema";
+import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -101,7 +103,18 @@ export default async function ContactPage() {
               </a>
             </div>
           </div>
+        </div>
 
+        {isMesa && (
+          <MesaskyeviewPhotoGallery
+            showCta={false}
+            title="Tour Mesa at Skyeview"
+            description="Community, Skye Canyon, and model-home photos for buyers scheduling a visit to 8544 Vanhoy Crk St, Las Vegas NV 89166."
+          />
+        )}
+        {isMesa && <DrJanDuffyProfileCard config={config} compact />}
+
+        <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Get In Touch</h2>
             <p className="text-slate-700 mb-8 text-center">

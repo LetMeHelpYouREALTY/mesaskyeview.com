@@ -1,6 +1,8 @@
 // Google Business Profile Schema Data
 // Supports GBP ranking factors: Relevance, Distance, Prominence
 
+import { getDrJanGoogleSameAs } from "@/lib/mesa-google-presence";
+
 export const businessInfo = {
   // Community/tour address for copy — RealEstateAgent schema uses BHHS office (see nap-addresses.ts)
   name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
@@ -253,11 +255,11 @@ export function generateLocalBusinessSchema() {
         },
       })),
     },
-    sameAs: [
+    sameAs: getDrJanGoogleSameAs([
       "https://www.facebook.com/drjanduffy",
       "https://www.instagram.com/drjanduffy",
       "https://www.linkedin.com/in/drjanduffy",
-    ],
+    ]),
   };
 }
 

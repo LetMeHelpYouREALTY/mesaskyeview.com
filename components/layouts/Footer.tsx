@@ -4,6 +4,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { BHHS_BROKERAGE_NAP } from "@/lib/nap-addresses";
+import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
 import { officeInfo } from "@/lib/site-config";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import { businessInfo } from "@/lib/gbp-schema";
@@ -254,6 +255,18 @@ export default async function Footer() {
                   {contactEmail}
                 </Link>
               </li>
+              {isMesa ? (
+                <li>
+                  <a
+                    href={DR_JAN_GOOGLE_PRESENCE.profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-300 hover:text-white transition-colors text-sm underline-offset-2 hover:underline"
+                  >
+                    View Google reviews (verified)
+                  </a>
+                </li>
+              ) : null}
             </ul>
           </div>
         </div>

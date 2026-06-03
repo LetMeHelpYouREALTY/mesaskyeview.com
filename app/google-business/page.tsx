@@ -18,6 +18,8 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
+import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
 import {
   businessInfo,
   gbpDescription,
@@ -58,20 +60,27 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function GoogleBusinessPage() {
+export default async function GoogleBusinessPage() {
+  const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
   const localBusinessSchema = generateLocalBusinessSchema();
   const faqSchema = generateFAQSchema();
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />      <main className="pb-16">
+      {!isMesa && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+        </>
+      )}
+      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero - NAP Prominent */}
           <section className="max-w-5xl mx-auto mb-16">
@@ -114,20 +123,46 @@ export default function GoogleBusinessPage() {
                 
                 {/* Rating & CTA */}
                 <div className="text-center bg-white/10 rounded-xl p-8">
-                  <div className="flex justify-center mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="h-8 w-8 text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-3xl font-bold mb-2">4.9 / 5.0</p>
-                  <p className="text-blue-200 mb-6">200+ Client Reviews</p>
-                  <a
-                    href={`tel:${businessInfo.phone.tel}`}
-                    className="inline-block w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-lg font-bold text-lg transition-colors"
-                  >
-                    Call Now: {businessInfo.phone.display}
-                  </a>
-                  <p className="text-sm text-blue-300 mt-3">Free Consultation</p>
+                  {isMesa ? (
+                    <>
+                      <p className="text-lg text-blue-100 mb-6">
+                        Verified star ratings and review counts live on Google — not marked up on this site.
+                      </p>
+                      <a
+                        href={DR_JAN_GOOGLE_PRESENCE.profileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-lg font-bold text-lg transition-colors mb-3"
+                      >
+                        View Google Reviews
+                      </a>
+                      <a
+                        href={DR_JAN_GOOGLE_PRESENCE.writeReviewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block w-full border border-white/40 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+                      >
+                        Leave a Google Review
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-center mb-4">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} className="h-8 w-8 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                      <p className="text-3xl font-bold mb-2">4.9 / 5.0</p>
+                      <p className="text-blue-200 mb-6">200+ Client Reviews</p>
+                      <a
+                        href={`tel:${businessInfo.phone.tel}`}
+                        className="inline-block w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-lg font-bold text-lg transition-colors"
+                      >
+                        Call Now: {businessInfo.phone.display}
+                      </a>
+                      <p className="text-sm text-blue-300 mt-3">Free Consultation</p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -278,7 +313,7 @@ export default function GoogleBusinessPage() {
                 Mention your neighborhood, type of transaction, and what made the experience valuable.
               </p>
               <a
-                href="https://g.page/r/YOUR_GOOGLE_REVIEW_LINK/review"
+                href={DR_JAN_GOOGLE_PRESENCE.writeReviewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"

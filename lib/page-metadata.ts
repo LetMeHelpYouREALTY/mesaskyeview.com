@@ -35,16 +35,32 @@ export function createPageMetadata(
     ? localizeDescriptionForMesa(options.description, config)
     : options.description;
 
+  const authorName = "Dr. Jan Duffy";
+
   return {
     title,
     description,
     keywords: options.keywords ?? config.keywords,
+    authors: [{ name: authorName, url: `${siteUrl}/about` }],
+    creator: authorName,
+    publisher: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : siteBrand,
+    category: "Real Estate",
     alternates: {
       canonical: path,
     },
     robots: options.noIndex
       ? { index: false, follow: true }
-      : { index: true, follow: true, googleBot: { index: true, follow: true } },
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
     openGraph: {
       title,
       description,

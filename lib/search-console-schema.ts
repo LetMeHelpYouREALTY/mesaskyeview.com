@@ -25,6 +25,14 @@ export function generateSearchConsoleJsonLd(config: DomainConfig) {
     description: config.description,
     publisher: { "@id": `${siteUrl}/#organization` },
     inLanguage: "en-US",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteUrl}/listings?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   if (!isMesaskyeviewDomain(config)) {

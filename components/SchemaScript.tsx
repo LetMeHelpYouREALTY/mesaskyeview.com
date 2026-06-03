@@ -52,8 +52,10 @@ export default function SchemaScript({ schema, schemas, id }: SchemaScriptProps)
  */
 export function BreadcrumbSchema({
   items,
+  siteUrl = "https://www.mesaskyeview.com",
 }: {
   items: Array<{ name: string; url: string }>;
+  siteUrl?: string;
 }) {
   const schema = {
     "@context": "https://schema.org",
@@ -62,9 +64,7 @@ export function BreadcrumbSchema({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith("http")
-        ? item.url
-        : `https://heyberkshire.com${item.url}`,
+      item: item.url.startsWith("http") ? item.url : `${siteUrl}${item.url}`,
     })),
   };
 

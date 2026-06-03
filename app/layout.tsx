@@ -3,7 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { headers } from "next/headers";
 import { getCanonicalSiteUrl, getDomainConfig, getContactEmail } from "@/lib/domain-config";
-import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
+import SitePageSchema from "@/components/seo/SitePageSchema";
 import { getGoogleSiteVerification } from "@/lib/env";
 import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
@@ -66,16 +66,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const domain = headers().get("x-domain") || headers().get("host") || "";
   const config = getDomainConfig(domain);
-  const jsonLdGraph = generateSearchConsoleJsonLd(config);
   const mainOffsetClass = isMesaskyeviewDomain(config) ? "" : "pt-24";
 
   return (
     <html lang="en" className={GeistSans.className}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
-        />
+        <SitePageSchema />
         <Script
           src={REALSCOUT_WEB_COMPONENTS_SCRIPT}
           type="module"

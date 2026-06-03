@@ -35,7 +35,8 @@ After verification:
 |-----|----------|
 | `/robots.txt` | `Allow: /`, `Disallow: /api/`, sitemap line |
 | `/sitemap.xml` | All static marketing routes (no dynamic `/listings/[id]`) |
-| Homepage | `rel=canonical`, JSON-LD `RealEstateAgent` + `WebSite` |
+| Homepage | `rel=canonical`, JSON-LD `@graph` (RealEstateAgent, WebSite, Person, WebPage, BreadcrumbList, FAQPage) |
+| Any page | Per-route `WebPage` + `BreadcrumbList` via `components/seo/SitePageSchema.tsx` |
 
 Use [URL Inspection](https://search.google.com/search-console) for high-priority URLs (`/`, `/listings`, `/neighborhoods/skye-canyon`, `/contact`) and request indexing sparingly.
 
@@ -43,8 +44,9 @@ Use [URL Inspection](https://search.google.com/search-console) for high-priority
 
 Validate with [Rich Results Test](https://search.google.com/test/rich-results):
 
-- Root layout JSON-LD (`lib/search-console-schema.ts`)
-- FAQ pages with `FAQPage` markup where implemented
+- Root layout JSON-LD (`lib/seo-page-graph.ts` + `lib/search-console-schema.ts`)
+- Homepage: `FAQPage` from GBP-aligned Q&A (`lib/gbp-schema.ts`)
+- Dedicated FAQ routes: page-level `FAQPage` where implemented (e.g. `/faq`, neighborhood pages)
 
 ## Production-only deploys
 

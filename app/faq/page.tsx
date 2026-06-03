@@ -78,7 +78,7 @@ const faqCategories = [
       },
       {
         q: "Does BHHS help with new construction homes?",
-        a: "Yes! BHHS agents provide free buyer representation for new construction purchases from builders like Toll Brothers, Lennar, and Century Communities—the builder pays the commission, not you. Having representation protects your interests.",
+        a: "Yes! BHHS agents provide free buyer representation for new construction—including Mesa at Skyeview through Homes by Dr. Jan Duffy and other national builders such as Toll Brothers and Lennar. The builder pays the commission, not you. Having representation protects your interests.",
       },
     ],
   },

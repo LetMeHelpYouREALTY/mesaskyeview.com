@@ -13,8 +13,10 @@ import {
   Heart,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Trilogy at Summerlin Homes for Sale | Luxury Resort 55+ Living | Dr. Jan Duffy",
   description:
     "Trilogy at Summerlin - luxury resort-style 55+ community. Homes from $500K-$1.1M. On-site farm-to-table restaurant, spa, contemporary designs. Dr. Jan Duffy, BHHS. Call (702) 500-1942.",
@@ -33,6 +35,17 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/55-plus-communities/trilogy-summerlin",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const communitySchema = {
   "@context": "https://schema.org",

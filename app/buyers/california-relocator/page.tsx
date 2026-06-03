@@ -15,8 +15,10 @@ import {
   TrendingUp,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Relocating from California to Las Vegas | Berkshire Hathaway HomeServices",
   description:
     "Moving from California to Las Vegas? Zero state income tax, 40-60% lower home prices, same sunshine. Dr. Jan Duffy helps CA relocators find their perfect Las Vegas home. Call (702) 500-1942.",
@@ -29,6 +31,17 @@ export const metadata: Metadata = {
     "Berkshire Hathaway HomeServices relocation",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/buyers/california-relocator",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const faqSchema = {
   "@context": "https://schema.org",

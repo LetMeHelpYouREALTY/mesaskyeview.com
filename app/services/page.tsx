@@ -18,8 +18,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Real Estate Services Las Vegas | Berkshire Hathaway HomeServices",
   description:
     "Comprehensive real estate services from Dr. Jan Duffy at Berkshire Hathaway HomeServices Nevada Properties. Buying, selling, luxury, investment, relocation, 55+ communities, and new construction. Call (702) 500-1942.",
@@ -33,6 +35,17 @@ export const metadata: Metadata = {
     "California relocation Las Vegas",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/services",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const servicesSchema = {
   "@context": "https://schema.org",

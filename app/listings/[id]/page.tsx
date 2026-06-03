@@ -3,11 +3,24 @@ import Image from "next/image";
 import { Bed, Bath, Square, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Property Details | Las Vegas & Henderson Real Estate",
   description: "View detailed information about this property listing in Las Vegas or Henderson, NV.",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/listings/[id]",
+    keywords: undefined,
+    noIndex: false,
+  });
+}
 
 // This would typically fetch from RealScout API
 async function getProperty(id: string) {

@@ -15,8 +15,10 @@ import {
   HelpCircle,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "First-Time Home Buyers Las Vegas | Berkshire Hathaway HomeServices",
   description:
     "First-time buyer in Las Vegas? Down payment assistance, builder incentives, and expert guidance from Dr. Jan Duffy at Berkshire Hathaway HomeServices. Call (702) 500-1942.",
@@ -29,6 +31,17 @@ export const metadata: Metadata = {
     "Berkshire Hathaway HomeServices first time buyer",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/buyers/first-time-buyers",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const faqSchema = {
   "@context": "https://schema.org",

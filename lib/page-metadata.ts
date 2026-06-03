@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
+import {
+  isMesaskyeviewDomain,
+  localizeDescriptionForMesa,
+  localizeTitleForMesa,
+  MESA_SITE_BRAND,
+} from "@/lib/mesaskyeview-brand";
 
 type PageMetadataOptions = {
   title: string;
@@ -18,10 +24,19 @@ export function createPageMetadata(
   const siteUrl = getCanonicalSiteUrl(config);
   const path = options.pathname.startsWith("/") ? options.pathname : `/${options.pathname}`;
   const pageUrl = path === "/" ? siteUrl : `${siteUrl}${path}`;
+  const siteBrand = config.siteBrand ?? `Dr. Jan Duffy — ${config.neighborhood}`;
+  const title = isMesaskyeviewDomain(config)
+    ? localizeTitleForMesa(options.title)
+    : options.title.includes(siteBrand)
+      ? options.title
+      : `${options.title} | ${siteBrand}`;
+  const description = isMesaskyeviewDomain(config)
+    ? localizeDescriptionForMesa(options.description, config)
+    : options.description;
 
   return {
-    title: options.title,
-    description: options.description,
+    title,
+    description,
     keywords: options.keywords ?? config.keywords,
     alternates: {
       canonical: path,
@@ -30,11 +45,11 @@ export function createPageMetadata(
       ? { index: false, follow: true }
       : { index: true, follow: true, googleBot: { index: true, follow: true } },
     openGraph: {
-      title: options.title,
-      description: options.description,
+      title,
+      description,
       url: pageUrl,
       type: "website",
-      siteName: `Dr. Jan Duffy — ${config.neighborhood}`,
+      siteName: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : siteBrand,
     },
   };
 }

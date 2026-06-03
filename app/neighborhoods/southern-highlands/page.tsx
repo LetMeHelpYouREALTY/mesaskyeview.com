@@ -2,8 +2,10 @@ import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import { Phone, Shield, Mountain, Star, MapPin } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices Southern Highlands | Las Vegas Golf Community",
   description:
     "Find Southern Highlands homes with Berkshire Hathaway HomeServices Nevada Properties. Dr. Jan Duffy specializes in this premier golf community. Median price $750K. Call (702) 500-1942.",
@@ -15,6 +17,17 @@ export const metadata: Metadata = {
     "guard gated Las Vegas",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/neighborhoods/southern-highlands",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const faqSchema = {
   "@context": "https://schema.org",

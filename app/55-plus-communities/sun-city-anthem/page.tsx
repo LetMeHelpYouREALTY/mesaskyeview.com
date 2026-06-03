@@ -11,6 +11,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import SchemaScript from "@/components/SchemaScript";
 import {
   generateBreadcrumbSchema,
@@ -19,7 +21,7 @@ import {
   combineSchemas,
 } from "@/lib/schema";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Sun City Anthem Homes for Sale | Berkshire Hathaway HomeServices",
   description:
     "Henderson's premier 55+ community. Sun City Anthem homes from $350K-$1.2M. 2 championship golf courses, stunning mountain views. Dr. Jan Duffy. Call (702) 500-1942.",
@@ -31,6 +33,17 @@ export const metadata: Metadata = {
     "Berkshire Hathaway Sun City Anthem",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/55-plus-communities/sun-city-anthem",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 // Breadcrumb items
 const breadcrumbs = [

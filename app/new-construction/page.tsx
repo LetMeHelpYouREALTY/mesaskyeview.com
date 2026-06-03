@@ -16,8 +16,11 @@ import {
   HelpCircle,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices New Construction Las Vegas | Buyer's Guide",
   description:
     "Free buyer representation on new construction homes in Las Vegas. Dr. Jan Duffy helps you navigate builder contracts, negotiate upgrades, and secure incentives. Call (702) 500-1942.",
@@ -31,6 +34,17 @@ export const metadata: Metadata = {
     "KB Home Las Vegas",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/new-construction",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -208,25 +222,24 @@ const builders = [
     ],
   },
   {
-    name: "Century Communities",
-    segment: "Entry-Level",
-    priceRange: "$320,000 - $550,000",
-    communities: [
-      "North Las Vegas",
-      "Southwest Las Vegas",
-      "Pahrump",
-    ],
-    currentIncentives: "Up to 5% closing costs + appliance package",
-    incentiveDeadline: "January 31, 2026",
+    name: "Homes by Dr. Jan Duffy — Mesa at Skyeview",
+    segment: "Skye Canyon focus",
+    priceRange: "From the mid-$400s (public listings)",
+    communities: ["Mesa at Skyeview", "Skye Canyon resales", "Vanhoy Creek corridor"],
+    currentIncentives: "Builder incentives change monthly—Dr. Jan tracks current offers for Skye Canyon",
+    incentiveDeadline: "Ask for current promotions",
     highlights: [
-      "Most affordable new construction",
-      "First-time buyer programs",
-      "Quick move-in inventory",
+      "Free buyer representation at Mesa at Skyeview",
+      "One-story plans ~1,635–1,816 sq ft",
+      "Register your agent before the first model visit",
     ],
   },
 ];
 
-export default function NewConstructionPage() {
+export default async function NewConstructionPage() {
+  const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
+
   return (
     <>
       <script
@@ -253,11 +266,14 @@ export default function NewConstructionPage() {
               Free Buyer Representation
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Berkshire Hathaway HomeServices New Construction Las Vegas
+              {isMesa
+                ? "New Construction at Mesa at Skyeview | Homes by Dr. Jan Duffy"
+                : "Berkshire Hathaway HomeServices New Construction Las Vegas"}
             </h1>
             <p className="text-xl text-slate-600 mb-8">
-              Your complete buyer's guide to new homes in Las Vegas. Free representation,
-              expert contract review, and insider knowledge of builder incentives.
+              {isMesa
+                ? "Free buyer representation for Mesa at Skyeview and Skye Canyon—register Dr. Jan before your first model visit, review builder contracts, and compare quick move-ins vs. to-be-built plans."
+                : "Your complete buyer's guide to new homes in Las Vegas. Free representation, expert contract review, and insider knowledge of builder incentives."}
             </p>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-left max-w-2xl mx-auto">
               <div className="flex items-start">

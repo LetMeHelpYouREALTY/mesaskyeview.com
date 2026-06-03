@@ -8,11 +8,12 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import { agentInfo } from "@/lib/site-config";
+import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
   return createPageMetadata(config, {
-    title: `${config.heroHeadline} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`,
+    title: config.heroHeadline,
     description: config.description,
     pathname: "/",
     keywords: config.keywords,
@@ -21,6 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
 
   return (
     <>
@@ -80,7 +82,9 @@ export default async function Home() {
                 Why Work With Dr. Jan Duffy?
               </h2>
               <p className="text-lg text-slate-600">
-                Berkshire Hathaway HomeServices Nevada Properties — the most trusted name in Las Vegas real estate.
+                {isMesa
+                  ? "Realtor representation for Mesa at Skyeview and Skye Canyon—buying, selling, and new construction advocacy with Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties."
+                  : "Berkshire Hathaway HomeServices Nevada Properties — the most trusted name in Las Vegas real estate."}
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -109,15 +113,27 @@ export default async function Home() {
               <h2 className="text-3xl font-bold mb-3">
                 {config.neighborhood} Real Estate Market
               </h2>
-              <p className="text-slate-400">Current data — updated regularly</p>
+              <p className="text-slate-400">
+                {isMesa
+                  ? "Community highlights — ask Dr. Jan for current MLS pricing in 89166"
+                  : "Current data — updated regularly"}
+              </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              {[
-                { value: "$450K", label: "Median Price", sub: "+4.2% YoY" },
-                { value: "28", label: "Avg Days on Market", sub: "" },
-                { value: "4,850", label: "Active Listings", sub: "" },
-                { value: "2.1", label: "Months Inventory", sub: "" },
-              ].map(({ value, label, sub }) => (
+              {(isMesa
+                ? [
+                    { value: mesaAtSkyeviewCommunity.priceFromPublicListings, label: "New homes from", sub: "per public listings" },
+                    { value: mesaAtSkyeviewCommunity.sqftRange, label: "Sq ft range", sub: "one-story plans" },
+                    { value: mesaAtSkyeviewCommunity.zip, label: "Skye Canyon ZIP", sub: "Northwest Las Vegas" },
+                    { value: "3", label: "Floor plans", sub: "Mesa at Skyeview" },
+                  ]
+                : [
+                    { value: "$450K", label: "Median Price", sub: "+4.2% YoY" },
+                    { value: "28", label: "Avg Days on Market", sub: "" },
+                    { value: "4,850", label: "Active Listings", sub: "" },
+                    { value: "2.1", label: "Months Inventory", sub: "" },
+                  ]
+              ).map(({ value, label, sub }) => (
                 <div key={label} className="text-center">
                   <div className="text-4xl font-bold text-blue-400 mb-1">{value}</div>
                   <div className="text-slate-300 text-sm">{label}</div>
@@ -147,11 +163,11 @@ export default async function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+17022221964"
+                href={agentInfo.phoneTel}
                 className="inline-flex items-center justify-center bg-white text-blue-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Call 702-222-1964
+                Call {agentInfo.phoneFormatted}
               </a>
               <Link
                 href="/contact"

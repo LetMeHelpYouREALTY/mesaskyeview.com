@@ -15,8 +15,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "About Dr. Jan Duffy | Berkshire Hathaway HomeServices Las Vegas",
   description:
     "Meet Dr. Jan Duffy, your trusted Berkshire Hathaway HomeServices Nevada Properties agent. Serving Las Vegas since 2008, $127M+ in transactions, Henderson & Summerlin specialist. Call (702) 500-1942.",
@@ -29,6 +31,17 @@ export const metadata: Metadata = {
     "Summerlin realtor",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/about",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 // Person Schema for Dr. Jan Duffy
 const personSchema = {
@@ -79,7 +92,7 @@ const specializations = [
   },
   {
     title: "New Construction",
-    description: "Free buyer representation with Toll Brothers, Lennar, Century Communities, and more",
+    description: "Free buyer representation at Mesa at Skyeview (Homes by Dr. Jan Duffy) plus Toll Brothers, Lennar, and more",
   },
   {
     title: "Investment Properties",

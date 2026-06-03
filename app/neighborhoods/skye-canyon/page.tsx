@@ -4,19 +4,21 @@ import { Phone, Mountain, Users, Home as HomeIcon, GraduationCap } from "lucide-
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
+import { isMesaskyeviewDomain, MESA_HOME_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import { getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
   return createPageMetadata(config, {
-    title: "Skye Canyon & Mesa at Skyeview Homes | Dr. Jan Duffy | BHHS Nevada",
+    title: "Mesa at Skyeview & Skye Canyon Homes | Homes by Dr. Jan Duffy",
     description:
-      "Skye Canyon and Mesa at Skyeview homes for sale in Northwest Las Vegas. New construction, resales, and expert buyer representation from Dr. Jan Duffy. Call (702) 500-1942.",
+      "Realtor services for Mesa at Skyeview in Skye Canyon (89166)—new construction tours, resale MLS search, and seller representation with Dr. Jan Duffy. Call (702) 500-1942.",
     pathname: "/neighborhoods/skye-canyon",
     keywords: [
       "Mesa at Skyeview homes",
       "Skye Canyon homes for sale",
       "Skye Canyon Las Vegas",
-      "Century Communities Skye Canyon",
+      "Homes by Dr. Jan Duffy Mesa at Skyeview",
       "northwest Las Vegas new construction",
     ],
   });
@@ -61,7 +63,10 @@ const faqSchema = {
   ],
 };
 
-export default function SkyeCanyonPage() {
+export default async function SkyeCanyonPage() {
+  const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
+
   return (
     <>
       <script
@@ -85,15 +90,47 @@ export default function SkyeCanyonPage() {
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Berkshire Hathaway HomeServices Nevada Properties
+              {isMesa ? MESA_HOME_BRAND : "Berkshire Hathaway HomeServices Nevada Properties"}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Berkshire Hathaway HomeServices Skye Canyon
+              {isMesa
+                ? "Mesa at Skyeview & Skye Canyon | Homes by Dr. Jan Duffy"
+                : "Berkshire Hathaway HomeServices Skye Canyon"}
             </h1>
             <p className="text-xl text-slate-600">
-              Northwest Las Vegas's fastest-growing community. Discover Skye Canyon with{" "}
-              <strong>Berkshire Hathaway HomeServices</strong> and Dr. Jan Duffy.
+              {isMesa ? (
+                <>
+                  Realtor services for {mesaAtSkyeviewCommunity.name} in Skye Canyon ({mesaAtSkyeviewCommunity.zip}
+                  )—one-story new homes, resale MLS search, and seller representation with Dr. Jan Duffy.
+                </>
+              ) : (
+                <>
+                  Northwest Las Vegas&apos;s fastest-growing community. Discover Skye Canyon with{" "}
+                  <strong>Berkshire Hathaway HomeServices</strong> and Dr. Jan Duffy.
+                </>
+              )}
             </p>
+            {isMesa && (
+              <div className="mt-8 max-w-xl mx-auto rounded-xl border border-slate-200 bg-slate-50 p-5 text-left">
+                <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-2">
+                  Mesa at Skyeview location
+                </h2>
+                <address className="not-italic text-slate-800 font-medium">
+                  {mesaAtSkyeviewCommunity.salesOfficeAddress}
+                </address>
+                <p className="text-slate-600 text-sm mt-2">
+                  Northwest Las Vegas · Skye Canyon master plan · ZIP {mesaAtSkyeviewCommunity.zip}
+                </p>
+                <a
+                  href={getMesaCommunityDirectionsUrl()}
+                  className="inline-block mt-3 text-blue-600 font-medium text-sm hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Directions to Mesa at Skyeview
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Market Stats */}
@@ -256,7 +293,7 @@ export default function SkyeCanyonPage() {
                   <ul className="text-slate-600 text-sm space-y-2">
                     <li><strong>Lennar:</strong> Entry to mid-range, $450K-$600K. "Everything's Included" packages.</li>
                     <li><strong>KB Home:</strong> Energy Star certified, $420K-$550K. Customization options.</li>
-                    <li><strong>Century Communities:</strong> Affordable entry points, $400K-$520K.</li>
+                    <li><strong>Homes by Dr. Jan Duffy at Mesa at Skyeview:</strong> One-story new homes on Vanhoy Creek—buyer representation from the mid-$400s per public listings.</li>
                   </ul>
                 </div>
               </div>

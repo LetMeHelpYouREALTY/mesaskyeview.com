@@ -16,6 +16,8 @@ export interface DomainConfig {
   ctaBadge: string;
   ctaHeadline: string;
   ctaSubheadline: string;
+  /** Full site brand for titles and Open Graph (e.g. Mesa at Skyeview | Homes by Dr. Jan Duffy) */
+  siteBrand?: string;
   /** Domain-specific lead email; falls back to homes@heyberkshire.com */
   contactEmail?: string;
 }
@@ -48,24 +50,26 @@ export const DOMAIN_CONFIGS: Record<string, DomainConfig> = {
   "mesaskyeview.com": {
     domain: "mesaskyeview.com",
     neighborhood: "Mesa at Skyeview",
-    tagline: "Mesa at Skyeview Homes for Sale",
+    siteBrand: "Mesa at Skyeview | Homes by Dr. Jan Duffy",
+    tagline: "Homes by Dr. Jan Duffy at Mesa at Skyeview",
     description:
-      "New construction and resale homes at Mesa at Skyeview in Skye Canyon, Las Vegas. Century Communities floor plans, builder incentives, and expert buyer representation from Dr. Jan Duffy.",
-    heroHeadline: "Mesa at Skyeview Homes for Sale",
+      "Realtor services for Mesa at Skyeview at 8544 Vanhoy Crk St, Las Vegas, NV 89166—buyer and seller representation, new construction advocacy, and MLS search with Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties.",
+    heroHeadline: "Mesa at Skyeview | Homes by Dr. Jan Duffy",
     heroSubheadline:
-      "One-story new homes in Skye Canyon — open layouts, smart home tech, pool, fitness center, and mountain access.",
+      "Your REALTOR® for one-story new homes and resales in Skye Canyon—tours, contracts, and Skye Canyon market guidance from Dr. Jan Duffy.",
     keywords: [
       "Mesa at Skyeview homes",
-      "Mesa Skyeview Las Vegas",
+      "Mesa at Skyeview REALTOR",
+      "Homes by Dr. Jan Duffy",
       "Skye Canyon new construction",
-      "Century Communities Skye Canyon",
+      "Skye Canyon homes for sale 89166",
     ],
     pageType: "community",
     realscoutAgentId: REALSCOUT_AGENT_ID,
-    ctaBadge: "Mesa at Skyeview Expert",
-    ctaHeadline: "Find Your Mesa at Skyeview Home",
+    ctaBadge: "Mesa at Skyeview REALTOR®",
+    ctaHeadline: "Work With Dr. Jan at Mesa at Skyeview",
     ctaSubheadline:
-      "Quick move-ins, to-be-built plans, and resale listings — I'll help you compare every option in the community.",
+      "Quick move-ins, to-be-built plans, and resale listings—I represent buyers and sellers in this Skye Canyon community.",
     contactEmail: "DrDuffySells@MesaSkyeview.com",
   },
   "skyecanyonhomeexpert.com": { domain: "skyecanyonhomeexpert.com", neighborhood: "Skye Canyon", tagline: "Skye Canyon Home Expert", description: "Skye Canyon homes for sale in Northwest Las Vegas. Dr. Jan Duffy, Skye Canyon specialist.", heroHeadline: "Skye Canyon Home Expert", heroSubheadline: "Northwest Las Vegas' most exciting master-planned community.", keywords: ["Skye Canyon homes", "Skye Canyon Las Vegas", "Northwest Las Vegas new construction"], pageType: "community", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Skye Canyon Expert", ctaHeadline: "Your Skye Canyon Expert", ctaSubheadline: "New construction lots, resales, builder incentives — I know Skye Canyon inside and out." },

@@ -1,6 +1,7 @@
 import { businessInfo } from "@/lib/gbp-schema";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
 export type LocalBusinessSchemaOptions = {
   siteUrl?: string;
@@ -20,7 +21,9 @@ export function generateLocalBusinessSchemaForSite(
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${siteUrl}/#organization`,
-    name: `Dr. Jan Duffy - ${neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
+    name: isMesaskyeviewDomain(config)
+      ? `Dr. Jan Duffy | ${MESA_SITE_BRAND}`
+      : `Dr. Jan Duffy - ${neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
     image: `${siteUrl}/images/dr-jan-duffy.jpg`,
     url: siteUrl,
     telephone: businessInfo.phone.tel,

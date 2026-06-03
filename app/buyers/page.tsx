@@ -17,8 +17,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Home Buying Guide Las Vegas | Berkshire Hathaway HomeServices",
   description:
     "Looking to buy a home in Las Vegas? Dr. Jan Duffy with Berkshire Hathaway HomeServices Nevada Properties guides you through every step. Free buyer consultation. Call (702) 500-1942.",
@@ -32,6 +34,17 @@ export const metadata: Metadata = {
     "55+ communities Las Vegas",
   ],
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/buyers",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 const buyerSchema = {
   "@context": "https://schema.org",
@@ -408,7 +421,7 @@ export default function BuyersPage() {
                 },
                 {
                   q: "Does BHHS help with new construction purchases?",
-                  a: "Yes! Dr. Jan provides free representation for new construction purchases from builders like Toll Brothers, Lennar, and Century Communities. The builder pays her commission, but she works for you—reviewing contracts, negotiating upgrades, and protecting your interests during the build process.",
+                  a: "Yes! Dr. Jan provides free representation for new construction—including Homes by Dr. Jan Duffy at Mesa at Skyeview in Skye Canyon and builders such as Toll Brothers and Lennar. The builder pays her commission, but she works for you—reviewing contracts, negotiating upgrades, and protecting your interests during the build process.",
                 },
                 {
                   q: "What if I'm relocating from another state?",

@@ -17,6 +17,8 @@ import {
   Heart,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import {
   businessInfo,
   gbpDescription,
@@ -25,7 +27,7 @@ import {
   generateFAQSchema,
 } from "@/lib/gbp-schema";
 
-export const metadata: Metadata = {
+const pageMetadataBase = {
   title: "Dr. Jan Duffy, REALTOR® Las Vegas | Berkshire Hathaway HomeServices",
   description:
     "Dr. Jan Duffy is a trusted Las Vegas REALTOR® with Berkshire Hathaway HomeServices Nevada Properties. Specializing in Summerlin, Henderson, 55+ communities, California relocation, and luxury homes. Call (702) 500-1942.",
@@ -45,6 +47,17 @@ export const metadata: Metadata = {
     type: "profile",
   },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return applyMesaskyeviewToMetadata(config, {
+    title: String(pageMetadataBase.title ?? ""),
+    description: String(pageMetadataBase.description ?? ""),
+    pathname: "/google-business",
+    keywords: pageMetadataBase.keywords as string[] | undefined,
+    noIndex: false,
+  });
+}
 
 export default function GoogleBusinessPage() {
   const localBusinessSchema = generateLocalBusinessSchema();

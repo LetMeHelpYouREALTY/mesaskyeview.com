@@ -9,6 +9,9 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import MesaskyeviewContextBar from "@/components/mesaskyeview/MesaskyeviewContextBar";
+import { DomainConfigProvider } from "@/components/providers/DomainConfigProvider";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
 export async function generateMetadata(): Promise<Metadata> {
   const domain = headers().get("x-domain") || "";
@@ -16,9 +19,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getCanonicalSiteUrl(config);
   const googleVerification = getGoogleSiteVerification();
 
+  const defaultTitle = isMesaskyeviewDomain(config)
+    ? MESA_SITE_BRAND
+    : `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`;
+
   return {
     metadataBase: new URL(siteUrl),
-    title: `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`,
+    title: {
+      default: defaultTitle,
+      template: isMesaskyeviewDomain(config) ? `%s | ${MESA_SITE_BRAND}` : `%s | Dr. Jan Duffy`,
+    },
     description: config.description,
     keywords: config.keywords,
     robots: {
@@ -34,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: config.description,
       type: "website",
       url: siteUrl,
-      siteName: `Dr. Jan Duffy — ${config.neighborhood}`,
+      siteName: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : `Dr. Jan Duffy — ${config.neighborhood}`,
       locale: "en_US",
     },
   };
@@ -73,8 +83,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <GoogleAnalytics />
-        {children}
-        <SiteChrome />
+        <DomainConfigProvider config={config}>
+          <MesaskyeviewContextBar />
+          {children}
+          <SiteChrome />
+        </DomainConfigProvider>
         <Analytics />
       </body>
     </html>

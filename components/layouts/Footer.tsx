@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
 export default async function Footer() {
   const config = await getPageDomainConfig();
   const contactEmail = getContactEmail(config);
+  const isMesa = isMesaskyeviewDomain(config);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -14,10 +16,13 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="font-bold text-xl mb-4">Berkshire Hathaway HomeServices</h3>
+            <h3 className="font-bold text-xl mb-4">
+              {isMesa ? "Mesa at Skyeview" : "Berkshire Hathaway HomeServices"}
+            </h3>
             <p className="text-slate-300 mb-4 text-sm">
-              Nevada Properties - Your trusted real estate partner in Las Vegas, Henderson, and
-              Summerlin. Backed by Warren Buffett's legacy of trust.
+              {isMesa
+                ? `${MESA_SITE_BRAND} — Dr. Jan Duffy, REALTOR® with Berkshire Hathaway HomeServices Nevada Properties. Buyer and seller services in Skye Canyon (89166).`
+                : "Nevada Properties - Your trusted real estate partner in Las Vegas, Henderson, and Summerlin. Backed by Warren Buffett's legacy of trust."}
             </p>
             <div className="flex space-x-4">
               <a

@@ -1,10 +1,21 @@
 import Navbar from "@/components/layouts/Navbar";
-import { Phone, Mail, CheckCircle, Star, Users, Shield } from "lucide-react";
+import { Phone, Mail, CheckCircle, Star, Users, Shield, MapPin, Navigation } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
+import {
+  isMesaskyeviewDomain,
+  mesaAtSkyeviewCommunity,
+  MESA_HOME_BRAND,
+  MESA_SITE_BRAND,
+} from "@/lib/mesaskyeview-brand";
+import {
+  generateMesaContactPageSchema,
+  getMesaCommunityDirectionsUrl,
+  getMesaCommunityMapsEmbedUrl,
+} from "@/lib/mesa-at-skyeview-schema";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -26,25 +37,28 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ContactPage() {
   const config = await getPageDomainConfig();
   const contactEmail = getContactEmail(config);
+  const isMesa = isMesaskyeviewDomain(config);
 
-  const contactSchema = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    mainEntity: {
-      "@type": "RealEstateAgent",
-      name: `Dr. Jan Duffy - ${config.neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
-      telephone: "+17025001942",
-      email: contactEmail,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "9406 W Lake Mead Blvd, Suite 100",
-        addressLocality: "Las Vegas",
-        addressRegion: "NV",
-        postalCode: "89134",
-        addressCountry: "US",
-      },
-    },
-  };
+  const contactSchema = isMesa
+    ? generateMesaContactPageSchema(config)
+    : {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        mainEntity: {
+          "@type": "RealEstateAgent",
+          name: `Dr. Jan Duffy - ${config.neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
+          telephone: "+17025001942",
+          email: contactEmail,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "9406 W Lake Mead Blvd, Suite 100",
+            addressLocality: "Las Vegas",
+            addressRegion: "NV",
+            postalCode: "89134",
+            addressCountry: "US",
+          },
+        },
+      };
   return (
     <>
       <script
@@ -57,14 +71,15 @@ export default async function ContactPage() {
           {/* Hero */}
           <div className="text-center mb-12">
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Berkshire Hathaway HomeServices Nevada Properties
+              {isMesa ? MESA_HOME_BRAND : "Berkshire Hathaway HomeServices Nevada Properties"}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Contact Dr. Jan Duffy
+              {isMesa ? `Contact Dr. Jan Duffy | ${MESA_SITE_BRAND}` : "Contact Dr. Jan Duffy"}
             </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Questions about {config.neighborhood} or Las Vegas real estate? Call, email, or use the
-              scheduling calendar below this page.
+              {isMesa
+                ? `Questions about ${mesaAtSkyeviewCommunity.name}, tours near ${mesaAtSkyeviewCommunity.street}, or buying and selling in Skye Canyon? Call, email, or schedule below.`
+                : `Questions about ${config.neighborhood} or Las Vegas real estate? Call, email, or use the scheduling calendar below this page.`}
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <a
@@ -73,11 +88,19 @@ export default async function ContactPage() {
               >
                 Schedule Online
               </a>
+              {isMesa ? (
+                <a
+                  href="#mesa-community"
+                  className="inline-flex items-center bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-semibold"
+                >
+                  Mesa at Skyeview Map
+                </a>
+              ) : null}
               <a
                 href="#office"
                 className="inline-flex items-center bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-semibold"
               >
-                Office & Map
+                {isMesa ? "BHHS Office & Map" : "Office & Map"}
               </a>
             </div>
           </div>
@@ -143,6 +166,72 @@ export default async function ContactPage() {
               </div>
             </div>
           </div>
+
+          {isMesa && (
+            <section
+              id="mesa-community"
+              className="max-w-5xl mx-auto mt-16 scroll-mt-28"
+              aria-labelledby="mesa-community-heading"
+            >
+              <div className="text-center mb-8">
+                <h2
+                  id="mesa-community-heading"
+                  className="text-3xl font-bold text-slate-900 mb-3"
+                >
+                  Mesa at Skyeview — Community Location
+                </h2>
+                <p className="text-slate-600 max-w-2xl mx-auto">
+                  Tour and directions for {mesaAtSkyeviewCommunity.name} in {mesaAtSkyeviewCommunity.masterPlan}.
+                  Dr. Jan coordinates showings and new-home registration—this is the community address in{" "}
+                  {mesaAtSkyeviewCommunity.zip}, not the BHHS brokerage office below.
+                </p>
+              </div>
+              <div className="grid lg:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <div className="flex items-start bg-slate-50 rounded-lg p-5">
+                    <MapPin className="h-6 w-6 text-blue-600 mr-4 flex-shrink-0 mt-1" aria-hidden />
+                    <div>
+                      <h3 className="font-semibold text-slate-900 mb-1">Community NAP</h3>
+                      <address className="not-italic text-slate-700">
+                        {mesaAtSkyeviewCommunity.salesOfficeAddress}
+                      </address>
+                      <p className="text-slate-500 text-sm mt-2">
+                        {mesaAtSkyeviewCommunity.masterPlan} · Northwest Las Vegas
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={getMesaCommunityDirectionsUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                  >
+                    <Navigation className="h-5 w-5 mr-2" aria-hidden />
+                    Get Directions
+                  </a>
+                  <a
+                    href="tel:+17025001942"
+                    className="inline-flex items-center justify-center w-full sm:w-auto bg-slate-800 hover:bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold transition-colors ml-0 sm:ml-3"
+                  >
+                    <Phone className="h-5 w-5 mr-2" aria-hidden />
+                    Call Before You Tour
+                  </a>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm min-h-[280px]">
+                  <iframe
+                    title={`Map of ${mesaAtSkyeviewCommunity.name} at ${mesaAtSkyeviewCommunity.salesOfficeAddress}`}
+                    src={getMesaCommunityMapsEmbedUrl()}
+                    width="100%"
+                    height="320"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Service Areas Section */}
           <section className="max-w-5xl mx-auto mt-16">

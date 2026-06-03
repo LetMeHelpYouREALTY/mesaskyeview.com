@@ -180,7 +180,7 @@ export const gbpFAQs = [
   },
   {
     question: "Does Berkshire Hathaway HomeServices help with new construction?",
-    answer: "Yes! Dr. Jan provides free buyer representation for new construction purchases from builders like Toll Brothers, Lennar, and Century Communities. The builder pays the commission, but Dr. Jan works exclusively for you—protecting your interests during the build process.",
+    answer: "Yes! Dr. Jan provides free buyer representation for new construction—including Homes by Dr. Jan Duffy at Mesa at Skyeview in Skye Canyon and builders such as Toll Brothers and Lennar. The builder pays the commission, but Dr. Jan works exclusively for you—protecting your interests during the build process.",
   },
   {
     question: "How does Dr. Jan help with probate or divorce real estate sales?",

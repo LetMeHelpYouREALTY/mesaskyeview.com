@@ -1,3 +1,13 @@
+# mesaskyeview.com
+
+Hyperlocal site for **Mesa at Skyeview | Homes by Dr. Jan Duffy** (Skye Canyon, Las Vegas 89166).
+
+- **Production:** https://www.mesaskyeview.com  
+- **Project wiki (source):** [`docs/wiki/`](docs/wiki/) — publish to GitHub: [Publish-to-GitHub-Wiki](docs/wiki/Publish-to-GitHub-Wiki.md)  
+- **GitHub Wiki (after first page created):** https://github.com/LetMeHelpYouREALTY/mesaskyeview.com/wiki  
+
+---
+
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [FAQ Generator](#faq-generator)

@@ -120,5 +120,5 @@ export function getPageBannerImage(pathname: string): SiteImageAsset | null {
   const sorted = [...pageBannerByPrefix].sort((a, b) => b.prefix.length - a.prefix.length);
   const match = sorted.find(({ prefix }) => pathname === prefix || pathname.startsWith(`${prefix}/`) || pathname.startsWith(prefix));
 
-  return match?.image ?? mesaGeneratedHeroes.community;
+  return match?.image ?? mesaGeneratedHeroes.flagship;
 }

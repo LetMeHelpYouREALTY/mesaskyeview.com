@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
-import { mesaGeneratedHeroes } from "@/lib/mesa-hero-images";
+import { mesaDefaultSocialHero } from "@/lib/mesa-hero-images";
 import { cloudflareImages } from "@/lib/site-images";
 
 /** Canonical GSC property host for mesaskyeview.com production. */
@@ -22,7 +22,7 @@ export function getDefaultSocialImageMetadata(
 ): Pick<Metadata, "openGraph" | "twitter"> {
   const siteUrl = getCanonicalSiteUrl(config);
   const image = isMesaskyeviewDomain(config)
-    ? mesaGeneratedHeroes.community
+    ? mesaDefaultSocialHero
     : cloudflareImages.hero.lasVegasSkyline;
   const absoluteUrl = image.src.startsWith("http") ? image.src : `${siteUrl}${image.src}`;
 

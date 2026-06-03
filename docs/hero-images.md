@@ -18,4 +18,6 @@ Ten AI-generated originals live in `public/Image/hero_*.webp` (1920×1080, quali
 
 ## Deploy note
 
-PNG heroes are ~2–3 MB each. After deploy, confirm `https://www.mesaskyeview.com/Image/hero_mesa_community.png` loads. Consider converting to WebP in a future pass to reduce transfer size.
+Primary social/home hero: `hero_mesa_flagship.webp`. After deploy, confirm `https://www.mesaskyeview.com/Image/hero_mesa_flagship.webp` loads.
+
+Requires `NEXT_PUBLIC_SITE_URL=https://www.mesaskyeview.com` on Vercel Production.

@@ -20,6 +20,7 @@ import DrJanDuffyPhoto from "@/components/agent/DrJanDuffyPhoto";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { agentInfo } from "@/lib/site-config";
+import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 
 const pageMetadataBase = {
   title: "About Dr. Jan Duffy | Berkshire Hathaway HomeServices Las Vegas",
@@ -286,7 +287,7 @@ export default async function AboutPage() {
                       <ArrowRight className="h-4 w-4 mr-2 text-blue-600" />
                       Free Home Valuation
                     </Link>
-                    <a href="http://drjanduffy.realscout.com/" target="_blank" rel="noopener noreferrer" className="flex items-center text-slate-700 hover:text-blue-600">
+                    <a href={DR_JAN_REALSCOUT_SEARCH_URL} target="_blank" rel="noopener noreferrer" className="flex items-center text-slate-700 hover:text-blue-600">
                       <ArrowRight className="h-4 w-4 mr-2 text-blue-600" />
                       Browse Listings
                     </a>

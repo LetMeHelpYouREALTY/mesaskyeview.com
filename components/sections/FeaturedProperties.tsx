@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Square, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cloudflareImages } from "@/lib/site-images";
+import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 
 interface Property {
   id: number;
@@ -48,9 +48,9 @@ const PropertyCard = ({ property }: { property: Property }) => (
         </div>
       </div>
       <Button asChild className="w-full bg-blue-600 hover:bg-blue-700">
-        <Link href={`/listings/${property.id}`}>
-          View Details <ArrowRight className="h-4 w-4 ml-2" />
-        </Link>
+        <a href={DR_JAN_REALSCOUT_SEARCH_URL} target="_blank" rel="noopener noreferrer">
+          Search Live Listings <ArrowRight className="h-4 w-4 ml-2" />
+        </a>
       </Button>
     </div>
   </div>
@@ -103,7 +103,9 @@ export default function FeaturedProperties() {
             </p>
           </div>
           <Button asChild variant="outline" className="mt-4 md:mt-0">
-            <a href="http://drjanduffy.realscout.com/" target="_blank" rel="noopener noreferrer">View All Properties</a>
+            <a href={DR_JAN_REALSCOUT_SEARCH_URL} target="_blank" rel="noopener noreferrer">
+              View All Properties
+            </a>
           </Button>
         </div>
 

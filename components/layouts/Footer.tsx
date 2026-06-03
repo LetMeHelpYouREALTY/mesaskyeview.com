@@ -4,6 +4,13 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
+import { businessInfo } from "@/lib/gbp-schema";
+
+const SOCIAL_LINKS = {
+  facebook: businessInfo.socialProfiles[0],
+  instagram: businessInfo.socialProfiles[1],
+  linkedin: businessInfo.socialProfiles[2],
+} as const;
 
 export default async function Footer() {
   const config = await getPageDomainConfig();
@@ -28,29 +35,29 @@ export default async function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="http://drjanduffy.realscout.com/"
+                href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
-                aria-label="Search Las Vegas Homes"
+                aria-label="Dr. Jan Duffy on Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="http://drjanduffy.realscout.com/"
+                href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
-                aria-label="Search Las Vegas Homes"
+                aria-label="Dr. Jan Duffy on Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="http://drjanduffy.realscout.com/"
+                href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
-                aria-label="Search Las Vegas Homes"
+                aria-label="Dr. Jan Duffy on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>

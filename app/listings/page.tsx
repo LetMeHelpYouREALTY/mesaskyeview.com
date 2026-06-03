@@ -164,7 +164,7 @@ export default async function ListingsPage() {
                 className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md font-bold text-lg mb-6 transition-colors"
               >
                 <Search className="h-5 w-5" />
-                Open Dr. Jan&apos;s Curated Home Search
+                Search Homes on RealScout
               </a>
             )}
             <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-500">

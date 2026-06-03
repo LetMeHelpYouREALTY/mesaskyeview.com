@@ -22,6 +22,7 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 
 const pageMetadataBase = {
   title:
@@ -382,12 +383,12 @@ export default function FiftyFiveCommunitiesPage() {
                 Call (702) 500-1942
               </a>
               <a
-                href="http://drjanduffy.realscout.com/"
+                href={DR_JAN_REALSCOUT_SEARCH_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center bg-slate-100 text-slate-900 px-8 py-4 rounded-md font-bold text-lg hover:bg-slate-200 transition-colors"
               >
-                Explore Communities
+                Search Live Listings
                 <ArrowRight className="h-5 w-5 ml-2" />
               </a>
             </div>

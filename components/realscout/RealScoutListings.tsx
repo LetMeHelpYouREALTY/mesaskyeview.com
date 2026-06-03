@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { getRealscoutOfficeListingsHtml } from "@/lib/realscout-office-listings";
 
 type RealScoutListingsProps = {
   agentEncodedId: string;
@@ -42,15 +43,9 @@ export default function RealScoutListings({
         </div>
 
         <div
+          className="realscout-wrapper"
           dangerouslySetInnerHTML={{
-            __html: `<realscout-office-listings 
-              agent-encoded-id="${agentEncodedId}" 
-              sort-order="NEWEST" 
-              listing-status="For Sale" 
-              property-types=",SFR,MF,TC" 
-              price-min="300000" 
-              price-max="2000000"
-            ></realscout-office-listings>`,
+            __html: getRealscoutOfficeListingsHtml(agentEncodedId),
           }}
         />
       </div>

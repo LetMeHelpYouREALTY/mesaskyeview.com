@@ -14,6 +14,7 @@ import SiteHeader from "@/components/layouts/SiteHeader";
 import SitePageBanner from "@/components/layouts/SitePageBanner";
 import { DomainConfigProvider } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { REALSCOUT_WEB_COMPONENTS_SCRIPT } from "@/lib/realscout-office-listings";
 
 export async function generateMetadata(): Promise<Metadata> {
   const domain = headers().get("x-domain") || headers().get("host") || "";
@@ -75,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
         <Script
-          src="https://em.realscout.com/website.js"
+          src={REALSCOUT_WEB_COMPONENTS_SCRIPT}
           type="module"
           strategy="afterInteractive"
         />

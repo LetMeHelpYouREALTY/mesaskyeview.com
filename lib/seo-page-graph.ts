@@ -7,11 +7,7 @@
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { businessInfo, gbpFAQs, generateFAQSchema as generateGbpFaqSchema } from "@/lib/gbp-schema";
-import {
-  isMesaskyeviewDomain,
-  MESA_SITE_BRAND,
-  mesaAtSkyeviewCommunity,
-} from "@/lib/mesaskyeview-brand";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { combineSchemas } from "@/lib/schema";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";

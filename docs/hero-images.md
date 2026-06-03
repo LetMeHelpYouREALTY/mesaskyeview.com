@@ -2,7 +2,7 @@
 
 ## Assets
 
-Ten AI-generated originals live in `public/Image/hero_*.png` (1920×1080). They are **not** copied from third-party listing photos; visual direction was informed by:
+Ten AI-generated originals live in `public/Image/hero_*.webp` (1920×1080, quality 85). Source PNGs were converted for faster loads. They are **not** copied from third-party listing photos; visual direction was informed by:
 
 - [Skye Canyon new homes (Century Communities)](https://www.centurycommunities.com/find-your-new-home/nevada/las-vegas-metro/las-vegas/skye-canyon) — desert master-planned exteriors, pools, amenities
 - [Exterior real estate photography guidance (Matterport)](https://matterport.com/learn/real-estate-photography) — golden hour, landscaping, MLS clarity

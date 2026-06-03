@@ -1,6 +1,6 @@
 /**
  * Site imagery under /Image/* (Cloudflare-cached static assets).
- * Mesa heroes: AI-generated originals in /Image/hero_*.png
+ * Mesa heroes: AI-generated originals in /Image/hero_*.webp
  * Legacy fallbacks: hero_bg_*.jpg where still deployed.
  */
 

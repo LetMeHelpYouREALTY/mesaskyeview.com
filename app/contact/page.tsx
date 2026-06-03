@@ -5,18 +5,19 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import {
+  getMesaCommunityPostalAddress,
   isMesaskyeviewDomain,
   mesaAtSkyeviewCommunity,
   MESA_HOME_BRAND,
   MESA_SITE_BRAND,
 } from "@/lib/mesaskyeview-brand";
-import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
+import { generateMesaContactPageSchema } from "@/lib/mesa-at-skyeview-schema";
+import DualNapMapSections from "@/components/contact/DualNapMapSections";
 import {
-  generateMesaContactPageSchema,
-  getMesaCommunityDirectionsUrl,
-  getMesaCommunityMapsEmbedUrl,
-} from "@/lib/mesa-at-skyeview-schema";
-import { officeInfo } from "@/lib/site-config";
+  BHHS_BROKERAGE_NAP,
+  getBhhsBrokerageDirectionsUrl,
+  getBhhsBrokerageMapsEmbedUrl,
+} from "@/lib/nap-addresses";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 
@@ -167,22 +168,16 @@ export default async function ContactPage() {
             </div>
           </div>
 
-          <section
-            id="office"
-            className="max-w-5xl mx-auto mt-16 scroll-mt-28"
-            aria-labelledby="office-heading"
-          >
+          {isMesa ? (
+            <DualNapMapSections />
+          ) : (
+            <section id="office" className="max-w-5xl mx-auto mt-16 scroll-mt-28" aria-labelledby="office-heading">
               <div className="text-center mb-8">
-                <h2
-                  id="office-heading"
-                  className="text-3xl font-bold text-slate-900 mb-3"
-                >
-                  {isMesa ? `Office — ${mesaAtSkyeviewCommunity.name}` : "Office"}
+                <h2 id="office-heading" className="text-3xl font-bold text-slate-900 mb-3">
+                  Office
                 </h2>
                 <p className="text-slate-600 max-w-2xl mx-auto">
-                  {isMesa
-                    ? `Visit Dr. Jan Duffy at ${officeInfo.address.full} in ${mesaAtSkyeviewCommunity.masterPlan} (${mesaAtSkyeviewCommunity.zip}). Tours, consultations, and new-home registration by appointment.`
-                    : `Visit Dr. Jan Duffy at ${officeInfo.address.full}. Call before you arrive.`}
+                  Visit Dr. Jan Duffy at {BHHS_BROKERAGE_NAP.full}. Call before you arrive.
                 </p>
               </div>
               <div className="grid lg:grid-cols-2 gap-8">
@@ -190,38 +185,28 @@ export default async function ContactPage() {
                   <div className="flex items-start bg-slate-50 rounded-lg p-5">
                     <MapPin className="h-6 w-6 text-blue-600 mr-4 flex-shrink-0 mt-1" aria-hidden />
                     <div>
-                      <h3 className="font-semibold text-slate-900 mb-1">Office NAP</h3>
+                      <h3 className="font-semibold text-slate-900 mb-1">Office address (NAP)</h3>
                       <address className="not-italic text-slate-700">
-                        {officeInfo.address.street}
+                        {BHHS_BROKERAGE_NAP.street}
                         <br />
-                        {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
+                        {BHHS_BROKERAGE_NAP.city}, {BHHS_BROKERAGE_NAP.state} {BHHS_BROKERAGE_NAP.zip}
                       </address>
-                      <p className="text-slate-500 text-sm mt-2">
-                        {mesaAtSkyeviewCommunity.masterPlan} · Northwest Las Vegas
-                      </p>
                     </div>
                   </div>
                   <a
-                    href={getMesaCommunityDirectionsUrl()}
+                    href={getBhhsBrokerageDirectionsUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                   >
                     <Navigation className="h-5 w-5 mr-2" aria-hidden />
                     Get Directions
                   </a>
-                  <a
-                    href="tel:+17025001942"
-                    className="inline-flex items-center justify-center w-full sm:w-auto bg-slate-800 hover:bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold transition-colors ml-0 sm:ml-3"
-                  >
-                    <Phone className="h-5 w-5 mr-2" aria-hidden />
-                    Call Before You Tour
-                  </a>
                 </div>
                 <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm min-h-[280px]">
                   <iframe
-                    title={`Map of ${mesaAtSkyeviewCommunity.name} at ${mesaAtSkyeviewCommunity.salesOfficeAddress}`}
-                    src={getMesaCommunityMapsEmbedUrl()}
+                    title={`Map: ${BHHS_BROKERAGE_NAP.full}`}
+                    src={getBhhsBrokerageMapsEmbedUrl()}
                     width="100%"
                     height="320"
                     style={{ border: 0 }}
@@ -231,7 +216,8 @@ export default async function ContactPage() {
                   />
                 </div>
               </div>
-          </section>
+            </section>
+          )}
 
           {/* Service Areas Section */}
           <section className="max-w-5xl mx-auto mt-16">

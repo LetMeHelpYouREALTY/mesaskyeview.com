@@ -20,7 +20,6 @@ import DrJanDuffyPhoto from "@/components/agent/DrJanDuffyPhoto";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { agentInfo, officeInfo } from "@/lib/site-config";
-import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 
 const pageMetadataBase = {
@@ -65,7 +64,11 @@ function buildPersonSchema(siteUrl: string, email: string) {
     name: "Berkshire Hathaway HomeServices Nevada Properties",
     address: {
       "@type": "PostalAddress",
-      ...getMesaCommunityPostalAddress(),
+      streetAddress: officeInfo.address.street,
+      addressLocality: officeInfo.address.city,
+      addressRegion: officeInfo.address.state,
+      postalCode: officeInfo.address.zip,
+      addressCountry: "US",
     },
   },
   hasCredential: {

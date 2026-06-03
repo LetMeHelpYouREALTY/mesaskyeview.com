@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { BHHS_BROKERAGE_NAP, MESA_COMMUNITY_NAP } from "@/lib/nap-addresses";
 import { officeInfo } from "@/lib/site-config";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import { businessInfo } from "@/lib/gbp-schema";
@@ -221,10 +222,18 @@ export default async function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-blue-400 flex-shrink-0 mt-0.5" />
-                <address className="not-italic text-slate-300 text-sm">
-                  {officeInfo.address.street}
-                  <br />
-                  {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
+                <address className="not-italic text-slate-300 text-sm space-y-3">
+                  <span className="block">
+                    {officeInfo.address.street}
+                    <br />
+                    {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
+                  </span>
+                  {isMesa ? (
+                    <span className="block text-slate-400 text-xs">
+                      BHHS contracts: {BHHS_BROKERAGE_NAP.street}, {BHHS_BROKERAGE_NAP.city},{" "}
+                      {BHHS_BROKERAGE_NAP.state} {BHHS_BROKERAGE_NAP.zip}
+                    </span>
+                  ) : null}
                 </address>
               </li>
               <li className="flex items-center">

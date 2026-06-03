@@ -8,6 +8,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import { agentInfo } from "@/lib/site-config";
 import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import { mesaHomepageFaqsUi, mesaHomepageReviews } from "@/lib/mesa-homepage-content";
 import MesaskyeviewHeroBackground from "@/components/mesaskyeview/MesaskyeviewHeroBackground";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
@@ -68,18 +69,33 @@ export default async function Home() {
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">500+</span>
-                <span>Families Helped</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">30+ Years</span>
-                <span>Las Vegas Experience</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-white">4.9★</span>
-                <span>Client Rating</span>
-              </div>
+              {isMesa ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">89166</span>
+                    <span>Skye Canyon focus</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">New + resale</span>
+                    <span>Mesa at Skyeview</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">BHHS</span>
+                    <span>Nevada Properties</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">500+</span>
+                    <span>Families Helped</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">30+ Years</span>
+                    <span>Las Vegas Experience</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -165,8 +181,23 @@ export default async function Home() {
           </div>
         </section>
 <WhyChooseUs />
-        <ReviewsSection />
-        <FAQSection />
+        <ReviewsSection
+          reviews={isMesa ? mesaHomepageReviews : undefined}
+          showAggregateLine={!isMesa}
+          subtitle={
+            isMesa
+              ? "Client experiences at Mesa at Skyeview and in Skye Canyon (89166)"
+              : undefined
+          }
+        />
+        <FAQSection
+          faqs={isMesa ? mesaHomepageFaqsUi : undefined}
+          subtitle={
+            isMesa
+              ? "Questions about Mesa at Skyeview, Skye Canyon, and ZIP 89166"
+              : undefined
+          }
+        />
 
         {/* Domain-Specific CTA */}
         <section className="py-16 md:py-20 bg-blue-600 text-white">

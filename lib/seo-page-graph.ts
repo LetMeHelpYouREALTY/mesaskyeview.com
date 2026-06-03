@@ -8,6 +8,7 @@ import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { businessInfo, gbpFAQs, generateFAQSchema as generateGbpFaqSchema } from "@/lib/gbp-schema";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { mesaFaqsToSchema, mesaHomepageFaqs } from "@/lib/mesa-page-faqs";
 import { combineSchemas } from "@/lib/schema";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
@@ -170,8 +171,11 @@ function buildPersonSchema(config: DomainConfig, siteUrl: string) {
 }
 
 /** Homepage FAQ graph (AEO); /faq keeps its own page-level FAQPage. */
-function buildHomepageFaqSchema(pathname: string) {
+function buildHomepageFaqSchema(pathname: string, config: DomainConfig) {
   if (pathname !== "/") return null;
+  if (isMesaskyeviewDomain(config)) {
+    return mesaFaqsToSchema(mesaHomepageFaqs);
+  }
   return generateGbpFaqSchema(gbpFAQs);
 }
 
@@ -190,7 +194,7 @@ export function buildPageJsonLdGraph(config: DomainConfig, pathname: string) {
     buildBreadcrumbSchema(siteUrl, normalizedPath),
   ];
 
-  const faq = buildHomepageFaqSchema(normalizedPath);
+  const faq = buildHomepageFaqSchema(normalizedPath, config);
   if (faq) pieces.push(faq);
 
   return combineSchemas(...pieces);

@@ -55,3 +55,10 @@ export const mesaZipFaqs: MesaFaq[] = [
     answer: "89166 is anchored by the Skye Canyon master plan, including Mesa at Skyeview and other Skye Canyon villages. Dr. Jan Duffy focuses on buyer and seller services for Mesa at Skyeview and surrounding Skye Canyon resales.",
   },
 ];
+
+/** Homepage AEO — Skye Canyon / 89166 only (no valley-wide dilution). */
+export const mesaHomepageFaqs: MesaFaq[] = [
+  ...mesaCommunityFaqs.slice(0, 2),
+  mesaBuyerFaqs[0],
+  mesaZipFaqs[0],
+];

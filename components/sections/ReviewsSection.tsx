@@ -59,6 +59,8 @@ interface ReviewsSectionProps {
   googleReviewsUrl?: string;
   /** Custom class name */
   className?: string;
+  /** Show 4.9 / 500+ line (off on mesaskyeview — no self-serving review schema) */
+  showAggregateLine?: boolean;
 }
 
 export default function ReviewsSection({
@@ -67,6 +69,7 @@ export default function ReviewsSection({
   subtitle = "Real testimonials from satisfied clients across Las Vegas and Henderson",
   googleReviewsUrl = "https://g.page/r/heyberkshire/review",
   className = "",
+  showAggregateLine = true,
 }: ReviewsSectionProps) {
   return (
     <section className={`py-16 md:py-24 bg-slate-50 ${className}`}>
@@ -76,7 +79,7 @@ export default function ReviewsSection({
             {title}
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">{subtitle}</p>
-          {/* Aggregate Rating Display */}
+          {showAggregateLine && (
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
@@ -97,6 +100,7 @@ export default function ReviewsSection({
               ({aggregateRating.reviewCount}+ reviews)
             </span>
           </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -104,8 +108,6 @@ export default function ReviewsSection({
             <div
               key={review.id}
               className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-              itemScope
-              itemType="https://schema.org/Review"
             >
               <div className="flex items-center mb-4">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4 flex-shrink-0">

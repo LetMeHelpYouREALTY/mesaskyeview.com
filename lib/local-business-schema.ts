@@ -1,12 +1,8 @@
 import { businessInfo } from "@/lib/gbp-schema";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
-import {
-  isMesaskyeviewDomain,
-  MESA_SITE_BRAND,
-  getMesaCommunityPostalAddress,
-  mesaAtSkyeviewCommunity,
-} from "@/lib/mesaskyeview-brand";
+import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 
 export type LocalBusinessSchemaOptions = {
@@ -106,12 +102,6 @@ export function generateLocalBusinessSchemaForSite(
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "Real Estate License",
       identifier: "S.0197614.LLC",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "500",
-      bestRating: "5",
     },
     sameAs: businessInfo.socialProfiles,
     parentOrganization: {

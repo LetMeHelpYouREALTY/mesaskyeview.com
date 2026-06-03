@@ -55,7 +55,7 @@ export const DOMAIN_CONFIGS: Record<string, DomainConfig> = {
     siteBrand: "Mesa at Skyeview | Homes by Dr. Jan Duffy",
     tagline: "Homes by Dr. Jan Duffy at Mesa at Skyeview",
     description:
-      "Realtor services for Mesa at Skyeview at 8544 Vanhoy Creek Street, Las Vegas, NV 89166—buyer and seller representation, new construction advocacy, and MLS search with Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties.",
+      "Homes by Dr. Jan Duffy at Mesa at Skyeview in Skye Canyon (89166)—buyer and seller representation, new construction tours, and MLS search.",
     heroHeadline: "Mesa at Skyeview | Homes by Dr. Jan Duffy",
     heroSubheadline:
       "Your REALTOR® for one-story new homes and resales in Skye Canyon—tours, contracts, and Skye Canyon market guidance from Dr. Jan Duffy.",

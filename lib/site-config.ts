@@ -1,6 +1,8 @@
 // Site Configuration - HeyBerkshire.com
 // Berkshire Hathaway HomeServices Nevada Properties
 
+import { MESA_COMMUNITY_NAP } from "@/lib/nap-addresses";
+
 export const siteConfig = {
   name: "HeyBerkshire",
   fullName: "Berkshire Hathaway HomeServices Nevada Properties",
@@ -26,18 +28,19 @@ export const agentInfo = {
   brokerage: "Berkshire Hathaway HomeServices Nevada Properties",
 };
 
+/** Primary office NAP (matches GBP): Mesa at Skyeview / Vanhoy Creek. */
 export const officeInfo = {
   name: "Dr. Jan Duffy | Homes by Dr. Jan Duffy",
   address: {
-    street: "8544 Vanhoy Creek Street",
-    city: "Las Vegas",
-    state: "NV",
-    zip: "89166",
-    full: "8544 Vanhoy Creek Street, Las Vegas, NV 89166",
+    street: MESA_COMMUNITY_NAP.street,
+    city: MESA_COMMUNITY_NAP.city,
+    state: MESA_COMMUNITY_NAP.state,
+    zip: MESA_COMMUNITY_NAP.zip,
+    full: MESA_COMMUNITY_NAP.full,
   },
   coordinates: {
-    lat: 36.31558648812897,
-    lng: -115.32930209279098,
+    lat: MESA_COMMUNITY_NAP.latitude,
+    lng: MESA_COMMUNITY_NAP.longitude,
   },
   phone: "(702) 500-1942",
   phoneTel: "tel:+17025001942",

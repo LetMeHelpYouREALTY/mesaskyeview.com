@@ -41,7 +41,7 @@ export default function CloudflareHeroBackground({
         >
           <Image
             src={photo.src}
-            alt=""
+            alt={photo.alt}
             fill
             sizes="100vw"
             className="object-cover"

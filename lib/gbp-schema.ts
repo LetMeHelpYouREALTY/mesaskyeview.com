@@ -161,7 +161,7 @@ Dr. Jan's approach is simple: treat every client like family, know the market in
 
 55+ active adult community specialization covers Sun City Summerlin (Nevada's largest 55+ community), Sun City Anthem in Henderson, Del Webb Lake Las Vegas, and Solera at Anthem. Investment property expertise spans single-family rentals, multi-family opportunities, and short-term rental analysis across the Las Vegas metro area.
 
-Office located at 8544 Vanhoy Creek Street, Las Vegas, NV 89166. Available Monday through Friday 9am-6pm, Saturday 10am-4pm, and Sunday by appointment. Call (702) 500-1942 for a free consultation or visit mesaskyeview.com to start your Las Vegas real estate journey today.`,
+Office and model tours at 8544 Vanhoy Creek Street, Las Vegas, NV 89166 (Mesa at Skyeview, Skye Canyon). Call (702) 500-1942.`,
 };
 
 // FAQ Schema for GBP Q&A section
@@ -200,7 +200,7 @@ export const gbpFAQs = [
   },
   {
     question: "How do I schedule a consultation with Dr. Jan Duffy?",
-    answer: "Call or text (702) 500-1942 for immediate assistance, or email DrDuffySells@MesaSkyeview.com. Office visits at 8544 Vanhoy Creek Street, Las Vegas, NV 89166. Monday-Friday 9am-6pm, Saturday 10am-4pm, Sunday by appointment.",
+    answer: "Call or text (702) 500-1942 or email DrDuffySells@MesaSkyeview.com. Primary office: 8544 Vanhoy Creek Street, Las Vegas, NV 89166. Contract meetings at BHHS Nevada Properties, 9406 W Lake Mead Blvd, Suite 100, Las Vegas, NV 89134 when needed.",
   },
   {
     question: "Does Dr. Jan help with investment properties in Las Vegas?",
@@ -252,12 +252,6 @@ export function generateLocalBusinessSchema() {
           description: service.description,
         },
       })),
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "200",
-      bestRating: "5",
     },
     sameAs: [
       "https://www.facebook.com/drjanduffy",

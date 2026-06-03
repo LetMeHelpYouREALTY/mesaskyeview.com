@@ -140,7 +140,7 @@ export default async function SkyeCanyonPage() {
         {isMesa && (
           <MesaskyeviewPhotoGallery
             title="Mesa at Skyeview & Skye Canyon"
-            description="See the community, Skye Canyon setting, and model-home interiors buyers tour with Dr. Jan Duffy at 8544 Vanhoy Crk St, Las Vegas NV 89166."
+            description={`See the community, Skye Canyon setting, and model-home interiors buyers tour with Dr. Jan Duffy at ${mesaAtSkyeviewCommunity.salesOfficeAddress}.`}
           />
         )}
 

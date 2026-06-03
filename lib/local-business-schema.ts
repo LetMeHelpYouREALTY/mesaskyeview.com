@@ -4,6 +4,7 @@ import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import {
   isMesaskyeviewDomain,
   MESA_SITE_BRAND,
+  getMesaCommunityPostalAddress,
   mesaAtSkyeviewCommunity,
 } from "@/lib/mesaskyeview-brand";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
@@ -50,12 +51,12 @@ export function generateLocalBusinessSchemaForSite(
     priceRange: businessInfo.priceRange,
     address: {
       "@type": "PostalAddress",
-      ...businessInfo.address,
+      ...(mesa ? getMesaCommunityPostalAddress() : businessInfo.address),
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: businessInfo.geo.latitude,
-      longitude: businessInfo.geo.longitude,
+      latitude: mesa ? mesaAtSkyeviewCommunity.latitude : businessInfo.geo.latitude,
+      longitude: mesa ? mesaAtSkyeviewCommunity.longitude : businessInfo.geo.longitude,
     },
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "09:00", closes: "18:00" },

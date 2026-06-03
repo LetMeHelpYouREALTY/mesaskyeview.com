@@ -1,7 +1,12 @@
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import { businessInfo } from "@/lib/gbp-schema";
-import { mesaAtSkyeviewCommunity, MESA_HOME_BRAND, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import {
+  getMesaCommunityPostalAddress,
+  mesaAtSkyeviewCommunity,
+  MESA_HOME_BRAND,
+  MESA_SITE_BRAND,
+} from "@/lib/mesaskyeview-brand";
 import { mesaHyperlocalPhotos } from "@/lib/mesaskyeview-photos";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 
@@ -22,7 +27,7 @@ export function getMesaCommunityDirectionsUrl(): string {
   return MESA_DIRECTIONS_URL;
 }
 
-/** Place JSON-LD for Mesa at Skyeview community NAP (8544 Vanhoy Crk St). */
+/** Place JSON-LD for Mesa at Skyeview community NAP (8544 Vanhoy Creek Street). */
 export function generateMesaAtSkyeviewPlaceSchema(siteUrl: string) {
   const c = mesaAtSkyeviewCommunity;
 
@@ -121,7 +126,7 @@ export function generateMesaContactPageSchema(config: DomainConfig) {
         url: siteUrl,
         address: {
           "@type": "PostalAddress",
-          ...businessInfo.address,
+          ...getMesaCommunityPostalAddress(),
         },
         areaServed: { "@id": place["@id"] },
         makesOffer: {

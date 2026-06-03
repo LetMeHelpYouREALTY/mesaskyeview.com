@@ -109,7 +109,7 @@ export default async function ContactPage() {
           <MesaskyeviewPhotoGallery
             showCta={false}
             title="Tour Mesa at Skyeview"
-            description="Community, Skye Canyon, and model-home photos for buyers scheduling a visit to 8544 Vanhoy Crk St, Las Vegas NV 89166."
+            description={`Community, Skye Canyon, and model-home photos for buyers scheduling a visit to ${mesaAtSkyeviewCommunity.salesOfficeAddress}.`}
           />
         )}
         {isMesa && <DrJanDuffyProfileCard config={config} compact />}

@@ -6,6 +6,18 @@ export const MESA_SITE_BRAND = "Mesa at Skyeview | Homes by Dr. Jan Duffy";
 /** Replaces on-site references to the builder sales brand */
 export const MESA_HOME_BRAND = "Homes by Dr. Jan Duffy";
 
+/** PostalAddress fields for JSON-LD — must match visible NAP on mesaskyeview.com. */
+export function getMesaCommunityPostalAddress() {
+  const c = mesaAtSkyeviewCommunity;
+  return {
+    streetAddress: c.street,
+    addressLocality: c.city,
+    addressRegion: c.state,
+    postalCode: c.zip,
+    addressCountry: "US",
+  };
+}
+
 export function isMesaskyeviewDomain(config: DomainConfig): boolean {
   const d = config.domain.replace(/^www\./, "").toLowerCase();
   return d === "mesaskyeview.com";
@@ -18,9 +30,9 @@ export const mesaAtSkyeviewCommunity = {
   city: "Las Vegas",
   state: "NV",
   zip: "89166",
-  street: "8544 Vanhoy Crk St",
-  salesOfficeAddress: "8544 Vanhoy Crk St, Las Vegas, NV 89166",
-  mapsQuery: "8544+Vanhoy+Crk+St+Las+Vegas+NV+89166",
+  street: "8544 Vanhoy Creek Street",
+  salesOfficeAddress: "8544 Vanhoy Creek Street, Las Vegas, NV 89166",
+  mapsQuery: "8544+Vanhoy+Creek+Street+Las+Vegas+NV+89166",
   /** WGS84 — Mesa at Skyeview community pin */
   latitude: 36.31558648812897,
   longitude: -115.32930209279098,

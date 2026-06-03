@@ -25,7 +25,7 @@
     "lighthouse:manual": "lighthouse https://heyberkshire.com --view --preset=desktop",
     "perf": "npm run analyze && npm run lighthouse",
     "vercel:build": "vercel build",
-    "vercel:deploy": "vercel deploy --prebuilt",
+    "vercel:deploy": "node -e \"console.error('Preview CLI deploy disabled. Push to main for production: https://www.mesaskyeview.com'); process.exit(1)\"",
     "vercel:prod": "node -e \"console.error('Use git push to main for production. vercel --prod duplicates deploys and can briefly show the wrong build.'); process.exit(1)\"",
     "cloudflare:dev": "wrangler dev",
     "cloudflare:deploy": "wrangler deploy",

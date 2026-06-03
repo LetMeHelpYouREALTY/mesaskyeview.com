@@ -118,11 +118,12 @@ pnpm start
 
 ## Deployment
 
-**Production (mesaskyeview.com):** push to `main` only. Vercel’s GitHub integration builds and promotes to https://www.mesaskyeview.com automatically.
+**Production only:** https://www.mesaskyeview.com
 
-**Do not** run `vercel --prod` or `pnpm run vercel:prod` right after a push—the same commit will build twice (dashboard shows `github/DrJanDuffy` and a second row from `cursor-cli` / your avatar). Use CLI prod only for emergencies without a Git push.
-
-**Previews:** feature branches and PRs get preview URLs from Vercel (optional `.github/workflows/vercel-preview.yml` when secrets are set).
+1. Push to **`main`** — Vercel Git integration deploys to **Production** (see `vercel.json` → `git.deploymentEnabled`: only `main` is enabled).
+2. **Do not** run `vercel --prod`, `pnpm run vercel:prod`, or `pnpm run vercel:deploy` after a push (duplicate builds and preview confusion).
+3. **PRs and feature branches** do not get automatic Vercel preview deploys for this project.
+4. Optional in Vercel dashboard: **Settings → Git → Ignored Build Step → Only build production**.
 
 ## Need Help?
 

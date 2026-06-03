@@ -46,6 +46,11 @@ Validate with [Rich Results Test](https://search.google.com/test/rich-results):
 - Root layout JSON-LD (`lib/search-console-schema.ts`)
 - FAQ pages with `FAQPage` markup where implemented
 
+## Production-only deploys
+
+- **Only `main`** triggers Vercel production (`vercel.json` → `git.deploymentEnabled`).
+- Public site: **https://www.mesaskyeview.com** — do not use PR preview `*.vercel.app` URLs for SEO or client review unless you intentionally ran a manual preview workflow.
+
 ## 6. Apex vs www
 
 Apex `https://mesaskyeview.com` should 308 to `https://www.mesaskyeview.com` (Vercel domain settings + `vercel.json` redirect). GSC property, sitemap, and `metadataBase` must all use **www**.

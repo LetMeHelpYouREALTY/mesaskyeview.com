@@ -19,9 +19,16 @@ Running **`vercel --prod`** or **`pnpm run vercel:prod`** after a push triggers 
 2. Wait for the Git-connected deployment to finish (Vercel dashboard or `vercel ls mesaskyeview-com`).
 3. Use CLI production deploy **only** when Git deploy is unavailable (emergency hotfix without push, or project not linked to Git).
 
-## Preview deployments
+## Preview deployments — disabled
 
-- **PRs:** optional preview via `.github/workflows/vercel-preview.yml` (needs `VERCEL_TOKEN` secrets) or Vercel’s automatic PR previews—never stack CLI prod on top of Git prod.
+- **`vercel.json`** sets `git.deploymentEnabled` so only **`main`** deploys. PR/branch pushes do not create Vercel previews.
+- **`.github/workflows/vercel-preview.yml`** is manual-only (`workflow_dispatch`); it does not run on pull requests.
+- **Live site:** https://www.mesaskyeview.com — never treat `*.vercel.app` preview URLs as production.
+- In Vercel dashboard (optional belt-and-suspenders): **Settings → Git → Ignored Build Step → Only build production**.
+
+## Never stack CLI on Git production
+
+- After **`git push origin main`**, do not run `vercel --prod` or `pnpm run vercel:prod`.
 
 ## Cloudflare
 

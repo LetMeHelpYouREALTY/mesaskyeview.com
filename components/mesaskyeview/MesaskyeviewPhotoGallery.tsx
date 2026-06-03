@@ -41,9 +41,11 @@ export default function MesaskyeviewPhotoGallery({
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    quality={65}
                     className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     loading="lazy"
+                    fetchPriority="low"
                   />
                 </div>
                 <figcaption className="px-4 py-3 text-sm text-slate-600 border-t border-slate-100">

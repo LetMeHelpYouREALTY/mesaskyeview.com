@@ -1,9 +1,17 @@
 import { Calendar } from "lucide-react";
 import CalendlyWidget from "@/components/calendly/CalendlyWidget";
+import LazyWhenVisible from "@/components/shared/LazyWhenVisible";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 
 const CALENDLY_URL = "https://calendly.com/drjanduffy/showing";
 
-export default function ScheduleSection() {
+export default async function ScheduleSection() {
+  const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
+
+  const widget = <CalendlyWidget url={CALENDLY_URL} height="650px" />;
+
   return (
     <section
       id="schedule-appointment"
@@ -23,7 +31,13 @@ export default function ScheduleSection() {
             </p>
           </div>
           <div className="p-4 md:p-6">
-            <CalendlyWidget url={CALENDLY_URL} height="650px" />
+            {isMesa ? (
+              <LazyWhenVisible minHeight="650px" rootMargin="150px 0px">
+                {widget}
+              </LazyWhenVisible>
+            ) : (
+              widget
+            )}
           </div>
         </div>
       </div>

@@ -11,11 +11,13 @@ import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyevie
 import { mesaHomepageFaqsUi, mesaHomepageReviews } from "@/lib/mesa-homepage-content";
 import MesaskyeviewHeroBackground from "@/components/mesaskyeview/MesaskyeviewHeroBackground";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import MesaHeroSearch from "@/components/mesaskyeview/MesaHeroSearch";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
 import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
+import LazyRealScoutListingsSection from "@/components/realscout/LazyRealScoutListingsSection";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 
@@ -60,13 +62,17 @@ export default async function Home() {
             </p>
 
             {/* RealScout Search Widget */}
-            <div className="mb-8 flex justify-center realscout-wrapper">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: getRealscoutSimpleSearchHtml(config.realscoutAgentId),
-                }}
-              />
-            </div>
+            {isMesa ? (
+              <MesaHeroSearch agentEncodedId={config.realscoutAgentId} />
+            ) : (
+              <div className="mb-8 flex justify-center realscout-wrapper">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: getRealscoutSimpleSearchHtml(config.realscoutAgentId),
+                  }}
+                />
+              </div>
+            )}
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
@@ -101,7 +107,13 @@ export default async function Home() {
           </div>
         </section>
 
-        <RealScoutListingsSection />
+        {isMesa ? (
+          <LazyRealScoutListingsSection>
+            <RealScoutListingsSection />
+          </LazyRealScoutListingsSection>
+        ) : (
+          <RealScoutListingsSection />
+        )}
 
         {isMesa && <MesaExtractableFacts />}
         {isMesa && <MesaskyeviewPhotoGallery />}

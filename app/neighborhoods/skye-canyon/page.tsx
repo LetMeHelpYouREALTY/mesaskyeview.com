@@ -119,14 +119,19 @@ export default async function SkyeCanyonPage() {
                 <p className="text-slate-600 text-sm mt-2">
                   Northwest Las Vegas · Skye Canyon master plan · ZIP {mesaAtSkyeviewCommunity.zip}
                 </p>
-                <a
-                  href={getMesaCommunityDirectionsUrl()}
-                  className="inline-block mt-3 text-blue-600 font-medium text-sm hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Directions to Mesa at Skyeview
-                </a>
+                <div className="mt-3 flex flex-wrap gap-4 text-sm">
+                  <Link href="/neighborhoods/mesa-at-skyeview" className="text-blue-600 font-medium hover:underline">
+                    Mesa at Skyeview community guide
+                  </Link>
+                  <a
+                    href={getMesaCommunityDirectionsUrl()}
+                    className="text-blue-600 font-medium hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Directions
+                  </a>
+                </div>
               </div>
             )}
           </div>

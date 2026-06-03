@@ -33,7 +33,7 @@ export function generateMesaAtSkyeviewPlaceSchema(siteUrl: string) {
     name: c.name,
     alternateName: MESA_HOME_BRAND,
     description: `New construction and resale homes at ${c.name} in ${c.masterPlan}, ${c.city}, ${c.state} ${c.zip}. Realtor services by Dr. Jan Duffy.`,
-    url: `${siteUrl}/neighborhoods/skye-canyon`,
+    url: `${siteUrl}/neighborhoods/mesa-at-skyeview`,
     image: mesaHyperlocalPhotos.map((p) => `${siteUrl}${p.src}`),
     hasMap: MESA_DIRECTIONS_URL,
     address: {

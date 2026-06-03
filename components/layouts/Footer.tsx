@@ -77,6 +77,26 @@ export default async function Footer() {
                   Neighborhoods
                 </Link>
               </li>
+              {isMesa && (
+                <li>
+                  <Link
+                    href="/neighborhoods/mesa-at-skyeview"
+                    className="text-slate-300 hover:text-white transition-colors text-sm"
+                  >
+                    Mesa at Skyeview
+                  </Link>
+                </li>
+              )}
+              {isMesa && (
+                <li>
+                  <Link
+                    href="/area/89166-homes"
+                    className="text-slate-300 hover:text-white transition-colors text-sm"
+                  >
+                    ZIP 89166 Homes
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="/why-berkshire-hathaway"

@@ -12,6 +12,7 @@ import SiteChrome from "@/components/layouts/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SiteHeader from "@/components/layouts/SiteHeader";
 import SitePageBanner from "@/components/layouts/SitePageBanner";
+import RealScoutBelowHero from "@/components/layouts/RealScoutBelowHero";
 import { DomainConfigProvider } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { REALSCOUT_WEB_COMPONENTS_SCRIPT } from "@/lib/realscout-config";
@@ -100,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SiteHeader />
           <div className={mainOffsetClass}>
             <SitePageBanner />
+            <RealScoutBelowHero />
             {children}
           </div>
           <SiteChrome />

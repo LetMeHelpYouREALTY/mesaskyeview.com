@@ -14,6 +14,7 @@ import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
 import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
+import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -81,6 +82,8 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <RealScoutListingsSection />
 
         {isMesa && <MesaskyeviewPhotoGallery />}
         {isMesa && <DrJanDuffyProfileCard config={config} showPortrait />}

@@ -145,7 +145,7 @@ export default function ListingsPage() {
             </div>
           </div>
 
-          {/* Office MLS listings render below page content via SiteChrome → RealScoutListingsSection */}
+          {/* Office MLS listings: below hero via layout (RealScoutBelowHero) */}
 
           {/* Popular Searches Section */}
           <section className="mb-16 max-w-6xl mx-auto">

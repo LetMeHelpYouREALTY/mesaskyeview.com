@@ -5,27 +5,31 @@ import {
 } from "@/lib/realscout-config";
 import MlsListingAttribution from "@/components/realscout/MlsListingAttribution";
 
-/** Office MLS listings — rendered on every page via SiteChrome (server component, no widget state). */
+/** Office MLS listings — primary lead widget; placed below hero on every page (server component). */
 export default async function RealScoutListings() {
   const config = await getPageDomainConfig();
 
   return (
     <section
       id="listings"
-      className="py-16 md:py-24 bg-slate-50 border-t border-slate-200"
+      className="scroll-mt-28 py-12 md:py-16 bg-slate-50 border-y border-slate-200 shadow-sm"
       aria-labelledby="listings-heading"
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 md:mb-10">
           <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-blue-700 mb-2">
+              Search homes for sale
+            </p>
             <h2
               id="listings-heading"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3"
             >
-              Featured Properties
+              Las Vegas MLS Listings
             </h2>
-            <p className="text-slate-600 text-lg">
-              MLS listings near {config.neighborhood} and across Las Vegas &amp; Henderson
+            <p className="text-slate-600 text-lg max-w-2xl">
+              Live inventory near {config.neighborhood} and across Las Vegas &amp; Henderson—updated
+              from RealScout. Save favorites and request showings with Dr. Jan Duffy.
             </p>
           </div>
           <a

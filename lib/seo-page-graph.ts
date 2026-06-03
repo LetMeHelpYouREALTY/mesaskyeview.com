@@ -1,17 +1,18 @@
 /**
- * Per-page JSON-LD for SEO, AEO (FAQ/answer engines), and GEO (entity graphs for AI citation).
- * Based on Google Search Central structured data guidance and RealEstateAgent best practices.
+ * Per-page JSON-LD @graph for SEO, AEO, and GEO.
  * @see https://developers.google.com/search/docs/appearance/structured-data
  */
 
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
-import { businessInfo, gbpFAQs, generateFAQSchema as generateGbpFaqSchema } from "@/lib/gbp-schema";
+import { gbpFAQs, generateFAQSchema as generateGbpFaqSchema } from "@/lib/gbp-schema";
+import { mesaDefaultSocialHero } from "@/lib/mesa-hero-images";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { MESA_SPEAKABLE_CSS_SELECTORS } from "@/lib/mesa-aeo-content";
 import { mesaFaqsToSchema, mesaHomepageFaqs } from "@/lib/mesa-page-faqs";
 import { combineSchemas } from "@/lib/schema";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
-import { drJanDuffyPhotos } from "@/lib/agent-photos";
+import { agentId, websiteId } from "@/lib/schema-ids";
 
 const SEGMENT_LABELS: Record<string, string> = {
   about: "About Dr. Jan Duffy",
@@ -96,77 +97,58 @@ function buildWebPageSchema(
         : config.heroHeadline
       : `${humanizeSegment(lastSegment ?? "Page")} | ${isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : config.neighborhood}`;
 
-  return {
+  const mesa = isMesaskyeviewDomain(config);
+  const hero = mesa ? mesaDefaultSocialHero : null;
+  const heroUrl = hero
+    ? hero.src.startsWith("http")
+      ? hero.src
+      : `${siteUrl}${hero.src}`
+    : `${siteUrl}/images/dr-jan-duffy-headshot.jpg`;
+
+  const page: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
     name: pageName,
     description: config.description,
-    isPartOf: { "@id": `${siteUrl}/#website` },
-    about: { "@id": `${siteUrl}/#organization` },
+    isPartOf: { "@id": websiteId(siteUrl) },
+    about: { "@id": mesa ? agentId(siteUrl) : `${siteUrl}/#organization` },
     inLanguage: "en-US",
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
+      "@id": `${pageUrl}#primaryimage`,
+      url: heroUrl,
+      width: hero?.width ?? 1200,
+      height: hero?.height ?? 630,
+      caption: hero?.alt ?? pageName,
     },
   };
+
+  if (mesa && path === "/") {
+    page.speakable = {
+      "@type": "SpeakableSpecification",
+      cssSelector: [...MESA_SPEAKABLE_CSS_SELECTORS],
+    };
+  }
+
+  return page;
 }
 
 function buildBreadcrumbSchema(siteUrl: string, pathname: string) {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const pageUrl = path === "/" ? siteUrl : `${siteUrl}${path}`;
   const items = buildBreadcrumbItems(siteUrl, pathname);
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "@id": `${siteUrl}${pathname === "/" ? "" : pathname}#breadcrumb`,
+    "@id": `${pageUrl}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
       item: item.url,
     })),
-  };
-}
-
-/** Person entity for E-E-A-T / GEO — linked from RealEstateAgent. */
-function buildPersonSchema(config: DomainConfig, siteUrl: string) {
-  const knowsAbout = isMesaskyeviewDomain(config)
-    ? [
-        "Mesa at Skyeview",
-        "Skye Canyon new construction",
-        "Las Vegas buyer representation",
-        "Las Vegas seller representation",
-        "Nevada relocation",
-        "Berkshire Hathaway HomeServices",
-      ]
-    : [
-        "Las Vegas real estate",
-        "Henderson homes",
-        "Summerlin real estate",
-        "Luxury homes Las Vegas",
-        "55+ communities Nevada",
-      ];
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${siteUrl}/about#dr-jan-duffy`,
-    name: "Dr. Jan Duffy",
-    honorificPrefix: "Dr.",
-    jobTitle: "REALTOR®",
-    description:
-      "Licensed Nevada REALTOR® with Berkshire Hathaway HomeServices Nevada Properties, serving buyers and sellers across the Las Vegas Valley.",
-    url: `${siteUrl}/about`,
-    image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
-    telephone: businessInfo.phone.tel,
-    worksFor: { "@id": `${siteUrl}/#organization` },
-    knowsAbout,
-    sameAs: businessInfo.socialProfiles,
-    hasCredential: {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "Real Estate License",
-      identifier: "S.0197614.LLC",
-    },
   };
 }
 
@@ -189,7 +171,6 @@ export function buildPageJsonLdGraph(config: DomainConfig, pathname: string) {
 
   const pieces: Record<string, unknown>[] = [
     ...core,
-    buildPersonSchema(config, siteUrl),
     buildWebPageSchema(config, siteUrl, normalizedPath),
     buildBreadcrumbSchema(siteUrl, normalizedPath),
   ];

@@ -95,6 +95,7 @@ export const mesaRealtorServices = [
 
 export function localizeTitleForMesa(title: string): string {
   if (title.includes(MESA_SITE_BRAND)) return title;
+  if (/\|\s*Mesa at Skyeview\b/i.test(title)) return title;
   let t = title
     .replace(/Century Communities/gi, MESA_HOME_BRAND)
     .replace(/Berkshire Hathaway HomeServices/gi, MESA_HOME_BRAND)

@@ -40,7 +40,7 @@ export const defaultReviews: Review[] = [
   },
 ];
 
-// Aggregate rating stats
+// TODO(jan): do not attach AggregateRating/Review JSON-LD to Dr. Jan's owned RealEstateAgent entity (Google self-serving policy). Visible stats OK; schema needs third-party profile or removal.
 export const aggregateRating = {
   ratingValue: 4.9,
   reviewCount: 500,

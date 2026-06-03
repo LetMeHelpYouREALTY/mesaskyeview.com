@@ -17,6 +17,7 @@ import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
+import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -102,6 +103,7 @@ export default async function Home() {
 
         <RealScoutListingsSection />
 
+        {isMesa && <MesaExtractableFacts />}
         {isMesa && <MesaskyeviewPhotoGallery />}
         {isMesa && <MesaExploreLinks />}
         {isMesa && <DrJanDuffyProfileCard config={config} showPortrait />}

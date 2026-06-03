@@ -31,9 +31,13 @@ export function createPageMetadata(
     : options.title.includes(siteBrand)
       ? options.title
       : `${options.title} | ${siteBrand}`;
-  const description = isMesaskyeviewDomain(config)
+  let description = isMesaskyeviewDomain(config)
     ? localizeDescriptionForMesa(options.description, config)
     : options.description;
+  if (isMesaskyeviewDomain(config) && description.length > 160) {
+    const trimmed = description.slice(0, 157).trimEnd();
+    description = `${trimmed}…`;
+  }
 
   const authorName = "Dr. Jan Duffy";
 
@@ -41,7 +45,7 @@ export function createPageMetadata(
 
   return {
     metadataBase: new URL(siteUrl),
-    title,
+    title: isMesaskyeviewDomain(config) ? { absolute: title } : title,
     description,
     keywords: options.keywords ?? config.keywords,
     authors: [{ name: authorName, url: `${siteUrl}/about` }],

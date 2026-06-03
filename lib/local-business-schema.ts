@@ -4,6 +4,7 @@ import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
+import { agentId, brokerageId, communityPlaceId } from "@/lib/schema-ids";
 
 export type LocalBusinessSchemaOptions = {
   siteUrl?: string;
@@ -21,9 +22,13 @@ export function generateLocalBusinessSchemaForSite(
   const mesa = isMesaskyeviewDomain(config);
   const serviceArea = mesa
     ? [
-        { "@type": "Place", name: mesaAtSkyeviewCommunity.name },
+        { "@id": communityPlaceId(siteUrl) },
         { "@type": "Place", name: mesaAtSkyeviewCommunity.masterPlan },
-        { "@type": "City", name: "Las Vegas" },
+        {
+          "@type": "PostalCode",
+          name: mesaAtSkyeviewCommunity.zip,
+          addressCountry: "US",
+        },
       ]
     : [
         { "@type": "City", name: neighborhood },
@@ -35,8 +40,8 @@ export function generateLocalBusinessSchemaForSite(
 
   return {
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "@id": `${siteUrl}/#organization`,
+    "@type": ["Person", "RealEstateAgent"],
+    "@id": agentId(siteUrl),
     name: isMesaskyeviewDomain(config)
       ? `Dr. Jan Duffy | ${MESA_SITE_BRAND}`
       : `Dr. Jan Duffy - ${neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
@@ -62,7 +67,7 @@ export function generateLocalBusinessSchemaForSite(
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "18:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "16:00" },
     ],
-    employee: { "@id": `${siteUrl}/about#dr-jan-duffy` },
+    // TODO(jan): if GBP primary is Lake Mead, move agent PostalAddress to BHHS_BROKERAGE_NAP and keep Vanhoy on #community only.
     areaServed: serviceArea,
     makesOffer: [
       {
@@ -72,7 +77,7 @@ export function generateLocalBusinessSchemaForSite(
           name: "Buyer representation",
           description: "MLS search, showings, and contract advocacy for home buyers.",
           areaServed: serviceArea,
-          provider: { "@id": `${siteUrl}/#organization` },
+          provider: { "@id": agentId(siteUrl) },
         },
       },
       {
@@ -82,7 +87,7 @@ export function generateLocalBusinessSchemaForSite(
           name: "Seller representation",
           description: "Pricing, marketing, and negotiation for Las Vegas home sellers.",
           areaServed: serviceArea,
-          provider: { "@id": `${siteUrl}/#organization` },
+          provider: { "@id": agentId(siteUrl) },
         },
       },
       {
@@ -94,7 +99,7 @@ export function generateLocalBusinessSchemaForSite(
             ? `Free buyer representation at ${mesaAtSkyeviewCommunity.name} and Skye Canyon builders.`
             : "Free buyer representation on qualifying new construction purchases.",
           areaServed: serviceArea,
-          provider: { "@id": `${siteUrl}/#organization` },
+          provider: { "@id": agentId(siteUrl) },
         },
       },
     ],
@@ -104,10 +109,17 @@ export function generateLocalBusinessSchemaForSite(
       identifier: "S.0197614.LLC",
     },
     sameAs: businessInfo.socialProfiles,
-    parentOrganization: {
-      "@type": "Organization",
-      name: "Berkshire Hathaway HomeServices Nevada Properties",
-      url: "https://www.bfrre.com",
-    },
+    worksFor: { "@id": brokerageId(siteUrl) },
+    memberOf: { "@id": brokerageId(siteUrl) },
+    ...(mesa
+      ? {
+          knowsAbout: [
+            "Mesa at Skyeview new construction",
+            "Skye Canyon homes",
+            "Las Vegas buyer representation",
+            "89166 real estate",
+          ],
+        }
+      : {}),
   };
 }

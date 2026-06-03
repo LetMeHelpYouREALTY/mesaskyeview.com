@@ -294,6 +294,7 @@ export function generateAggregateRatingSchema(
 
 /**
  * Generate Review schema for individual testimonials
+ * TODO(jan): quarantined for mesaskyeview — do not wire to layout until Jan approves third-party review source (not self-serving on #agent).
  */
 export function generateReviewSchema(reviews: ReviewItem[]) {
   return {

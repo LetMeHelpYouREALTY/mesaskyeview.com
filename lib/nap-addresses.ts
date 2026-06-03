@@ -4,7 +4,9 @@
  * - MESA_COMMUNITY: Mesa at Skyeview model / community address (GBP may differ)
  * - BHHS_BROKERAGE: Berkshire Hathaway HomeServices Nevada Properties office
  *
- * Pick ONE as the Google Business Profile primary NAP; until then, label both on-page.
+ * TODO(jan): confirm canonical GBP office address — Vanhoy Creek (community) vs Lake Mead (brokerage).
+ * Visible primary NAP on mesaskyeview.com is community (8544) per your choice; JSON-LD uses community
+ * on RealEstateAgent until revised. Recommend: brokerage address on #agent, community on #community Place.
  */
 
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";

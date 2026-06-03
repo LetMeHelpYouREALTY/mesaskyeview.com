@@ -2,8 +2,6 @@
 
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
-import { cloudflareImages } from "@/lib/site-images";
-
 export interface Review {
   id: number;
   name: string;
@@ -22,7 +20,6 @@ export const defaultReviews: Review[] = [
     location: "Las Vegas, NV",
     rating: 5,
     text: "Dr. Duffy made our home buying experience seamless. Her knowledge of the Las Vegas market is unmatched, and she guided us through every step with professionalism and care.",
-    image: cloudflareImages.testimonials.client1.src,
     date: "2025-11-15",
   },
   {
@@ -31,7 +28,6 @@ export const defaultReviews: Review[] = [
     location: "Henderson, NV",
     rating: 5,
     text: "We couldn't be happier with our new home! The entire process was smooth, and Dr. Duffy's attention to detail and negotiation skills saved us thousands. Highly recommend!",
-    image: cloudflareImages.testimonials.client2.src,
     date: "2025-10-22",
   },
   {
@@ -40,7 +36,6 @@ export const defaultReviews: Review[] = [
     location: "Summerlin, NV",
     rating: 5,
     text: "As first-time homebuyers, we were nervous about the process. Dr. Duffy patiently explained everything and helped us find the perfect home in our budget. Thank you!",
-    image: cloudflareImages.testimonials.client3.src,
     date: "2025-09-08",
   },
 ];
@@ -122,8 +117,15 @@ export default function ReviewsSection({
                       className="object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                      <span className="text-slate-400 text-sm">{review.name[0]}</span>
+                    <div className="w-full h-full bg-blue-100 flex items-center justify-center">
+                      <span className="text-blue-700 text-lg font-semibold" aria-hidden>
+                        {review.name
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase()}
+                      </span>
                     </div>
                   )}
                 </div>

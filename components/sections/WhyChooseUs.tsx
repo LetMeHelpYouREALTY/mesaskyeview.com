@@ -42,8 +42,8 @@ export default function WhyChooseUs() {
         <div className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto mb-14">
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <Image
-              src={cloudflareImages.brand.mission.src}
-              alt={cloudflareImages.brand.mission.alt}
+              src={cloudflareImages.brand.buyerConsult.src}
+              alt={cloudflareImages.brand.buyerConsult.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -51,8 +51,8 @@ export default function WhyChooseUs() {
           </div>
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
             <Image
-              src={cloudflareImages.brand.services.src}
-              alt={cloudflareImages.brand.services.alt}
+              src={cloudflareImages.brand.sellerMarketing.src}
+              alt={cloudflareImages.brand.sellerMarketing.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"

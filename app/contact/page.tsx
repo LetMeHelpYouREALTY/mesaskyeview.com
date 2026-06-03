@@ -10,11 +10,13 @@ import {
   MESA_HOME_BRAND,
   MESA_SITE_BRAND,
 } from "@/lib/mesaskyeview-brand";
+import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
 import {
   generateMesaContactPageSchema,
   getMesaCommunityDirectionsUrl,
   getMesaCommunityMapsEmbedUrl,
 } from "@/lib/mesa-at-skyeview-schema";
+import { officeInfo } from "@/lib/site-config";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 
@@ -52,11 +54,7 @@ export default async function ContactPage() {
           email: contactEmail,
           address: {
             "@type": "PostalAddress",
-            streetAddress: "9406 W Lake Mead Blvd, Suite 100",
-            addressLocality: "Las Vegas",
-            addressRegion: "NV",
-            postalCode: "89134",
-            addressCountry: "US",
+            ...getMesaCommunityPostalAddress(),
           },
         },
       };
@@ -87,19 +85,11 @@ export default async function ContactPage() {
               >
                 Schedule Online
               </a>
-              {isMesa ? (
-                <a
-                  href="#mesa-community"
-                  className="inline-flex items-center bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-semibold"
-                >
-                  Mesa at Skyeview Map
-                </a>
-              ) : null}
               <a
                 href="#office"
                 className="inline-flex items-center bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-3 rounded-lg font-semibold"
               >
-                {isMesa ? "BHHS Office & Map" : "Office & Map"}
+                Office & Map
               </a>
             </div>
           </div>
@@ -177,23 +167,22 @@ export default async function ContactPage() {
             </div>
           </div>
 
-          {isMesa && (
-            <section
-              id="mesa-community"
-              className="max-w-5xl mx-auto mt-16 scroll-mt-28"
-              aria-labelledby="mesa-community-heading"
-            >
+          <section
+            id="office"
+            className="max-w-5xl mx-auto mt-16 scroll-mt-28"
+            aria-labelledby="office-heading"
+          >
               <div className="text-center mb-8">
                 <h2
-                  id="mesa-community-heading"
+                  id="office-heading"
                   className="text-3xl font-bold text-slate-900 mb-3"
                 >
-                  Mesa at Skyeview — Community Location
+                  {isMesa ? `Office — ${mesaAtSkyeviewCommunity.name}` : "Office"}
                 </h2>
                 <p className="text-slate-600 max-w-2xl mx-auto">
-                  Tour and directions for {mesaAtSkyeviewCommunity.name} in {mesaAtSkyeviewCommunity.masterPlan}.
-                  Dr. Jan coordinates showings and new-home registration—this is the community address in{" "}
-                  {mesaAtSkyeviewCommunity.zip}, not the BHHS brokerage office below.
+                  {isMesa
+                    ? `Visit Dr. Jan Duffy at ${officeInfo.address.full} in ${mesaAtSkyeviewCommunity.masterPlan} (${mesaAtSkyeviewCommunity.zip}). Tours, consultations, and new-home registration by appointment.`
+                    : `Visit Dr. Jan Duffy at ${officeInfo.address.full}. Call before you arrive.`}
                 </p>
               </div>
               <div className="grid lg:grid-cols-2 gap-8">
@@ -201,9 +190,11 @@ export default async function ContactPage() {
                   <div className="flex items-start bg-slate-50 rounded-lg p-5">
                     <MapPin className="h-6 w-6 text-blue-600 mr-4 flex-shrink-0 mt-1" aria-hidden />
                     <div>
-                      <h3 className="font-semibold text-slate-900 mb-1">Community NAP</h3>
+                      <h3 className="font-semibold text-slate-900 mb-1">Office NAP</h3>
                       <address className="not-italic text-slate-700">
-                        {mesaAtSkyeviewCommunity.salesOfficeAddress}
+                        {officeInfo.address.street}
+                        <br />
+                        {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
                       </address>
                       <p className="text-slate-500 text-sm mt-2">
                         {mesaAtSkyeviewCommunity.masterPlan} · Northwest Las Vegas
@@ -240,8 +231,7 @@ export default async function ContactPage() {
                   />
                 </div>
               </div>
-            </section>
-          )}
+          </section>
 
           {/* Service Areas Section */}
           <section className="max-w-5xl mx-auto mt-16">

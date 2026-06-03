@@ -5,18 +5,18 @@ export const businessInfo = {
   // NAP - Must match GBP exactly
   name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
   address: {
-    streetAddress: "9406 W Lake Mead Blvd, Suite 100",
+    streetAddress: "8544 Vanhoy Creek Street",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
-    postalCode: "89134",
+    postalCode: "89166",
     addressCountry: "US",
   },
   phone: {
     display: "(702) 500-1942",
     tel: "+17025001942",
   },
-  email: "homes@heyberkshire.com",
-  url: "https://heyberkshire.com",
+  email: "DrDuffySells@MesaSkyeview.com",
+  url: "https://www.mesaskyeview.com",
 
   // Business Details
   license: "S.0197614.LLC",
@@ -35,8 +35,8 @@ export const businessInfo = {
 
   // Geo coordinates for distance ranking
   geo: {
-    latitude: 36.1941,
-    longitude: -115.2678,
+    latitude: 36.31558648812897,
+    longitude: -115.32930209279098,
   },
 
   // Service areas - Start focused, expand with prominence
@@ -161,7 +161,7 @@ Dr. Jan's approach is simple: treat every client like family, know the market in
 
 55+ active adult community specialization covers Sun City Summerlin (Nevada's largest 55+ community), Sun City Anthem in Henderson, Del Webb Lake Las Vegas, and Solera at Anthem. Investment property expertise spans single-family rentals, multi-family opportunities, and short-term rental analysis across the Las Vegas metro area.
 
-Office located at 9406 W Lake Mead Blvd, Suite 100, Las Vegas, NV 89134. Available Monday through Friday 9am-6pm, Saturday 10am-4pm, and Sunday by appointment. Call (702) 500-1942 for a free consultation or visit heyberkshire.com to start your Las Vegas real estate journey today.`,
+Office located at 8544 Vanhoy Creek Street, Las Vegas, NV 89166. Available Monday through Friday 9am-6pm, Saturday 10am-4pm, and Sunday by appointment. Call (702) 500-1942 for a free consultation or visit mesaskyeview.com to start your Las Vegas real estate journey today.`,
 };
 
 // FAQ Schema for GBP Q&A section
@@ -200,7 +200,7 @@ export const gbpFAQs = [
   },
   {
     question: "How do I schedule a consultation with Dr. Jan Duffy?",
-    answer: "Call or text (702) 500-1942 for immediate assistance, or email homes@heyberkshire.com. Office visits available at 9406 W Lake Mead Blvd, Suite 100, Las Vegas, NV 89134. Monday-Friday 9am-6pm, Saturday 10am-4pm, Sunday by appointment.",
+    answer: "Call or text (702) 500-1942 for immediate assistance, or email DrDuffySells@MesaSkyeview.com. Office visits at 8544 Vanhoy Creek Street, Las Vegas, NV 89166. Monday-Friday 9am-6pm, Saturday 10am-4pm, Sunday by appointment.",
   },
   {
     question: "Does Dr. Jan help with investment properties in Las Vegas?",

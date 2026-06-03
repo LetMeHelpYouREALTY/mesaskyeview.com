@@ -10,6 +10,7 @@ import {
   generateWebPageSchema,
   combineSchemas,
 } from "@/lib/schema";
+import { officeInfo } from "@/lib/site-config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -149,7 +150,7 @@ const faqCategories = [
       },
       {
         q: "How do I contact Dr. Jan Duffy?",
-        a: "Call or text (702) 500-1942 or email homes@heyberkshire.com. Office located at 9406 W Lake Mead Blvd, Suite 100, Las Vegas, NV 89134.",
+        a: `Call or text (702) 500-1942 or email DrDuffySells@MesaSkyeview.com. Office located at ${officeInfo.address.full}.`,
       },
       {
         q: "What areas does Dr. Jan cover?",

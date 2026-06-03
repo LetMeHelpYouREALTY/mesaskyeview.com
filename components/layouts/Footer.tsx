@@ -2,11 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
-import {
-  isMesaskyeviewDomain,
-  mesaAtSkyeviewCommunity,
-  MESA_SITE_BRAND,
-} from "@/lib/mesaskyeview-brand";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { officeInfo } from "@/lib/site-config";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import { businessInfo } from "@/lib/gbp-schema";
@@ -225,22 +221,11 @@ export default async function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-blue-400 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-300 text-sm">
-                  {isMesa ? (
-                    <>
-                      {mesaAtSkyeviewCommunity.street}
-                      <br />
-                      {mesaAtSkyeviewCommunity.city}, {mesaAtSkyeviewCommunity.state}{" "}
-                      {mesaAtSkyeviewCommunity.zip}
-                    </>
-                  ) : (
-                    <>
-                      {officeInfo.address.street}
-                      <br />
-                      {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
-                    </>
-                  )}
-                </span>
+                <address className="not-italic text-slate-300 text-sm">
+                  {officeInfo.address.street}
+                  <br />
+                  {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
+                </address>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-blue-400 flex-shrink-0" />

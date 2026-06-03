@@ -19,7 +19,8 @@ import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import DrJanDuffyPhoto from "@/components/agent/DrJanDuffyPhoto";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
-import { agentInfo } from "@/lib/site-config";
+import { agentInfo, officeInfo } from "@/lib/site-config";
+import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 
 const pageMetadataBase = {
@@ -64,10 +65,7 @@ function buildPersonSchema(siteUrl: string, email: string) {
     name: "Berkshire Hathaway HomeServices Nevada Properties",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "9406 W Lake Mead Blvd, Suite 100",
-      addressLocality: "Las Vegas",
-      addressRegion: "NV",
-      postalCode: "89134",
+      ...getMesaCommunityPostalAddress(),
     },
   },
   hasCredential: {
@@ -220,8 +218,9 @@ export default async function AboutPage() {
                     <div className="flex items-start text-slate-700">
                       <MapPin className="h-5 w-5 mr-3 text-blue-600 mt-0.5" />
                       <address className="not-italic">
-                        9406 W Lake Mead Blvd, Suite 100<br />
-                        Las Vegas, NV 89134
+                        {officeInfo.address.street}
+                        <br />
+                        {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
                       </address>
                     </div>
                     <div className="flex items-center text-slate-700">

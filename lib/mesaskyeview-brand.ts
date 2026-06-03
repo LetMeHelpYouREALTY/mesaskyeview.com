@@ -23,15 +23,24 @@ export function isMesaskyeviewDomain(config: DomainConfig): boolean {
   return d === "mesaskyeview.com";
 }
 
+/** Office NAP — must match Google Business Profile on mesaskyeview.com. */
+export const MESA_OFFICE_NAP = {
+  street: "8544 Vanhoy Creek Street",
+  city: "Las Vegas",
+  state: "NV",
+  zip: "89166",
+  full: "8544 Vanhoy Creek Street, Las Vegas, NV 89166",
+} as const;
+
 /** Community facts (public builder/community listings; verify before publishing stats) */
 export const mesaAtSkyeviewCommunity = {
   name: "Mesa at Skyeview",
   masterPlan: "Skye Canyon",
   city: "Las Vegas",
   state: "NV",
-  zip: "89166",
-  street: "8544 Vanhoy Creek Street",
-  salesOfficeAddress: "8544 Vanhoy Creek Street, Las Vegas, NV 89166",
+  zip: MESA_OFFICE_NAP.zip,
+  street: MESA_OFFICE_NAP.street,
+  salesOfficeAddress: MESA_OFFICE_NAP.full,
   mapsQuery: "8544+Vanhoy+Creek+Street+Las+Vegas+NV+89166",
   /** WGS84 — Mesa at Skyeview community pin */
   latitude: 36.31558648812897,

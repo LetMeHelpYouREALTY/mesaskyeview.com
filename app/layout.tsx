@@ -10,6 +10,7 @@ import Script from "next/script";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SiteHeader from "@/components/layouts/SiteHeader";
+import SitePageBanner from "@/components/layouts/SitePageBanner";
 import { DomainConfigProvider } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
@@ -86,7 +87,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics />
         <DomainConfigProvider config={config}>
           <SiteHeader />
-          <div className={mainOffsetClass}>{children}</div>
+          <div className={mainOffsetClass}>
+            <SitePageBanner />
+            {children}
+          </div>
           <SiteChrome />
         </DomainConfigProvider>
         <Analytics />

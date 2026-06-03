@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Square, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cloudflareImages } from "@/lib/site-images";
 
 interface Property {
   id: number;
@@ -61,7 +62,7 @@ const properties: Property[] = [
     name: "Modern Luxury Home",
     location: "Summerlin, Las Vegas, NV",
     price: "$850,000",
-    image: "/Image/hero_bg_1.jpg",
+    image: cloudflareImages.property.featuredHome.src,
     bedrooms: 4,
     bathrooms: 3,
     squareFeet: 3200,
@@ -71,7 +72,7 @@ const properties: Property[] = [
     name: "Spacious Family Home",
     location: "Henderson, NV",
     price: "$625,000",
-    image: "/Image/hero_bg_2.jpg",
+    image: cloudflareImages.hero.communityAerial.src,
     bedrooms: 3,
     bathrooms: 2,
     squareFeet: 2400,
@@ -81,7 +82,7 @@ const properties: Property[] = [
     name: "Elegant Estate",
     location: "Green Valley, Henderson, NV",
     price: "$1,200,000",
-    image: "/Image/hero_bg_3.jpg",
+    image: cloudflareImages.hero.newHomeExterior.src,
     bedrooms: 5,
     bathrooms: 4,
     squareFeet: 4500,

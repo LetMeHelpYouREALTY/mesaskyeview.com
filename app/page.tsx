@@ -11,6 +11,8 @@ import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyevie
 import MesaskyeviewHeroBackground from "@/components/mesaskyeview/MesaskyeviewHeroBackground";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
+import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
+import { siteHeroRotations } from "@/lib/site-images";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -34,9 +36,9 @@ export default async function Home() {
           {isMesa ? (
             <MesaskyeviewHeroBackground />
           ) : (
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-30"
-              style={{ backgroundImage: "url('/Image/hero_bg_1.jpg')" }}
+            <CloudflareHeroBackground
+              images={siteHeroRotations}
+              overlayClassName="absolute inset-0 bg-slate-900/70"
             />
           )}
           <div className="relative z-10 container mx-auto px-4 text-center">

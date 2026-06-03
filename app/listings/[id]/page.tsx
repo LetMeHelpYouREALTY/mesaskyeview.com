@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cloudflareImages } from "@/lib/site-images";
 import { Bed, Bath, Square, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
@@ -29,7 +30,7 @@ async function getProperty(id: string) {
     name: "Modern Luxury Home",
     location: "Summerlin, Las Vegas, NV",
     price: "$850,000",
-    image: "/Image/hero_bg_1.jpg",
+    image: cloudflareImages.property.featuredHome.src,
     bedrooms: 4,
     bathrooms: 3,
     squareFeet: 3200,

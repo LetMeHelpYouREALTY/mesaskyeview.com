@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { Shield, TrendingUp, Users, Award, Clock, Home } from "lucide-react";
+import { cloudflareImages } from "@/lib/site-images";
 
 const features = [
   {
@@ -37,6 +39,27 @@ export default function WhyChooseUs() {
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto mb-14">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={cloudflareImages.brand.mission.src}
+              alt={cloudflareImages.brand.mission.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={cloudflareImages.brand.services.src}
+              alt={cloudflareImages.brand.services.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
             Why Choose Us

@@ -1,31 +1,27 @@
 import { agentInfo } from "@/lib/site-config";
-
-/**
- * Primary headshot: `public/Image/agent1.jpg` (served/cached via Cloudflare `/Image/*` rules).
- * Override with Cloudflare Images delivery URL if set in Vercel env.
- */
-const CLOUDFLARE_CACHED_HEADSHOT = "/Image/agent1.jpg";
+import { cloudflareImages } from "@/lib/site-images";
 
 function resolveHeadshotSrc(): string {
   const override = process.env.NEXT_PUBLIC_DR_JAN_DUFFY_HEADSHOT?.trim();
   if (override) return override;
-  return CLOUDFLARE_CACHED_HEADSHOT;
+  return cloudflareImages.agent.drJanHeadshot.src;
 }
 
 const headshotSrc = resolveHeadshotSrc();
+const headshotMeta = cloudflareImages.agent.drJanHeadshot;
 
-/** Dr. Jan Duffy — use Cloudflare-hosted/cached agent photo, not third-party MLS CDN. */
+/** Dr. Jan Duffy — Cloudflare /Image/agent1.jpg (or env override). */
 export const drJanDuffyPhotos = {
   headshot: {
     src: headshotSrc,
-    width: 600,
-    height: 750,
+    width: headshotMeta.width,
+    height: headshotMeta.height,
     alt: `${agentInfo.name}, ${agentInfo.title} | ${agentInfo.brokerage} — Las Vegas & Mesa at Skyeview`,
   },
   portrait: {
     src: headshotSrc,
-    width: 600,
-    height: 750,
+    width: headshotMeta.width,
+    height: headshotMeta.height,
     alt: `${agentInfo.name} — your REALTOR® for Mesa at Skyeview, Skye Canyon, and Las Vegas`,
   },
 } as const;

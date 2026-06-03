@@ -5,13 +5,11 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import {
-  getMesaCommunityPostalAddress,
   isMesaskyeviewDomain,
   mesaAtSkyeviewCommunity,
   MESA_HOME_BRAND,
   MESA_SITE_BRAND,
 } from "@/lib/mesaskyeview-brand";
-import { generateMesaContactPageSchema } from "@/lib/mesa-at-skyeview-schema";
 import DualNapMapSections from "@/components/contact/DualNapMapSections";
 import {
   BHHS_BROKERAGE_NAP,
@@ -44,7 +42,7 @@ export default async function ContactPage() {
   const isMesa = isMesaskyeviewDomain(config);
 
   const contactSchema = isMesa
-    ? generateMesaContactPageSchema(config)
+    ? null
     : {
         "@context": "https://schema.org",
         "@type": "ContactPage",
@@ -55,16 +53,23 @@ export default async function ContactPage() {
           email: contactEmail,
           address: {
             "@type": "PostalAddress",
-            ...getMesaCommunityPostalAddress(),
+            streetAddress: BHHS_BROKERAGE_NAP.street,
+            addressLocality: BHHS_BROKERAGE_NAP.city,
+            addressRegion: BHHS_BROKERAGE_NAP.state,
+            postalCode: BHHS_BROKERAGE_NAP.zip,
+            addressCountry: "US",
           },
         },
       };
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-      />      <main className="pb-16">
+      {contactSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+        />
+      ) : null}
+      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-12">

@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
-import { BHHS_BROKERAGE_NAP, MESA_COMMUNITY_NAP } from "@/lib/nap-addresses";
+import { BHHS_BROKERAGE_NAP } from "@/lib/nap-addresses";
 import { officeInfo } from "@/lib/site-config";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import { businessInfo } from "@/lib/gbp-schema";
@@ -230,8 +230,8 @@ export default async function Footer() {
                   </span>
                   {isMesa ? (
                     <span className="block text-slate-400 text-xs">
-                      BHHS contracts: {BHHS_BROKERAGE_NAP.street}, {BHHS_BROKERAGE_NAP.city},{" "}
-                      {BHHS_BROKERAGE_NAP.state} {BHHS_BROKERAGE_NAP.zip}
+                      Licensed agent office (schema NAP): {BHHS_BROKERAGE_NAP.street},{" "}
+                      {BHHS_BROKERAGE_NAP.city}, {BHHS_BROKERAGE_NAP.state} {BHHS_BROKERAGE_NAP.zip}
                     </span>
                   ) : null}
                 </address>

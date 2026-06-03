@@ -5,6 +5,7 @@ import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand"
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 import {
   generateBhhsBrokerageOrganizationSchema,
+  generateGoogleReviewsReferenceSchema,
   generateMesaAtSkyeviewPlaceSchema,
   generateMesaResidentialCommunitySchema,
 } from "@/lib/mesa-at-skyeview-schema";
@@ -60,5 +61,5 @@ export function generateSearchConsoleJsonLd(config: DomainConfig) {
     ],
   };
 
-  return [brokerage, agent, website, place, community];
+  return [brokerage, agent, website, place, community, generateGoogleReviewsReferenceSchema(siteUrl)];
 }

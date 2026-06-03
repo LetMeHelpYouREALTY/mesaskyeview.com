@@ -19,3 +19,7 @@ export function mesaCommunityComplexId(siteUrl: string): string {
 export function websiteId(siteUrl: string): string {
   return `${siteUrl}/#website`;
 }
+
+export function googleReviewsRefId(siteUrl: string): string {
+  return `${siteUrl}/#google-reviews`;
+}

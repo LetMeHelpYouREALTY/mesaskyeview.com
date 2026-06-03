@@ -2,7 +2,7 @@
 // Supports GBP ranking factors: Relevance, Distance, Prominence
 
 export const businessInfo = {
-  // NAP - Must match GBP exactly
+  // Community/tour address for copy — RealEstateAgent schema uses BHHS office (see nap-addresses.ts)
   name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
   address: {
     streetAddress: "8544 Vanhoy Creek Street",

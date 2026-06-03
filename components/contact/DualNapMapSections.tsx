@@ -91,7 +91,7 @@ export default function DualNapMapSections() {
         id="mesa-community"
         heading={`${MESA_COMMUNITY_NAP.name} — model & tours`}
         subheading={`New-home tours and buyer meetings at the community sales center in ${mesaAtSkyeviewCommunity.masterPlan} (ZIP ${MESA_COMMUNITY_NAP.zip}).`}
-        napLabel="Primary office address (NAP — GBP)"
+        napLabel="Community sales center (Mesa at Skyeview tours)"
         street={MESA_COMMUNITY_NAP.street}
         cityStateZip={`${MESA_COMMUNITY_NAP.city}, ${MESA_COMMUNITY_NAP.state} ${MESA_COMMUNITY_NAP.zip}`}
         contextLine={`${mesaAtSkyeviewCommunity.masterPlan} · Northwest Las Vegas`}
@@ -103,7 +103,7 @@ export default function DualNapMapSections() {
         id="office"
         heading="BHHS Nevada Properties — brokerage office"
         subheading="Contract signings, consultations, and general meetings at the Berkshire Hathaway HomeServices Nevada Properties office."
-        napLabel="BHHS brokerage office (contracts & closings)"
+        napLabel="Licensed agent office (NAP in structured data / Google Business Profile)"
         street={BHHS_BROKERAGE_NAP.street}
         cityStateZip={`${BHHS_BROKERAGE_NAP.city}, ${BHHS_BROKERAGE_NAP.state} ${BHHS_BROKERAGE_NAP.zip}`}
         directionsUrl={getBhhsBrokerageDirectionsUrl()}

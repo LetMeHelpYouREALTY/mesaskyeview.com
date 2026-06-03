@@ -97,8 +97,8 @@ export function FAQSchema({
 }
 
 /**
- * Helper component for Review/Rating schema
- * Used on pages with testimonials
+ * @deprecated Attaching Review/AggregateRating to owned RealEstateAgent violates Google's self-serving review policy.
+ * Use sameAs + third-party Google profile instead (see lib/mesa-google-presence.ts).
  */
 export function ReviewSchema({
   reviews,

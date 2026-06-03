@@ -3,14 +3,18 @@ import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import { businessInfo } from "@/lib/gbp-schema";
 import {
   BHHS_BROKERAGE_NAP,
+  getAgentSchemaPostalAddress,
   getBhhsBrokeragePostalAddress,
   getMesaCommunityDirectionsUrl,
 } from "@/lib/nap-addresses";
+import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
 import {
   agentId,
   brokerageId,
   communityPlaceId,
+  googleReviewsRefId,
   mesaCommunityComplexId,
+  websiteId,
 } from "@/lib/schema-ids";
 import { getMesaCommunityPostalAddress, mesaAtSkyeviewCommunity, MESA_HOME_BRAND, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { mesaHyperlocalPhotos } from "@/lib/mesaskyeview-photos";
@@ -21,7 +25,23 @@ export {
   getMesaCommunityMapsEmbedUrl,
 } from "@/lib/nap-addresses";
 
-/** BHHS Nevada Properties — brokerage office (secondary visible NAP on /contact). */
+/** Linked WebPage for third-party Google reviews (no on-site AggregateRating). */
+export function generateGoogleReviewsReferenceSchema(siteUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": googleReviewsRefId(siteUrl),
+    name: "Dr. Jan Duffy — Google reviews",
+    description:
+      "Read verified Google reviews for Dr. Jan Duffy. On-site testimonials are not marked up as Review schema per Google guidelines.",
+    url: DR_JAN_GOOGLE_PRESENCE.profileUrl,
+    isPartOf: { "@id": websiteId(siteUrl) },
+    about: { "@id": agentId(siteUrl) },
+    significantLink: DR_JAN_GOOGLE_PRESENCE.writeReviewUrl,
+  };
+}
+
+/** BHHS Nevada Properties — brokerage office (licensed agent NAP in JSON-LD). */
 export function generateBhhsBrokerageOrganizationSchema(siteUrl: string) {
   return {
     "@context": "https://schema.org",
@@ -138,8 +158,10 @@ export function generateMesaContactPageSchema(config: DomainConfig) {
         url: siteUrl,
         address: {
           "@type": "PostalAddress",
-          ...getMesaCommunityPostalAddress(),
+          ...getAgentSchemaPostalAddress(),
         },
+        workLocation: { "@id": communityPlaceId(siteUrl) },
+        subjectOf: { "@id": googleReviewsRefId(siteUrl) },
         areaServed: { "@id": communityPlaceId(siteUrl) },
         makesOffer: {
           "@type": "Offer",

@@ -2,6 +2,8 @@
 
 import { Star, Quote } from "lucide-react";
 import Image from "next/image";
+import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
+
 export interface Review {
   id: number;
   name: string;
@@ -40,7 +42,7 @@ export const defaultReviews: Review[] = [
   },
 ];
 
-// TODO(jan): do not attach AggregateRating/Review JSON-LD to Dr. Jan's owned RealEstateAgent entity (Google self-serving policy). Visible stats OK; schema needs third-party profile or removal.
+/** Visible stats only — not emitted as AggregateRating JSON-LD on owned RealEstateAgent entities. */
 export const aggregateRating = {
   ratingValue: 4.9,
   reviewCount: 500,
@@ -55,11 +57,11 @@ interface ReviewsSectionProps {
   title?: string;
   /** Custom subtitle */
   subtitle?: string;
-  /** Google Business Profile URL */
+  /** Third-party Google review profile (sameAs target; no self-serving review schema) */
   googleReviewsUrl?: string;
   /** Custom class name */
   className?: string;
-  /** Show 4.9 / 500+ line (off on mesaskyeview — no self-serving review schema) */
+  /** Show 4.9 / 500+ line (off on mesaskyeview — use Google CTA instead) */
   showAggregateLine?: boolean;
 }
 
@@ -67,15 +69,19 @@ export default function ReviewsSection({
   reviews = defaultReviews,
   title = "What Our Clients Say",
   subtitle = "Real testimonials from satisfied clients across Las Vegas and Henderson",
-  googleReviewsUrl = "https://g.page/r/heyberkshire/review",
+  googleReviewsUrl = DR_JAN_GOOGLE_PRESENCE.writeReviewUrl,
   className = "",
   showAggregateLine = true,
 }: ReviewsSectionProps) {
   return (
-    <section className={`py-16 md:py-24 bg-slate-50 ${className}`}>
+    <section
+      id="client-testimonials"
+      className={`py-16 md:py-24 bg-slate-50 ${className}`}
+      aria-labelledby="reviews-heading"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+          <h2 id="reviews-heading" className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
             {title}
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">{subtitle}</p>
@@ -132,47 +138,45 @@ export default function ReviewsSection({
                   )}
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900" itemProp="author">
-                    {review.name}
-                  </h3>
+                  <h3 className="font-bold text-slate-900">{review.name}</h3>
                   <p className="text-sm text-slate-600">{review.location}</p>
                 </div>
               </div>
 
-              <div className="flex items-center mb-4" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                <meta itemProp="ratingValue" content={review.rating.toString()} />
-                <meta itemProp="bestRating" content="5" />
+              <div className="flex items-center mb-4" aria-label={`${review.rating} out of 5 stars`}>
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     className={`h-5 w-5 ${
                       i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-slate-300"
                     }`}
+                    aria-hidden
                   />
                 ))}
               </div>
 
               <div className="relative">
-                <Quote className="absolute -top-2 -left-2 h-8 w-8 text-blue-100" />
-                <p className="text-slate-700 relative z-10 pl-4" itemProp="reviewBody">
-                  {review.text}
-                </p>
+                <Quote className="absolute -top-2 -left-2 h-8 w-8 text-blue-100" aria-hidden />
+                <p className="text-slate-700 relative z-10 pl-4">{review.text}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Google Reviews CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-3">
           <a
             href={googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
           >
-            Read More Reviews on Google
-            <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+            View verified reviews on Google
+            <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" aria-hidden />
           </a>
+          <p className="text-sm text-slate-500 max-w-xl mx-auto">
+            Star ratings and review counts on Google are the authoritative source. On-site quotes are
+            client experiences only and are not marked up as Review schema.
+          </p>
         </div>
       </div>
     </section>
@@ -180,8 +184,7 @@ export default function ReviewsSection({
 }
 
 /**
- * Helper to convert reviews to schema format for ReviewSchema component
- * Use with: <ReviewSchema reviews={getReviewSchemaData(reviews)} aggregateRating={aggregateRating} />
+ * @deprecated Do not attach to RealEstateAgent / LocalBusiness JSON-LD (Google self-serving policy).
  */
 export function getReviewSchemaData(reviews: Review[]) {
   return reviews.map((review) => ({

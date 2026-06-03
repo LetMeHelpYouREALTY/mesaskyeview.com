@@ -1,10 +1,11 @@
 import { businessInfo } from "@/lib/gbp-schema";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
-import { getMesaCommunityPostalAddress } from "@/lib/mesaskyeview-brand";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import { getAgentSchemaGeo, getAgentSchemaPostalAddress } from "@/lib/nap-addresses";
+import { getDrJanGoogleSameAs } from "@/lib/mesa-google-presence";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
-import { agentId, brokerageId, communityPlaceId } from "@/lib/schema-ids";
+import { agentId, brokerageId, communityPlaceId, googleReviewsRefId } from "@/lib/schema-ids";
 
 export type LocalBusinessSchemaOptions = {
   siteUrl?: string;
@@ -52,12 +53,11 @@ export function generateLocalBusinessSchemaForSite(
     priceRange: businessInfo.priceRange,
     address: {
       "@type": "PostalAddress",
-      ...(mesa ? getMesaCommunityPostalAddress() : businessInfo.address),
+      ...(mesa ? getAgentSchemaPostalAddress() : businessInfo.address),
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: mesa ? mesaAtSkyeviewCommunity.latitude : businessInfo.geo.latitude,
-      longitude: mesa ? mesaAtSkyeviewCommunity.longitude : businessInfo.geo.longitude,
+      ...(mesa ? getAgentSchemaGeo() : businessInfo.geo),
     },
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "09:00", closes: "18:00" },
@@ -67,7 +67,12 @@ export function generateLocalBusinessSchemaForSite(
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "09:00", closes: "18:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "16:00" },
     ],
-    // TODO(jan): if GBP primary is Lake Mead, move agent PostalAddress to BHHS_BROKERAGE_NAP and keep Vanhoy on #community only.
+    ...(mesa
+      ? {
+          workLocation: { "@id": communityPlaceId(siteUrl) },
+          subjectOf: { "@id": googleReviewsRefId(siteUrl) },
+        }
+      : {}),
     areaServed: serviceArea,
     makesOffer: [
       {
@@ -108,7 +113,7 @@ export function generateLocalBusinessSchemaForSite(
       credentialCategory: "Real Estate License",
       identifier: "S.0197614.LLC",
     },
-    sameAs: businessInfo.socialProfiles,
+    sameAs: mesa ? getDrJanGoogleSameAs(businessInfo.socialProfiles) : businessInfo.socialProfiles,
     worksFor: { "@id": brokerageId(siteUrl) },
     memberOf: { "@id": brokerageId(siteUrl) },
     ...(mesa

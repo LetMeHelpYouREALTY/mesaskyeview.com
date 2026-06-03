@@ -28,7 +28,7 @@ export const agentInfo = {
   brokerage: "Berkshire Hathaway HomeServices Nevada Properties",
 };
 
-/** Primary office NAP (matches GBP): Mesa at Skyeview / Vanhoy Creek. */
+/** Community tour address (visible primary). Agent JSON-LD uses BHHS brokerage via getAgentSchemaPostalAddress(). */
 export const officeInfo = {
   name: "Dr. Jan Duffy | Homes by Dr. Jan Duffy",
   address: {

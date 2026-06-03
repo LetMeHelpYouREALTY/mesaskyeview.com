@@ -1,12 +1,10 @@
 /**
  * Two physical locations — never mix maps/directions across them.
  *
- * - MESA_COMMUNITY: Mesa at Skyeview model / community address (GBP may differ)
- * - BHHS_BROKERAGE: Berkshire Hathaway HomeServices Nevada Properties office
- *
- * TODO(jan): confirm canonical GBP office address — Vanhoy Creek (community) vs Lake Mead (brokerage).
- * Visible primary NAP on mesaskyeview.com is community (8544) per your choice; JSON-LD uses community
- * on RealEstateAgent until revised. Recommend: brokerage address on #agent, community on #community Place.
+ * NAP roles (mesaskyeview.com):
+ * - BHHS_BROKERAGE_NAP → RealEstateAgent `#agent` PostalAddress (licensed office / GBP-aligned)
+ * - MESA_COMMUNITY_NAP → Place `#community` only (model tours, Skye Canyon property)
+ * - Visible pages label both; community first for tours, brokerage for contracts/closings
  */
 
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
@@ -68,5 +66,17 @@ export function getBhhsBrokeragePostalAddress() {
     addressRegion: BHHS_BROKERAGE_NAP.state,
     postalCode: BHHS_BROKERAGE_NAP.zip,
     addressCountry: "US",
+  };
+}
+
+/** RealEstateAgent JSON-LD address — BHHS licensed office (not the community sales center). */
+export function getAgentSchemaPostalAddress() {
+  return getBhhsBrokeragePostalAddress();
+}
+
+export function getAgentSchemaGeo() {
+  return {
+    latitude: BHHS_BROKERAGE_NAP.latitude,
+    longitude: BHHS_BROKERAGE_NAP.longitude,
   };
 }

@@ -22,7 +22,9 @@ export interface DomainConfig {
   contactEmail?: string;
 }
 
-const REALSCOUT_AGENT_ID = "QWdlbnQtMjI1MDUw";
+import { REALSCOUT_AGENT_ENCODED_ID } from "@/lib/realscout-config";
+
+const REALSCOUT_AGENT_ID = REALSCOUT_AGENT_ENCODED_ID;
 
 export const DOMAIN_CONFIGS: Record<string, DomainConfig> = {
   "consenzaestates.com": { domain: "consenzaestates.com", neighborhood: "Consenza Estates", tagline: "Luxury Living in Consenza Estates", description: "Find your dream home in Consenza Estates, Las Vegas. Expert guidance from Dr. Jan Duffy.", heroHeadline: "Consenza Estates Homes for Sale", heroSubheadline: "Exclusive properties in one of Las Vegas' most sought-after communities.", keywords: ["Consenza Estates homes", "Las Vegas luxury real estate", "Consenza Estates Las Vegas"], pageType: "luxury", realscoutAgentId: REALSCOUT_AGENT_ID, ctaBadge: "Consenza Estates Expert", ctaHeadline: "Find Your Consenza Estates Home", ctaSubheadline: "I know every listing in this community. Let me match you with the right home." },

@@ -3,6 +3,7 @@
 import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { siteHeroRotations } from "@/lib/site-images";
+import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -30,7 +31,7 @@ export default function HeroSection() {
         <div className="realscout-wrapper mb-4">
           <div
             dangerouslySetInnerHTML={{
-              __html: `<realscout-simple-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-simple-search>`,
+              __html: getRealscoutSimpleSearchHtml(),
             }}
           />
         </div>

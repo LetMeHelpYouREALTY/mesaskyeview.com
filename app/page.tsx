@@ -13,6 +13,7 @@ import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhot
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
 import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
 import { siteHeroRotations } from "@/lib/site-images";
+import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -55,10 +56,10 @@ export default async function Home() {
             </p>
 
             {/* RealScout Search Widget */}
-            <div className="mb-8 flex justify-center">
+            <div className="mb-8 flex justify-center realscout-wrapper">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `<realscout-simple-search agent-encoded-id="${config.realscoutAgentId}"></realscout-simple-search>`,
+                  __html: getRealscoutSimpleSearchHtml(config.realscoutAgentId),
                 }}
               />
             </div>

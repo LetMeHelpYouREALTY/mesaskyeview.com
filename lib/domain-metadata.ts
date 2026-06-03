@@ -21,14 +21,13 @@ export function applyMesaskyeviewToMetadata(
   base: StaticPageMeta
 ): Metadata {
   if (!isMesaskyeviewDomain(config)) {
-    return {
+    return createPageMetadata(config, {
       title: base.title,
       description: base.description,
+      pathname: base.pathname,
       keywords: base.keywords,
-      robots: base.noIndex
-        ? { index: false, follow: true }
-        : { index: true, follow: true },
-    };
+      noIndex: base.noIndex,
+    });
   }
 
   const keywords = (base.keywords ?? []).map((k) =>

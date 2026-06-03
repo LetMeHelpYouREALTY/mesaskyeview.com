@@ -65,6 +65,12 @@
       "source": "/home",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "mesaskyeview.com" }],
+      "destination": "https://www.mesaskyeview.com/:path*",
+      "permanent": true
     }
   ]
 }

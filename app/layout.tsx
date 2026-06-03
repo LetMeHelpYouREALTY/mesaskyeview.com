@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { getCanonicalSiteUrl, getDomainConfig, getContactEmail } from "@/lib/domain-config";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
 import { getGoogleSiteVerification } from "@/lib/env";
+import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import SiteChrome from "@/components/layouts/SiteChrome";
@@ -15,7 +16,7 @@ import { DomainConfigProvider } from "@/components/providers/DomainConfigProvide
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = headers().get("x-domain") || "";
+  const domain = headers().get("x-domain") || headers().get("host") || "";
   const config = getDomainConfig(domain);
   const siteUrl = getCanonicalSiteUrl(config);
   const googleVerification = getGoogleSiteVerification();
@@ -23,6 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const defaultTitle = isMesaskyeviewDomain(config)
     ? MESA_SITE_BRAND
     : `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`;
+
+  const social = getDefaultSocialImageMetadata();
 
   return {
     metadataBase: new URL(siteUrl),
@@ -32,6 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: config.description,
     keywords: config.keywords,
+    alternates: { canonical: "/" },
     robots: {
       index: true,
       follow: true,
@@ -47,12 +51,18 @@ export async function generateMetadata(): Promise<Metadata> {
       url: siteUrl,
       siteName: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : `Dr. Jan Duffy — ${config.neighborhood}`,
       locale: "en_US",
+      ...social.openGraph,
+    },
+    twitter: {
+      ...social.twitter,
+      title: config.heroHeadline,
+      description: config.description,
     },
   };
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const domain = headers().get("x-domain") || "";
+  const domain = headers().get("x-domain") || headers().get("host") || "";
   const config = getDomainConfig(domain);
   const jsonLdGraph = generateSearchConsoleJsonLd(config);
   const mainOffsetClass = isMesaskyeviewDomain(config) ? "" : "pt-24";

@@ -1,12 +1,16 @@
-import type { Metadata } from 'next'
+import type { Metadata } from "next";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: 'Security Policy',
-  description: 'Security policy and responsible disclosure information for heyberkshire.com',
-  robots: {
-    index: true,
-    follow: true,
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getPageDomainConfig();
+  return createPageMetadata(config, {
+    title: "Security Policy",
+    description:
+      "Security policy and responsible disclosure for Berkshire Hathaway HomeServices Nevada Properties and Dr. Jan Duffy real estate websites.",
+    pathname: "/security-policy",
+    noIndex: true,
+  });
 }
 
 export default function SecurityPolicyPage() {

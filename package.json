@@ -26,7 +26,7 @@
     "perf": "npm run analyze && npm run lighthouse",
     "vercel:build": "vercel build",
     "vercel:deploy": "vercel deploy --prebuilt",
-    "vercel:prod": "vercel deploy --prod --prebuilt",
+    "vercel:prod": "node -e \"console.error('Use git push to main for production. vercel --prod duplicates deploys and can briefly show the wrong build.'); process.exit(1)\"",
     "cloudflare:dev": "wrangler dev",
     "cloudflare:deploy": "wrangler deploy",
     "cloudflare:pages": "npx @cloudflare/next-on-pages",

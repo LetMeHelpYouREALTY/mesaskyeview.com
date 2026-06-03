@@ -57,7 +57,7 @@ export function generateLocalBusinessSchemaForSite(
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
-      reviewCount: "200",
+      reviewCount: "500",
       bestRating: "5",
     },
     sameAs: businessInfo.socialProfiles,

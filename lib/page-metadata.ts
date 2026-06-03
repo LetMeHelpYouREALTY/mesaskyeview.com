@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { DomainConfig } from "@/lib/domain-config";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
+import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import {
   isMesaskyeviewDomain,
   localizeDescriptionForMesa,
@@ -50,6 +51,13 @@ export function createPageMetadata(
       url: pageUrl,
       type: "website",
       siteName: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : siteBrand,
+      locale: "en_US",
+      ...getDefaultSocialImageMetadata().openGraph,
+    },
+    twitter: {
+      ...getDefaultSocialImageMetadata().twitter,
+      title,
+      description,
     },
   };
 }

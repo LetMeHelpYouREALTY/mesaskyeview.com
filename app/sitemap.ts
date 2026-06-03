@@ -4,7 +4,7 @@ import { getCanonicalSiteUrl, getDomainConfig } from "@/lib/domain-config";
 import { GSC_SITEMAP_PATHS } from "@/lib/gsc-sitemap-paths";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const host = headers().get("host") || headers().get("x-domain") || "";
+  const host = headers().get("x-domain") || headers().get("host") || "";
   const config = getDomainConfig(host);
   const baseUrl = getCanonicalSiteUrl(config);
   const lastModified = new Date();

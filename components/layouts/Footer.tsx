@@ -3,11 +3,13 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 
 export default async function Footer() {
   const config = await getPageDomainConfig();
   const contactEmail = getContactEmail(config);
   const isMesa = isMesaskyeviewDomain(config);
+  const propertySearchUrl = getRealscoutPropertySearchUrl(config);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -61,12 +63,12 @@ export default async function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="http://drjanduffy.realscout.com/"
+                  href={propertySearchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-white transition-colors text-sm"
                 >
-                  All Properties
+                  {isMesa ? "Search Mesa & Skye Canyon Homes" : "All Properties"}
                 </a>
               </li>
               <li>

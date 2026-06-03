@@ -10,6 +10,8 @@ import {
   getMesaCommunityMapsEmbedUrl,
 } from "@/lib/mesa-at-skyeview-schema";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 
 export type MesaBreadcrumb = { name: string; href?: string };
 
@@ -23,7 +25,7 @@ type MesaPageShellProps = {
   showMap?: boolean;
 };
 
-export default function MesaPageShell({
+export default async function MesaPageShell({
   breadcrumbs,
   title,
   intro,
@@ -32,6 +34,8 @@ export default function MesaPageShell({
   showGallery = false,
   showMap = true,
 }: MesaPageShellProps) {
+  const config = await getPageDomainConfig();
+  const curatedSearchUrl = getRealscoutPropertySearchUrl(config);
   const directionsUrl = getMesaCommunityDirectionsUrl();
 
   return (
@@ -117,12 +121,14 @@ export default function MesaPageShell({
               Nevada Properties.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/listings"
-                className="bg-white text-blue-600 px-6 py-3 rounded-md font-bold hover:bg-blue-50"
+              <a
+                href={curatedSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-blue-600 px-6 py-3 rounded-md font-bold hover:bg-blue-50 text-center"
               >
                 Search homes
-              </Link>
+              </a>
               <Link
                 href="/contact"
                 className="bg-blue-700 hover:bg-blue-800 px-6 py-3 rounded-md font-bold"

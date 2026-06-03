@@ -18,6 +18,8 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 
 const pageMetadataBase = {
   title: "Las Vegas Homes for Sale | MLS Property Search | Berkshire Hathaway HomeServices",
@@ -117,7 +119,11 @@ const neighborhoods = [
   },
 ];
 
-export default function ListingsPage() {
+export default async function ListingsPage() {
+  const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
+  const curatedSearchUrl = getRealscoutPropertySearchUrl(config);
+
   return (
     <>
       <script
@@ -128,20 +134,46 @@ export default function ListingsPage() {
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Berkshire Hathaway HomeServices Nevada Properties
+              {isMesa ? "Homes by Dr. Jan Duffy" : "Berkshire Hathaway HomeServices Nevada Properties"}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
-              Las Vegas Homes for Sale
+              {isMesa
+                ? `Homes for Sale — ${mesaAtSkyeviewCommunity.name} & Skye Canyon`
+                : "Las Vegas Homes for Sale"}
             </h1>
             <p className="text-xl text-slate-600 mb-8">
-              Search thousands of Las Vegas, Henderson, and Summerlin properties with live MLS 
-              listings updated every 15 minutes. Find your dream home with expert guidance from 
-              Dr. Jan Duffy at <strong>Berkshire Hathaway HomeServices</strong>.
+              {isMesa ? (
+                <>
+                  Search Dr. Jan Duffy&apos;s curated MLS list for {mesaAtSkyeviewCommunity.name},{" "}
+                  {mesaAtSkyeviewCommunity.masterPlan}, and ZIP {mesaAtSkyeviewCommunity.zip}—plus live
+                  office listings below.
+                </>
+              ) : (
+                <>
+                  Search thousands of Las Vegas, Henderson, and Summerlin properties with live MLS
+                  listings updated every 15 minutes. Find your dream home with expert guidance from
+                  Dr. Jan Duffy at <strong>Berkshire Hathaway HomeServices</strong>.
+                </>
+              )}
             </p>
+            {isMesa && (
+              <a
+                href={curatedSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md font-bold text-lg mb-6 transition-colors"
+              >
+                <Search className="h-5 w-5" />
+                Open Dr. Jan&apos;s Curated Home Search
+              </a>
+            )}
             <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-500">
               <span className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-1" /> Live MLS Data</span>
               <span className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-1" /> Updated Every 15 Min</span>
-              <span className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-1" /> 5,000+ Active Listings</span>
+              <span className="flex items-center">
+                <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
+                {isMesa ? "Skye Canyon & 89166 focus" : "5,000+ Active Listings"}
+              </span>
             </div>
           </div>
 

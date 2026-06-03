@@ -6,6 +6,10 @@ import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDomainConfig } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
+import {
+  DR_JAN_REALSCOUT_SEARCH_URL,
+  getRealscoutPropertySearchUrl,
+} from "@/lib/realscout-config";
 
 type NavbarProps = {
   /** embedded = inside sticky SiteHeader; fixed = legacy standalone (default) */
@@ -28,9 +32,11 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const propertySearchUrl = config ? getRealscoutPropertySearchUrl(config) : DR_JAN_REALSCOUT_SEARCH_URL;
+
   const mainNavLinks = [
     { href: "/", label: "Home", external: false },
-    { href: "http://drjanduffy.realscout.com/", label: "Properties", external: true },
+    { href: propertySearchUrl, label: isMesa ? "Search Homes" : "Properties", external: true },
     { href: "/neighborhoods", label: "Neighborhoods", external: false },
     { href: "/about", label: "About", external: false },
     { href: "/contact", label: "Contact", external: false },

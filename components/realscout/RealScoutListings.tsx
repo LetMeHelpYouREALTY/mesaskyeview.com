@@ -1,13 +1,16 @@
 import { getPageDomainConfig } from "@/lib/get-domain-config";
+import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 import {
-  DR_JAN_REALSCOUT_SEARCH_URL,
   getRealscoutOfficeListingsHtml,
+  getRealscoutPropertySearchUrl,
 } from "@/lib/realscout-config";
 import MlsListingAttribution from "@/components/realscout/MlsListingAttribution";
 
 /** Office MLS listings — primary lead widget; placed below hero on every page (server component). */
 export default async function RealScoutListings() {
   const config = await getPageDomainConfig();
+  const isMesa = isMesaskyeviewDomain(config);
+  const propertySearchUrl = getRealscoutPropertySearchUrl(config);
 
   return (
     <section
@@ -25,20 +28,21 @@ export default async function RealScoutListings() {
               id="listings-heading"
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3"
             >
-              Las Vegas MLS Listings
+              {isMesa ? "Mesa at Skyeview MLS Listings" : "Las Vegas MLS Listings"}
             </h2>
             <p className="text-slate-600 text-lg max-w-2xl">
-              Live inventory near {config.neighborhood} and across Las Vegas &amp; Henderson—updated
-              from RealScout. Save favorites and request showings with Dr. Jan Duffy.
+              {isMesa
+                ? "Live Skye Canyon and Mesa at Skyeview inventory—updated from RealScout. Save favorites and request showings with Dr. Jan Duffy."
+                : `Live inventory near ${config.neighborhood} and across Las Vegas & Henderson—updated from RealScout. Save favorites and request showings with Dr. Jan Duffy.`}
             </p>
           </div>
           <a
-            href={DR_JAN_REALSCOUT_SEARCH_URL}
+            href={propertySearchUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-50 transition-colors shrink-0"
           >
-            View All Properties
+            {isMesa ? "Curated Home Search" : "View All Properties"}
           </a>
         </div>
 

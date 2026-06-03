@@ -6,6 +6,7 @@ import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { mesaZipFaqs, mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import { MESA_EXPLORE_PAGES } from "@/lib/mesa-site-pages";
 import MesaPageShell from "@/components/mesaskyeview/MesaPageShell";
+import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -22,7 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function Zip89166HomesPage() {
+export default async function Zip89166HomesPage() {
+  const config = await getPageDomainConfig();
+  const curatedSearchUrl = getRealscoutPropertySearchUrl(config);
   const c = mesaAtSkyeviewCommunity;
 
   return (
@@ -55,9 +58,14 @@ export default function Zip89166HomesPage() {
         ))}
       </ul>
       <p>
-        <Link href="/listings" className="text-blue-600 font-semibold">
-          Browse all listings →
-        </Link>
+        <a
+          href={curatedSearchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 font-semibold"
+        >
+          Open Dr. Jan&apos;s curated MLS search →
+        </a>
       </p>
     </MesaPageShell>
   );

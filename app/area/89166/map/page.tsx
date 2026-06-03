@@ -8,6 +8,7 @@ import { agentInfo } from "@/lib/site-config";
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getMesaCommunityMapsEmbedUrl, getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 import { mesaZipFaqs, mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
+import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import {
   ZIP_89166,
   generateZip89166MapSchema,
@@ -39,6 +40,7 @@ export default async function Zip89166MapPage() {
   const faqSchema = mesaFaqsToSchema(mesaZipFaqs);
   const mapSchema = generateZip89166MapSchema(siteUrl);
   const contactWithZip = `/contact?zip=${ZIP_89166}`;
+  const curatedSearchUrl = getRealscoutPropertySearchUrl(config);
 
   return (
     <>
@@ -153,13 +155,15 @@ export default async function Zip89166MapPage() {
           <section className="max-w-4xl mx-auto mb-10">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Search homes in {ZIP_89166}</h2>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href={`/listings?zip=${ZIP_89166}`}
+              <a
+                href={curatedSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700"
               >
                 <Search className="h-5 w-5" />
-                MLS search — ZIP {ZIP_89166}
-              </Link>
+                Curated MLS search — ZIP {ZIP_89166}
+              </a>
               <Link
                 href={contactWithZip}
                 className="inline-flex items-center justify-center gap-2 border border-blue-600 text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-blue-50"

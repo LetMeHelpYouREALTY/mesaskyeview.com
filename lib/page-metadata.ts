@@ -37,7 +37,10 @@ export function createPageMetadata(
 
   const authorName = "Dr. Jan Duffy";
 
+  const social = getDefaultSocialImageMetadata(config);
+
   return {
+    metadataBase: new URL(siteUrl),
     title,
     description,
     keywords: options.keywords ?? config.keywords,
@@ -68,10 +71,10 @@ export function createPageMetadata(
       type: "website",
       siteName: isMesaskyeviewDomain(config) ? MESA_SITE_BRAND : siteBrand,
       locale: "en_US",
-      ...getDefaultSocialImageMetadata().openGraph,
+      ...social.openGraph,
     },
     twitter: {
-      ...getDefaultSocialImageMetadata().twitter,
+      ...social.twitter,
       title,
       description,
     },

@@ -101,9 +101,34 @@ export const DEFAULT_CONFIG: DomainConfig = {
   ctaSubheadline: "Call or text Dr. Jan at 702-222-1964 — I answer my own phone.",
 };
 
-export function getDomainConfig(hostname: string): DomainConfig {
+function inferDomainKeyFromEnv(): string | null {
+  const hints = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (hints.includes("mesaskyeview.com")) return "mesaskyeview.com";
+  return null;
+}
+
+function resolveDomainKey(hostname: string): string | null {
   const clean = hostname.replace(/^www\./, "").toLowerCase().split(":")[0];
-  return DOMAIN_CONFIGS[clean] ?? DEFAULT_CONFIG;
+  if (!clean) return inferDomainKeyFromEnv();
+
+  if (clean in DOMAIN_CONFIGS) return clean;
+  if (clean.includes("mesaskyeview")) return "mesaskyeview.com";
+
+  return inferDomainKeyFromEnv();
+}
+
+export function getDomainConfig(hostname: string): DomainConfig {
+  const key = resolveDomainKey(hostname);
+  if (key && DOMAIN_CONFIGS[key]) return DOMAIN_CONFIGS[key];
+  return DEFAULT_CONFIG;
 }
 
 /** Production canonical URLs (match Vercel domain redirects). */

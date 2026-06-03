@@ -8,7 +8,7 @@ In the Vercel project (`mesaskyeview-com`), set:
 
 | Variable | Value |
 |----------|--------|
-| `NEXT_PUBLIC_SITE_URL` | `https://www.mesaskyeview.com` |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.mesaskyeview.com` (must **not** be `heyberkshire.com` — OG/Twitter URLs and titles use this when host headers are empty at build) |
 | `GOOGLE_SITE_VERIFICATION` | Content token only from GSC HTML tag method (not the full `<meta>` tag) |
 
 Redeploy after saving env vars so the verification meta tag appears in the page source.

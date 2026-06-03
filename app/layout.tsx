@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? MESA_SITE_BRAND
     : `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`;
 
-  const social = getDefaultSocialImageMetadata();
+  const social = getDefaultSocialImageMetadata(config);
 
   return {
     metadataBase: new URL(siteUrl),

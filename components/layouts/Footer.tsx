@@ -97,6 +97,16 @@ export default async function Footer() {
                   </Link>
                 </li>
               )}
+              {isMesa && (
+                <li>
+                  <Link
+                    href="/area/89166/map"
+                    className="text-slate-300 hover:text-white transition-colors text-sm"
+                  >
+                    ZIP 89166 Map
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="/why-berkshire-hathaway"

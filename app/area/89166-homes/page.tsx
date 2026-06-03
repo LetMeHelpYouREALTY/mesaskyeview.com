@@ -34,7 +34,13 @@ export default function Zip89166HomesPage() {
       title={`Homes for sale in ZIP ${c.zip}`}
       intro={`Northwest Las Vegas hub for ${c.masterPlan}—including ${c.name} new construction and resale villages across Skye Canyon.`}
       faqSchema={mesaFaqsToSchema(mesaZipFaqs)}
+      showMap={false}
     >
+      <p>
+        <Link href="/area/89166/map" className="text-blue-600 font-semibold">
+          View the ZIP {c.zip} Google Map →
+        </Link>
+      </p>
       <p>
         Use the MLS search on this site or contact Dr. Jan for curated lists by plan size, lot,
         and village. Hyperlocal guides:

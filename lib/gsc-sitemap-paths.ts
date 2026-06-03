@@ -49,6 +49,7 @@ export const GSC_SITEMAP_PATHS: SitemapEntry[] = [
   { path: "/mesa-at-skyeview/sell-your-home", priority: 0.88, changeFrequency: "monthly" },
   { path: "/mesa-at-skyeview/amenities", priority: 0.85, changeFrequency: "monthly" },
   { path: "/area/89166-homes", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/area/89166/map", priority: 0.88, changeFrequency: "monthly" },
   { path: "/neighborhoods/summerlin", priority: 0.8, changeFrequency: "weekly" },
   { path: "/neighborhoods/henderson", priority: 0.8, changeFrequency: "weekly" },
   { path: "/neighborhoods/green-valley", priority: 0.75, changeFrequency: "weekly" },

@@ -46,4 +46,9 @@ export const MESA_EXPLORE_PAGES: MesaExploreLink[] = [
     title: "ZIP 89166 homes",
     description: "Search and local expertise for Skye Canyon and Mesa at Skyeview.",
   },
+  {
+    href: "/area/89166/map",
+    title: "ZIP 89166 Google Map",
+    description: "Interactive Google Map of Skye Canyon and Mesa at Skyeview in ZIP 89166.",
+  },
 ];

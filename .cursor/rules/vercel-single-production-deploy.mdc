@@ -1,0 +1,28 @@
+---
+description: Prevent duplicate Vercel production deployments for mesaskyeview.com
+alwaysApply: true
+---
+
+# Vercel: one production deploy per commit
+
+**Production host:** https://www.mesaskyeview.com (project `mesaskyeview-com`, team `janet-duffys-projects`)
+
+## Cause of duplicate deployments
+
+Each `git push` to `main` already triggers **one** production build via the Vercel GitHub integration (`github/DrJanDuffy` in the dashboard).
+
+Running **`vercel --prod`** or **`pnpm run vercel:prod`** after a push triggers a **second** production build (`actor: cursor-cli`, `drjanduffy` avatar). Same commit SHA, double build minutes, confusing dashboard.
+
+## Required behavior for agents and humans
+
+1. After **`git push origin main`**, **do not** run `vercel --prod`, `vercel deploy --prod`, or `pnpm run vercel:prod`.
+2. Wait for the Git-connected deployment to finish (Vercel dashboard or `vercel ls mesaskyeview-com`).
+3. Use CLI production deploy **only** when Git deploy is unavailable (emergency hotfix without push, or project not linked to Git).
+
+## Preview deployments
+
+- **PRs:** optional preview via `.github/workflows/vercel-preview.yml` (needs `VERCEL_TOKEN` secrets) or Vercel’s automatic PR previews—never stack CLI prod on top of Git prod.
+
+## Cloudflare
+
+DNS/cache only (gray cloud). Production app is Vercel—not `cloudflare-deploy.yml` on push unless explicitly requested via workflow_dispatch.

@@ -106,3 +106,12 @@ vercel.json            // Vercel-specific
 
 // ❌ BAD: One config trying to do everything
 ```
+
+## mesaskyeview.com — avoid duplicate Vercel production builds
+
+| Trigger | When to use |
+|--------|-------------|
+| **Git push to `main`** | Default — Vercel Git integration deploys once |
+| **`vercel --prod` / `pnpm run vercel:prod`** | Only if you did **not** push (emergency) |
+
+Never run CLI prod deploy immediately after `git push` on this repo. See `vercel-single-production-deploy.mdc`.

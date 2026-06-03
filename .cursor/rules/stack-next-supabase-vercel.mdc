@@ -1,0 +1,39 @@
+---
+description: Next.js 14 App Router + Supabase SSR + shadcn/ui + Tailwind + Vercel defaults for mesaskyeview.com
+alwaysApply: true
+---
+
+# Stack settings (optimized)
+
+## Next.js 14 (App Router)
+
+- Server Components by default; `'use client'` only for hooks, browser APIs, widgets.
+- Data: `lib/supabase/server.ts` on the server; Route Handlers under `app/api/`.
+- Images: `next/image` + `/Image/*` static assets; Supabase Storage host in `next.config.js` `remotePatterns`.
+- Deploy: **git push to `main` only** — do not run `vercel --prod` after push (see `vercel-single-production-deploy.mdc`).
+
+## Supabase
+
+- Packages: `@supabase/supabase-js`, `@supabase/ssr`.
+- Clients: `lib/supabase/client.ts` (browser), `lib/supabase/server.ts` (RSC/actions), `lib/supabase/middleware.ts` (session refresh).
+- Env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` only in client code. `SUPABASE_SERVICE_ROLE_KEY` server-only.
+- Enable RLS on every exposed table; never use `service_role` in `NEXT_PUBLIC_*`.
+- Middleware runs `getUser()` when Supabase env is set; site works without Supabase until keys are added.
+
+## shadcn/ui
+
+- Config: `components.json` — `rsc: true`, `@/` aliases, `tailwind.config.ts`, `app/globals.css`.
+- Add components: `pnpm dlx shadcn@latest add <name> -y`
+- Import utils: `@/lib/utils` (`cn()`).
+
+## Tailwind CSS 3
+
+- Single config: `tailwind.config.ts` (no duplicate `.js`).
+- Content: `app/`, `components/`, `lib/`.
+- Plugin: `tailwindcss-animate` for shadcn motion.
+
+## Vercel
+
+- `vercel.json`: `pnpm install --frozen-lockfile`, `pnpm run build`, region `iad1`.
+- API routes: `app/api/**/*.ts` maxDuration 30s; pages 10s.
+- Sync env: `vercel env pull .env.local`

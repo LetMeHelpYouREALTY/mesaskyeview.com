@@ -57,3 +57,16 @@ export function getCloudflareApiToken(): string {
 export function isFubConfigured(): boolean {
   return Boolean(getFubApiKey());
 }
+
+/** Supabase — publishable keys only in NEXT_PUBLIC_* (never service_role in the browser). */
+export function getSupabaseUrl(): string | undefined {
+  return process.env.NEXT_PUBLIC_SUPABASE_URL || undefined;
+}
+
+export function getSupabaseAnonKey(): string | undefined {
+  return process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || undefined;
+}
+
+export function isSupabaseConfigured(): boolean {
+  return Boolean(getSupabaseUrl() && getSupabaseAnonKey());
+}

@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import type { Metadata } from "next";
@@ -185,9 +184,7 @@ export default function FAQPage() {
   return (
     <>
       {/* Combined JSON-LD Schema: Breadcrumb + WebPage + FAQPage (all categories) */}
-      <SchemaScript schema={pageSchemas} id="faq-page-schema" />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      <SchemaScript schema={pageSchemas} id="faq-page-schema" />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">

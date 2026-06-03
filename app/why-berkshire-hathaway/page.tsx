@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import { Shield, Users, Globe, Award, TrendingUp, CheckCircle, Phone } from "lucide-react";
 import type { Metadata } from "next";
@@ -51,9 +50,7 @@ export default function WhyBerkshireHathawayPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-16">

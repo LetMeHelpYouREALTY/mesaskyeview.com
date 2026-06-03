@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import { Phone, Mail, CheckCircle, Star, Users, Shield, MapPin, Navigation } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -64,9 +63,7 @@ export default async function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-      />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-12">

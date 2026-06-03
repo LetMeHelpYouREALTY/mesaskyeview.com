@@ -7,9 +7,15 @@ import { Button } from "@/components/ui/button";
 import { useDomainConfig } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 
-export default function Navbar() {
+type NavbarProps = {
+  /** embedded = inside sticky SiteHeader; fixed = legacy standalone (default) */
+  position?: "fixed" | "embedded";
+};
+
+export default function Navbar({ position = "fixed" }: NavbarProps) {
   const config = useDomainConfig();
   const isMesa = config ? isMesaskyeviewDomain(config) : false;
+  const isEmbedded = position === "embedded";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -42,9 +48,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300 ${
-        isScrolled ? "py-2" : "py-3"
-      }`}
+      className={`${
+        isEmbedded
+          ? "relative bg-white border-t border-slate-200"
+          : "fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
+      } transition-all duration-300 ${isScrolled && !isEmbedded ? "py-2" : "py-3"}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">

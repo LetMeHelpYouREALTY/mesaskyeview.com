@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import { MapPin, Phone, Home, Users, GraduationCap } from "lucide-react";
 import type { Metadata } from "next";
@@ -124,9 +123,7 @@ const neighborhoods = [
 
 export default function NeighborhoodsPage() {
   return (
-    <>
-      <Navbar />
-      <main className="pt-24 pb-16">
+    <>      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">

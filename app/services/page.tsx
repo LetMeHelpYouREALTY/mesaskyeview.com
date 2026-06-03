@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import {
   Home,
@@ -180,9 +179,7 @@ export default function ServicesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
-      />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">

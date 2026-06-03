@@ -9,7 +9,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
-import MesaskyeviewContextBar from "@/components/mesaskyeview/MesaskyeviewContextBar";
+import SiteHeader from "@/components/layouts/SiteHeader";
 import { DomainConfigProvider } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 
@@ -54,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const domain = headers().get("x-domain") || "";
   const config = getDomainConfig(domain);
   const jsonLdGraph = generateSearchConsoleJsonLd(config);
+  const mainOffsetClass = isMesaskyeviewDomain(config) ? "" : "pt-24";
 
   return (
     <html lang="en" className={GeistSans.className}>
@@ -84,8 +85,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GoogleAnalytics />
         <DomainConfigProvider config={config}>
-          <MesaskyeviewContextBar />
-          {children}
+          <SiteHeader />
+          <div className={mainOffsetClass}>{children}</div>
           <SiteChrome />
         </DomainConfigProvider>
         <Analytics />

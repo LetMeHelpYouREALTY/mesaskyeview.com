@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import { Phone, MapPin, TreePine, Mountain, GraduationCap, ShoppingBag } from "lucide-react";
 import type { Metadata } from "next";
@@ -86,9 +85,7 @@ export default function SummerlinPage() {
   return (
     <>
       {/* Combined JSON-LD Schema: Breadcrumb + Place + FAQ */}
-      <SchemaScript schema={pageSchemas} id="summerlin-schema" />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      <SchemaScript schema={pageSchemas} id="summerlin-schema" />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">

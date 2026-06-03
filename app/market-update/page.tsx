@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import Link from "next/link";
 import {
   Phone,
@@ -69,9 +68,7 @@ export default function MarketUpdatePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <Navbar />
-      <main className="pt-24 pb-16">
+      />      <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-4xl mx-auto mb-6">

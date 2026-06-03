@@ -1,4 +1,3 @@
-import Navbar from "@/components/layouts/Navbar";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -26,7 +25,6 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
       <main>
         {/* Domain-Aware Hero */}
         <section className="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">

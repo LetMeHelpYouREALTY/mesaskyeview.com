@@ -12,12 +12,54 @@ import { getMesaskyeviewPathLead } from "@/lib/mesaskyeview-path-lead";
 import { getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 import { agentInfo } from "@/lib/site-config";
 
-export default async function MesaskyeviewContextBar() {
+type MesaskyeviewContextBarProps = {
+  /** compact = single row inside sticky header; full = legacy block (deprecated) */
+  variant?: "compact" | "full";
+};
+
+export default async function MesaskyeviewContextBar({
+  variant = "full",
+}: MesaskyeviewContextBarProps) {
   const config = await getPageDomainConfig();
   if (!isMesaskyeviewDomain(config)) return null;
 
   const pathname = headers().get("x-pathname") || "/";
   const lead = getMesaskyeviewPathLead(pathname);
+
+  if (variant === "compact") {
+    return (
+      <div className="bg-slate-900 text-white border-b border-slate-700">
+        <div className="container mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs sm:text-sm">
+          <div className="flex items-center gap-2 min-w-0">
+            <MapPin className="h-3.5 w-3.5 text-blue-400 flex-shrink-0" aria-hidden />
+            <span className="font-semibold truncate">{MESA_SITE_BRAND}</span>
+            <span className="text-slate-400 hidden md:inline truncate max-w-[14rem] lg:max-w-none">
+              · {mesaAtSkyeviewCommunity.salesOfficeAddress}
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-blue-300">
+            <span className="text-slate-400 hidden sm:inline">{lead.serviceFocus}</span>
+            <Link
+              href="/new-construction"
+              className="hover:text-white underline-offset-2 hover:underline"
+            >
+              New homes
+            </Link>
+            <Link href="/contact" className="hover:text-white underline-offset-2 hover:underline">
+              Contact
+            </Link>
+            <a
+              href={agentInfo.phoneTel}
+              className="inline-flex items-center gap-1 hover:text-white font-medium"
+            >
+              <Phone className="h-3.5 w-3.5" aria-hidden />
+              {agentInfo.phoneFormatted}
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-slate-900 text-white border-b border-slate-700">

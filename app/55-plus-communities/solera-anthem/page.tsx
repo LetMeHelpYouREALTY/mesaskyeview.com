@@ -14,6 +14,7 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Solera at Anthem Homes for Sale | Intimate Guard-Gated 55+ Henderson | Dr. Jan Duffy",
@@ -68,10 +69,8 @@ const communitySchema = {
 export default function SoleraAnthemPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(communitySchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={communitySchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">

@@ -1,5 +1,3 @@
-import type { DomainConfig } from "@/lib/domain-config";
-import { getCanonicalSiteUrl, getContactEmail } from "@/lib/domain-config";
 import { businessInfo } from "@/lib/gbp-schema";
 import {
   BHHS_BROKERAGE_NAP,
@@ -16,9 +14,13 @@ import {
   mesaCommunityComplexId,
   websiteId,
 } from "@/lib/schema-ids";
-import { getMesaCommunityPostalAddress, mesaAtSkyeviewCommunity, MESA_HOME_BRAND, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
+import {
+  mesaAtSkyeviewCommunity,
+  MESA_HOME_BRAND,
+  MESA_SITE_BRAND,
+} from "@/lib/mesaskyeview-brand";
 import { mesaHyperlocalPhotos } from "@/lib/mesaskyeview-photos";
-import { drJanDuffyPhotos } from "@/lib/agent-photos";
 
 export {
   getMesaCommunityDirectionsUrl,
@@ -31,7 +33,7 @@ export function generateGoogleReviewsReferenceSchema(siteUrl: string) {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": googleReviewsRefId(siteUrl),
-    name: "Dr. Jan Duffy — Google reviews",
+    name: `${DR_JAN_GBP_BRAND_NAME} — Google reviews`,
     description:
       "Read verified Google reviews for Dr. Jan Duffy. On-site testimonials are not marked up as Review schema per Google guidelines.",
     url: DR_JAN_GOOGLE_PRESENCE.profileUrl,
@@ -125,50 +127,5 @@ export function generateMesaResidentialCommunitySchema(siteUrl: string) {
       longitude: c.longitude,
     },
     containedInPlace: { "@id": communityPlaceId(siteUrl) },
-  };
-}
-
-export function generateMesaContactPageSchema(config: DomainConfig) {
-  const siteUrl = getCanonicalSiteUrl(config);
-  const email = getContactEmail(config);
-  const place = generateMesaAtSkyeviewPlaceSchema(siteUrl);
-  const community = generateMesaResidentialCommunitySchema(siteUrl);
-
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "ContactPage",
-        "@id": `${siteUrl}/contact#webpage`,
-        url: `${siteUrl}/contact`,
-        name: `Contact Dr. Jan Duffy | ${MESA_SITE_BRAND}`,
-        description: config.description,
-        about: [{ "@id": place["@id"] }, { "@id": community["@id"] }],
-        mainEntity: { "@id": agentId(siteUrl) },
-      },
-      place,
-      community,
-      {
-        "@type": ["Person", "RealEstateAgent"],
-        "@id": agentId(siteUrl),
-        name: `Dr. Jan Duffy | ${MESA_SITE_BRAND}`,
-        image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
-        telephone: businessInfo.phone.tel,
-        email,
-        url: siteUrl,
-        address: {
-          "@type": "PostalAddress",
-          ...getAgentSchemaPostalAddress(),
-        },
-        workLocation: { "@id": communityPlaceId(siteUrl) },
-        subjectOf: { "@id": googleReviewsRefId(siteUrl) },
-        areaServed: { "@id": communityPlaceId(siteUrl) },
-        makesOffer: {
-          "@type": "Offer",
-          itemOffered: { "@id": mesaCommunityComplexId(siteUrl) },
-          offeredBy: { "@id": agentId(siteUrl) },
-        },
-      },
-    ],
   };
 }

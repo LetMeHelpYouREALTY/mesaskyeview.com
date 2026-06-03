@@ -18,8 +18,9 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
-import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
+import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 import {
   businessInfo,
   gbpDescription,
@@ -42,7 +43,7 @@ const pageMetadataBase = {
     "California relocation Las Vegas",
   ],
   openGraph: {
-    title: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+    title: businessInfo.name,
     description: "Trusted Las Vegas REALTOR® serving since 2008. Summerlin, Henderson, luxury homes, 55+ communities.",
     url: "https://heyberkshire.com/google-business",
     type: "profile",
@@ -68,18 +69,7 @@ export default async function GoogleBusinessPage() {
 
   return (
     <>
-      {!isMesa && (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-          />
-        </>
-      )}
+      <LegacyRouteJsonLd schemas={[localBusinessSchema, faqSchema]} />
       <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero - NAP Prominent */}
@@ -92,10 +82,12 @@ export default async function GoogleBusinessPage() {
                     <span className="text-yellow-400 font-semibold">Berkshire Hathaway HomeServices</span>
                   </div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    Dr. Jan Duffy
+                    {businessInfo.name}
                   </h1>
+                  {isMesa ? (
+                    <p className="text-lg text-blue-200 mb-4">{MESA_SITE_BRAND}</p>
+                  ) : null}
                   <p className="text-xl text-blue-200 mb-2">REALTOR® | License {businessInfo.license}</p>
-                  <p className="text-slate-300 mb-6">Nevada Properties</p>
                   
                   {/* NAP - Exact match to GBP */}
                   <div className="space-y-3">

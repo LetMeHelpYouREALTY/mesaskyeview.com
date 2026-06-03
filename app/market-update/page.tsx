@@ -13,6 +13,7 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices Las Vegas Market Update | January 2026",
@@ -65,10 +66,8 @@ const articleSchema = {
 export default function MarketUpdatePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={articleSchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-4xl mx-auto mb-6">

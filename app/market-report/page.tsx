@@ -3,6 +3,7 @@ import { TrendingUp, TrendingDown, Home, Calendar, DollarSign, BarChart, Phone }
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Las Vegas Real Estate Market Report January 2026 | Berkshire Hathaway HomeServices",
@@ -48,10 +49,8 @@ const reportSchema = {
 export default function MarketReportPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reportSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={reportSchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-16">

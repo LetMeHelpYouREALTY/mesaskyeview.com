@@ -10,7 +10,9 @@ import {
   MESA_HOME_BRAND,
   MESA_SITE_BRAND,
 } from "@/lib/mesaskyeview-brand";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 import DualNapMapSections from "@/components/contact/DualNapMapSections";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 import {
   BHHS_BROKERAGE_NAP,
   getBhhsBrokerageDirectionsUrl,
@@ -41,34 +43,27 @@ export default async function ContactPage() {
   const contactEmail = getContactEmail(config);
   const isMesa = isMesaskyeviewDomain(config);
 
-  const contactSchema = isMesa
-    ? null
-    : {
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        mainEntity: {
-          "@type": "RealEstateAgent",
-          name: `Dr. Jan Duffy - ${config.neighborhood} | Berkshire Hathaway HomeServices Nevada Properties`,
-          telephone: "+17025001942",
-          email: contactEmail,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: BHHS_BROKERAGE_NAP.street,
-            addressLocality: BHHS_BROKERAGE_NAP.city,
-            addressRegion: BHHS_BROKERAGE_NAP.state,
-            postalCode: BHHS_BROKERAGE_NAP.zip,
-            addressCountry: "US",
-          },
-        },
-      };
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    mainEntity: {
+      "@type": "RealEstateAgent",
+      name: DR_JAN_GBP_BRAND_NAME,
+      telephone: "+17025001942",
+      email: contactEmail,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: BHHS_BROKERAGE_NAP.street,
+        addressLocality: BHHS_BROKERAGE_NAP.city,
+        addressRegion: BHHS_BROKERAGE_NAP.state,
+        postalCode: BHHS_BROKERAGE_NAP.zip,
+        addressCountry: "US",
+      },
+    },
+  };
   return (
     <>
-      {contactSchema ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-        />
-      ) : null}
+      <LegacyRouteJsonLd schema={contactSchema} />
       <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero */}

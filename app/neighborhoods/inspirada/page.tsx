@@ -3,6 +3,8 @@ import { Phone, Waves, TreePine, GraduationCap, Home as HomeIcon } from "lucide-
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import MetroHeroBadge from "@/components/mesaskyeview/MetroHeroBadge";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices Inspirada | Henderson Resort Living",
@@ -70,10 +72,8 @@ const faqSchema = {
 export default function InspiradaPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={faqSchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">
@@ -88,9 +88,7 @@ export default function InspiradaPage() {
 
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              Berkshire Hathaway HomeServices Nevada Properties
-            </div>
+            <MetroHeroBadge />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
               Berkshire Hathaway HomeServices Inspirada
             </h1>

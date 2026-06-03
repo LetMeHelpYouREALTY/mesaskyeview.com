@@ -18,8 +18,10 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Las Vegas Homes for Sale | MLS Property Search | Berkshire Hathaway HomeServices",
@@ -53,7 +55,7 @@ const listingsSchema = {
   description: "Live MLS property listings for Las Vegas, Henderson, and Summerlin homes for sale",
   provider: {
     "@type": "RealEstateAgent",
-    name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+    name: DR_JAN_GBP_BRAND_NAME,
     telephone: "+17025001942",
   },
   areaServed: [
@@ -126,10 +128,8 @@ export default async function ListingsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(listingsSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={listingsSchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-12">

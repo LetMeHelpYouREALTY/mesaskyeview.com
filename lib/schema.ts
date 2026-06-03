@@ -7,6 +7,7 @@
  */
 
 import { siteConfig, agentInfo, officeInfo, agentStats } from "./site-config";
+import { businessInfo } from "./gbp-schema";
 
 // ============================================================================
 // Types
@@ -85,7 +86,7 @@ export function generateRealEstateAgentSchema() {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${BASE_URL}#organization`,
-    name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+    name: businessInfo.name,
     alternateName: [
       "HeyBerkshire",
       "BHHS Nevada Properties",
@@ -301,7 +302,7 @@ export function generateReviewSchema(reviews: ReviewItem[]) {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${BASE_URL}#organization`,
-    name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+    name: businessInfo.name,
     aggregateRating: generateAggregateRatingSchema(
       agentStats.averageRating,
       agentStats.reviewCount

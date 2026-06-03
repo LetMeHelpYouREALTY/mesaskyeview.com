@@ -23,7 +23,7 @@ export function isMesaskyeviewDomain(config: DomainConfig): boolean {
   return d === "mesaskyeview.com";
 }
 
-/** Office NAP — must match Google Business Profile on mesaskyeview.com. */
+/** Community sales-center / tour NAP (8544 Vanhoy) — not the agent GBP office (see BHHS_BROKERAGE_NAP). */
 export const MESA_OFFICE_NAP = {
   street: "8544 Vanhoy Creek Street",
   city: "Las Vegas",

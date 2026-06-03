@@ -8,6 +8,7 @@
  */
 
 import { combineSchemas, schemaToJsonLd } from "@/lib/schema";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 
 interface SchemaScriptProps {
   /** Single schema object */
@@ -119,7 +120,7 @@ export function ReviewSchema({
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": "https://heyberkshire.com#organization",
-    name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+    name: DR_JAN_GBP_BRAND_NAME,
   };
 
   if (aggregateRating) {

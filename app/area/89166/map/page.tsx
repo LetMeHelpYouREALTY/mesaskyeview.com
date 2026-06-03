@@ -9,6 +9,7 @@ import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getMesaCommunityMapsEmbedUrl, getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 import { mesaZipFaqs, mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 import {
   ZIP_89166,
   generateZip89166MapSchema,
@@ -44,14 +45,9 @@ export default async function Zip89166MapPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(mapSchema) }}
-      />
+      <LegacyRouteJsonLd schemas={[faqSchema, mapSchema]} />
+      
+      
       <main className="pb-16">
         <div className="container mx-auto px-4">
           <nav className="max-w-6xl mx-auto mb-6 text-sm text-slate-500" aria-label="Breadcrumb">

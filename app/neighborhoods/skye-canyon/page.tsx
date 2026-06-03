@@ -6,6 +6,7 @@ import { createPageMetadata } from "@/lib/page-metadata";
 import { isMesaskyeviewDomain, MESA_HOME_BRAND, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -69,10 +70,8 @@ export default async function SkyeCanyonPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schema={faqSchema} />
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">

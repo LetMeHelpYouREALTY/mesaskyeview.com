@@ -2,10 +2,11 @@
 // Supports GBP ranking factors: Relevance, Distance, Prominence
 
 import { getDrJanGoogleSameAs } from "@/lib/mesa-google-presence";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 
 export const businessInfo = {
-  // Community/tour address for copy — RealEstateAgent schema uses BHHS office (see nap-addresses.ts)
-  name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+  // GBP listing title — agent JSON-LD and visible NAP use this exact format
+  name: DR_JAN_GBP_BRAND_NAME,
   address: {
     streetAddress: "8544 Vanhoy Creek Street",
     addressLocality: "Las Vegas",

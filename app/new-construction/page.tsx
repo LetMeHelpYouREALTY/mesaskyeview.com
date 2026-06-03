@@ -19,6 +19,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices New Construction Las Vegas | Buyer's Guide",
@@ -242,10 +243,8 @@ export default async function NewConstructionPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <LegacyRouteJsonLd schema={faqSchema} />
+      
       <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}

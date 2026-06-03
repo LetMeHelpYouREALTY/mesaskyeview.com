@@ -16,6 +16,8 @@ import {
 import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title: "Relocating from California to Las Vegas | Berkshire Hathaway HomeServices",
@@ -92,7 +94,7 @@ const faqSchema = {
 const realEstateAgentSchema = {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+  name: DR_JAN_GBP_BRAND_NAME,
   telephone: "+17025001942",
   url: "https://heyberkshire.com/buyers/california-relocator",
   address: {
@@ -109,14 +111,9 @@ const realEstateAgentSchema = {
 export default function CaliforniaRelocatorPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgentSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schemas={[faqSchema, realEstateAgentSchema]} />
+      
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">

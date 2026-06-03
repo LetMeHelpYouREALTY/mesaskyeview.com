@@ -23,6 +23,8 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
+import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
+import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
   title:
@@ -118,7 +120,7 @@ const faqSchema = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
-  name: "Dr. Jan Duffy - Berkshire Hathaway HomeServices Nevada Properties",
+  name: DR_JAN_GBP_BRAND_NAME,
   description:
     "55+ community specialist helping active adults find their perfect Las Vegas retirement home",
   telephone: "(702) 500-1942",
@@ -336,14 +338,9 @@ const lifestyleBenefits = [
 export default function FiftyFiveCommunitiesPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-      />      <main className="pb-16">
+      <LegacyRouteJsonLd schemas={[faqSchema, localBusinessSchema]} />
+      
+            <main className="pb-16">
         <div className="container mx-auto px-4">
           {/* Breadcrumb */}
           <div className="max-w-6xl mx-auto mb-6">

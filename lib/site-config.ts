@@ -17,8 +17,12 @@ export const siteConfig = {
     "Expert real estate services in Las Vegas and Henderson, NV. Buy, sell, or invest with Dr. Jan Duffy, your trusted Berkshire Hathaway HomeServices Nevada Properties agent.",
 };
 
+/** Matches Google Business Profile listing title (brokerage | agent). */
+export const DR_JAN_GBP_BRAND_NAME = "Berkshire Hathaway HomeServices | Dr. Jan Duffy";
+
 export const agentInfo = {
   name: "Dr. Jan Duffy",
+  gbpBrandName: DR_JAN_GBP_BRAND_NAME,
   title: "REALTOR®",
   license: "S.0197614.LLC",
   phone: "(702) 500-1942",

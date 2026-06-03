@@ -6,7 +6,7 @@ import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSe
  * Homepage renders its own instance after the full hero (pathname "/").
  */
 export default async function RealScoutBelowHero() {
-  const pathname = headers().get("x-pathname") || "/";
+  const pathname = (await headers()).get("x-pathname") || "/";
   if (pathname === "/") return null;
 
   return <RealScoutListingsSection />;

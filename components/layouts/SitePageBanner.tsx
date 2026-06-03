@@ -6,7 +6,7 @@ import { getPageBannerImage } from "@/lib/site-images";
 
 /** Contextual Cloudflare image band on inner pages (every route except home). */
 export default async function SitePageBanner() {
-  const pathname = headers().get("x-pathname") || "/";
+  const pathname = (await headers()).get("x-pathname") || "/";
   const image = getPageBannerImage(pathname);
   if (!image) return null;
 

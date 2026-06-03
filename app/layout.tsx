@@ -18,7 +18,8 @@ import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand"
 import { REALSCOUT_WEB_COMPONENTS_SCRIPT } from "@/lib/realscout-config";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = headers().get("x-domain") || headers().get("host") || "";
+  const headersList = await headers();
+  const domain = headersList.get("x-domain") || headersList.get("host") || "";
   const config = getDomainConfig(domain);
   const siteUrl = getCanonicalSiteUrl(config);
   const googleVerification = getGoogleSiteVerification();
@@ -63,8 +64,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const domain = headers().get("x-domain") || headers().get("host") || "";
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const headersList = await headers();
+  const domain = headersList.get("x-domain") || headersList.get("host") || "";
   const config = getDomainConfig(domain);
   const mainOffsetClass = isMesaskyeviewDomain(config) ? "" : "pt-24";
 

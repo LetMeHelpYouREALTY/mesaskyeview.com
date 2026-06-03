@@ -23,7 +23,7 @@ export default async function MesaskyeviewContextBar({
   const config = await getPageDomainConfig();
   if (!isMesaskyeviewDomain(config)) return null;
 
-  const pathname = headers().get("x-pathname") || "/";
+  const pathname = (await headers()).get("x-pathname") || "/";
   const lead = getMesaskyeviewPathLead(pathname);
 
   if (variant === "compact") {

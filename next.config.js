@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   // Standalone output for Docker/Vercel optimization
   output: 'standalone',
+  outputFileTracingRoot: path.join(__dirname),
 
   // Image optimization
   images: {
@@ -35,7 +38,6 @@ const nextConfig = {
   compress: true,
 
   // Performance optimizations
-  swcMinify: true,
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-toast'],
   },

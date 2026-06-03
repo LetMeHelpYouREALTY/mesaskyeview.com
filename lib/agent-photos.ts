@@ -10,7 +10,7 @@ function resolveHeadshotSrc(): string {
 const headshotSrc = resolveHeadshotSrc();
 const headshotMeta = cloudflareImages.agent.drJanHeadshot;
 
-/** Dr. Jan Duffy — Cloudflare /Image/agent1.jpg (or env override). */
+/** Dr. Jan Duffy — Cloudflare-cached /Image/agent1.png (or env override). */
 export const drJanDuffyPhotos = {
   headshot: {
     src: headshotSrc,

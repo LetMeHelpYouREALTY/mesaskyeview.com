@@ -19,7 +19,7 @@ export default function DrJanDuffyPhoto({
   variant = "headshot",
   priority = false,
   className,
-  imageClassName = "object-cover object-top",
+  imageClassName = "object-contain",
   sizes = "(max-width: 768px) 100vw, 400px",
 }: DrJanDuffyPhotoProps) {
   const photo = drJanDuffyPhotos[variant];
@@ -28,8 +28,9 @@ export default function DrJanDuffyPhoto({
   return (
     <figure
       className={cn(
-        "relative overflow-hidden rounded-xl bg-slate-100",
-        external && "min-h-[12rem]",
+        "relative overflow-hidden bg-transparent",
+        external && "min-h-[12rem] rounded-xl bg-slate-100",
+        !external && "rounded-full",
         className
       )}
     >

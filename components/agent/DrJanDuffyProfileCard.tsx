@@ -34,7 +34,7 @@ export default function DrJanDuffyProfileCard({
           <DrJanDuffyPhoto
             variant={showPortrait ? "portrait" : "headshot"}
             priority
-            className={compact ? "aspect-[4/5] shadow-md" : "aspect-[4/5] md:aspect-[3/4] shadow-lg"}
+            className={compact ? "aspect-square max-w-[11rem] mx-auto shadow-md" : "aspect-square max-w-xs mx-auto md:mx-0 shadow-lg"}
           />
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-2">

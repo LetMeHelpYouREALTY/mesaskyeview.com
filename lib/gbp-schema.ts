@@ -215,7 +215,7 @@ export function generateLocalBusinessSchema() {
     "@type": "RealEstateAgent",
     "@id": "https://heyberkshire.com/#organization",
     name: businessInfo.name,
-    image: "https://heyberkshire.com/Image/agent1.jpg",
+    image: "https://heyberkshire.com/Image/agent1.png",
     url: businessInfo.url,
     telephone: businessInfo.phone.tel,
     email: businessInfo.email,

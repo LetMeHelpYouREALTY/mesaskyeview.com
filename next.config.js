@@ -36,6 +36,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/Image/agent1.jpg',
+        destination: '/Image/agent1.png',
+        permanent: true,
+      },
+      {
         source: '/:path*',
         has: [
           {

@@ -247,7 +247,7 @@ export default async function AboutPage() {
                 <DrJanDuffyPhoto
                   variant="headshot"
                   priority
-                  className="aspect-[3/4] shadow-lg ring-1 ring-slate-200"
+                  className="aspect-square max-w-sm mx-auto shadow-lg"
                 />
 
                 {/* Stats Grid */}

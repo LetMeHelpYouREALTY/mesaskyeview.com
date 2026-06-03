@@ -13,10 +13,10 @@ export type SiteImageAsset = {
 export const cloudflareImages = {
   agent: {
     drJanHeadshot: {
-      src: "/Image/agent1.jpg",
-      alt: "Dr. Jan Duffy, REALTOR® | Berkshire Hathaway HomeServices Nevada Properties",
-      width: 600,
-      height: 750,
+      src: "/Image/agent1.png",
+      alt: "Dr. Jan Duffy on the phone, REALTOR® | Berkshire Hathaway HomeServices Nevada Properties",
+      width: 512,
+      height: 512,
     },
   },
   hero: {

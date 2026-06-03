@@ -1,4 +1,5 @@
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
+import { mesaHomeHeroRotation } from "@/lib/mesa-hero-images";
 import { mesaCloudflareImagePaths } from "@/lib/site-images";
 
 export type MesaPhoto = {
@@ -46,8 +47,14 @@ export const mesaHyperlocalPhotos: MesaPhoto[] = [
   },
 ];
 
-export const mesaHeroPhotos = mesaHyperlocalPhotos.filter(
-  (p) => p.category === "community" || p.category === "location"
-);
+/** Full-quality homepage hero rotation (AI-generated exteriors). */
+export const mesaHeroPhotos = mesaHomeHeroRotation.map((img) => ({
+  src: img.src,
+  alt: img.alt,
+  caption: img.alt,
+  category: "community" as const,
+  width: img.width,
+  height: img.height,
+}));
 
 export const mesaGalleryPhotos = mesaHyperlocalPhotos;

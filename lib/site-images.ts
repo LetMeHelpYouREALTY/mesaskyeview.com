@@ -1,8 +1,10 @@
 /**
- * Cloudflare-cached site imagery under /Image/* (see cloudflare-pages.json).
- * Realtor-appropriate only: Las Vegas homes, Skye Canyon exteriors, Dr. Jan headshot.
- * Do not use legacy files: mission.webp, services.webp, story.png, house.jpeg, person*.jpeg/jpg.
+ * Site imagery under /Image/* (Cloudflare-cached static assets).
+ * Mesa heroes: AI-generated originals in /Image/hero_*.png
+ * Legacy fallbacks: hero_bg_*.jpg where still deployed.
  */
+
+import { mesaGeneratedHeroes } from "@/lib/mesa-hero-images";
 
 export type SiteImageAsset = {
   src: string;
@@ -11,117 +13,112 @@ export type SiteImageAsset = {
   height: number;
 };
 
+const legacy = {
+  lasVegasSkyline: {
+    src: "/Image/hero_bg_1.jpg",
+    alt: "Modern luxury home exterior in Las Vegas at dusk",
+    width: 1920,
+    height: 1080,
+  },
+  communityAerial: {
+    src: "/Image/hero_bg_2.jpg",
+    alt: "Contemporary Las Vegas home with pool and patio",
+    width: 1920,
+    height: 1080,
+  },
+  newHomeExterior: {
+    src: "/Image/hero_bg_3.jpg",
+    alt: "Las Vegas area home with landscaped backyard",
+    width: 1920,
+    height: 1080,
+  },
+} as const;
+
 export const cloudflareImages = {
   agent: {
     drJanHeadshot: {
       src: "/Image/agent1.png",
-      alt: "Dr. Jan Duffy on the phone, REALTOR® | Berkshire Hathaway HomeServices Nevada Properties",
+      alt: "Dr. Jan Duffy, REALTOR® | Berkshire Hathaway HomeServices Nevada Properties",
       width: 512,
       height: 512,
     },
   },
   hero: {
-    lasVegasSkyline: {
-      src: "/Image/hero_bg_1.jpg",
-      alt: "Modern luxury home exterior in Las Vegas at dusk",
-      width: 1920,
-      height: 1080,
-    },
-    communityAerial: {
-      src: "/Image/hero_bg_2.jpg",
-      alt: "Contemporary Las Vegas home with pool and patio",
-      width: 1920,
-      height: 1080,
-    },
-    newHomeExterior: {
-      src: "/Image/hero_bg_3.jpg",
-      alt: "Two-story Las Vegas area home with landscaped backyard and pool",
-      width: 1920,
-      height: 1080,
-    },
+    lasVegasSkyline: legacy.lasVegasSkyline,
+    communityAerial: legacy.communityAerial,
+    newHomeExterior: legacy.newHomeExterior,
+    mesaCommunity: mesaGeneratedHeroes.community,
+    mesaNewBuild: mesaGeneratedHeroes.newBuild,
+    mesaLuxury: mesaGeneratedHeroes.luxury,
   },
-  /** Listing-style property photos (all real home exteriors). */
   property: {
-    featuredHome: {
-      src: "/Image/hero_bg_1.jpg",
-      alt: "Luxury modern home for sale in Summerlin, Las Vegas",
-      width: 1920,
-      height: 1080,
-    },
-    poolHome: {
-      src: "/Image/hero_bg_2.jpg",
-      alt: "Spacious family home with pool in Henderson, Nevada",
-      width: 1920,
-      height: 1080,
-    },
-    estateHome: {
-      src: "/Image/hero_bg_3.jpg",
-      alt: "Elegant estate-style home in the Las Vegas Valley",
-      width: 1920,
-      height: 1080,
-    },
+    featuredHome: mesaGeneratedHeroes.luxury,
+    poolHome: mesaGeneratedHeroes.poolLifestyle,
+    estateHome: mesaGeneratedHeroes.sellers,
   },
-  /** Section accents — home photography only (no corporate/AI stock). */
   brand: {
-    buyerConsult: {
-      src: "/Image/hero_bg_2.jpg",
-      alt: "Las Vegas homebuyers touring a property with their REALTOR®",
-      width: 1920,
-      height: 1080,
-    },
-    sellerMarketing: {
-      src: "/Image/hero_bg_1.jpg",
-      alt: "Professionally presented Las Vegas home ready for market",
-      width: 1920,
-      height: 1080,
-    },
-    localExpertise: {
-      src: "/Image/hero_bg_3.jpg",
-      alt: "Skye Canyon and Northwest Las Vegas homes — local market expertise",
-      width: 1920,
-      height: 1080,
-    },
+    buyerConsult: mesaGeneratedHeroes.buyers,
+    sellerMarketing: mesaGeneratedHeroes.sellers,
+    localExpertise: mesaGeneratedHeroes.skyeVista,
   },
 } as const;
 
-/** Rotating homepage heroes (Cloudflare /Image). */
+/** Non-Mesa domains — legacy rotation until per-domain heroes exist. */
 export const siteHeroRotations: SiteImageAsset[] = [
   cloudflareImages.hero.lasVegasSkyline,
   cloudflareImages.hero.communityAerial,
   cloudflareImages.hero.newHomeExterior,
 ];
 
-/** Mesa at Skyeview — hyperlocal alt text applied in mesaskyeview-photos. */
+/** Mesa at Skyeview — hyperlocal paths for galleries. */
 export const mesaCloudflareImagePaths = {
-  community: cloudflareImages.hero.lasVegasSkyline.src,
-  skyeCanyon: cloudflareImages.hero.communityAerial.src,
-  newHome: cloudflareImages.hero.newHomeExterior.src,
-  interior: cloudflareImages.property.featuredHome.src,
+  community: mesaGeneratedHeroes.community.src,
+  skyeCanyon: mesaGeneratedHeroes.skyeVista.src,
+  newHome: mesaGeneratedHeroes.newBuild.src,
+  interior: mesaGeneratedHeroes.interior.src,
 } as const;
 
-/** Inner-page banner image by route prefix (first match wins). */
+/**
+ * Inner-page hero banners — longest `prefix` match wins (see getPageBannerImage).
+ * Order does not matter; specificity is by string length.
+ */
 export const pageBannerByPrefix: { prefix: string; image: SiteImageAsset }[] = [
-  { prefix: "/about", image: cloudflareImages.hero.lasVegasSkyline },
-  { prefix: "/contact", image: cloudflareImages.hero.communityAerial },
-  { prefix: "/new-construction", image: cloudflareImages.hero.newHomeExterior },
-  { prefix: "/neighborhoods", image: cloudflareImages.hero.communityAerial },
-  { prefix: "/buyers", image: cloudflareImages.brand.buyerConsult },
-  { prefix: "/sellers", image: cloudflareImages.brand.sellerMarketing },
-  { prefix: "/luxury-homes", image: cloudflareImages.property.featuredHome },
-  { prefix: "/listings", image: cloudflareImages.property.poolHome },
-  { prefix: "/home-valuation", image: cloudflareImages.property.estateHome },
-  { prefix: "/market", image: cloudflareImages.hero.communityAerial },
-  { prefix: "/55-plus", image: cloudflareImages.hero.newHomeExterior },
-  { prefix: "/investment", image: cloudflareImages.hero.lasVegasSkyline },
-  { prefix: "/relocation", image: cloudflareImages.brand.buyerConsult },
-  { prefix: "/services", image: cloudflareImages.brand.sellerMarketing },
+  { prefix: "/area/89166/map", image: mesaGeneratedHeroes.skyeVista },
+  { prefix: "/area/89166-homes", image: mesaGeneratedHeroes.neighborhood },
+  { prefix: "/area/89166", image: mesaGeneratedHeroes.neighborhood },
+  { prefix: "/mesa-at-skyeview/amenities", image: mesaGeneratedHeroes.amenities },
+  { prefix: "/mesa-at-skyeview/floor-plans", image: mesaGeneratedHeroes.interior },
+  { prefix: "/mesa-at-skyeview/new-construction", image: mesaGeneratedHeroes.newBuild },
+  { prefix: "/mesa-at-skyeview/buyer-representation", image: mesaGeneratedHeroes.buyers },
+  { prefix: "/mesa-at-skyeview/sell-your-home", image: mesaGeneratedHeroes.sellers },
+  { prefix: "/mesa-at-skyeview", image: mesaGeneratedHeroes.community },
+  { prefix: "/neighborhoods/mesa-at-skyeview", image: mesaGeneratedHeroes.community },
+  { prefix: "/neighborhoods/skye-canyon", image: mesaGeneratedHeroes.skyeVista },
+  { prefix: "/neighborhoods", image: mesaGeneratedHeroes.neighborhood },
+  { prefix: "/new-construction", image: mesaGeneratedHeroes.newBuild },
+  { prefix: "/luxury-homes", image: mesaGeneratedHeroes.luxury },
+  { prefix: "/buyers", image: mesaGeneratedHeroes.buyers },
+  { prefix: "/sellers", image: mesaGeneratedHeroes.sellers },
+  { prefix: "/55-plus-communities", image: mesaGeneratedHeroes.amenities },
+  { prefix: "/home-valuation", image: mesaGeneratedHeroes.sellers },
+  { prefix: "/listings", image: mesaGeneratedHeroes.newBuild },
+  { prefix: "/investment-properties", image: mesaGeneratedHeroes.luxury },
+  { prefix: "/relocation", image: mesaGeneratedHeroes.buyers },
+  { prefix: "/market", image: mesaGeneratedHeroes.neighborhood },
+  { prefix: "/services", image: mesaGeneratedHeroes.community },
   { prefix: "/google-business", image: cloudflareImages.agent.drJanHeadshot },
-  { prefix: "/why-berkshire", image: cloudflareImages.brand.localExpertise },
-  { prefix: "/faq", image: cloudflareImages.hero.newHomeExterior },
+  { prefix: "/why-berkshire", image: mesaGeneratedHeroes.skyeVista },
+  { prefix: "/faq", image: mesaGeneratedHeroes.interior },
+  { prefix: "/about", image: mesaGeneratedHeroes.community },
+  { prefix: "/contact", image: mesaGeneratedHeroes.buyers },
+  { prefix: "/security-policy", image: legacy.lasVegasSkyline },
 ];
 
 export function getPageBannerImage(pathname: string): SiteImageAsset | null {
   if (pathname === "/" || pathname.startsWith("/api")) return null;
-  const match = pageBannerByPrefix.find(({ prefix }) => pathname.startsWith(prefix));
-  return match?.image ?? cloudflareImages.hero.lasVegasSkyline;
+
+  const sorted = [...pageBannerByPrefix].sort((a, b) => b.prefix.length - a.prefix.length);
+  const match = sorted.find(({ prefix }) => pathname === prefix || pathname.startsWith(`${prefix}/`) || pathname.startsWith(prefix));
+
+  return match?.image ?? mesaGeneratedHeroes.community;
 }

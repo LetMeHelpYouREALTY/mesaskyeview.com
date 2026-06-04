@@ -3,6 +3,8 @@
  * Server-only secrets must never be prefixed with NEXT_PUBLIC_.
  */
 
+import { MESA_GA_MEASUREMENT_ID } from "@/lib/mesa-google-presence";
+
 /** Follow Up Boss — Vercel may use FOLLOW_UP_BOSS_API_KEY; code historically used FUB_API_KEY */
 export function getFubApiKey(): string {
   return process.env.FUB_API_KEY || process.env.FOLLOW_UP_BOSS_API_KEY || "";
@@ -22,6 +24,11 @@ export function getNotionToken(): string {
 
 export function getGaMeasurementId(): string | undefined {
   return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || undefined;
+}
+
+/** mesaskyeview.com GA4 — env override, else canonical property in lib/mesa-google-presence.ts */
+export function getMesaGaMeasurementId(): string {
+  return process.env.NEXT_PUBLIC_MESA_GA_MEASUREMENT_ID || MESA_GA_MEASUREMENT_ID;
 }
 
 /** Google Search Console HTML tag verification (content value only, not full meta tag). */

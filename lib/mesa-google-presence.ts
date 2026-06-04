@@ -13,6 +13,9 @@ export const DR_JAN_GOOGLE_PRESENCE = {
   mapsUrl: getBhhsBrokerageDirectionsUrl(),
 } as const;
 
+/** GA4 property for mesaskyeview.com (Google tag G-DN9PK64ZYX). */
+export const MESA_GA_MEASUREMENT_ID = "G-DN9PK64ZYX";
+
 export function getDrJanGoogleSameAs(socialProfiles: readonly string[]): string[] {
   return [...new Set([...socialProfiles, DR_JAN_GOOGLE_PRESENCE.profileUrl])];
 }

@@ -4,12 +4,15 @@ import { getGaMeasurementId } from "@/lib/env";
 type GoogleAnalyticsProps = {
   /** Mesa uses lazyOnload to keep gtag off the LCP/TBT critical path. */
   strategy?: "afterInteractive" | "lazyOnload";
+  /** Override measurement ID (e.g. mesaskyeview.com GA4 property). */
+  gaId?: string;
 };
 
 export default function GoogleAnalytics({
   strategy = "afterInteractive",
+  gaId: gaIdProp,
 }: GoogleAnalyticsProps) {
-  const gaId = getGaMeasurementId();
+  const gaId = gaIdProp ?? getGaMeasurementId();
   if (!gaId) return null;
 
   return (

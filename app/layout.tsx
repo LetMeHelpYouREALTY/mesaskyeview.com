@@ -8,7 +8,7 @@ import { getGoogleSiteVerification } from "@/lib/env";
 import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
 import SiteChrome from "@/components/layouts/SiteChrome";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import DomainGoogleAnalytics from "@/components/analytics/DomainGoogleAnalytics";
 import SiteHeader from "@/components/layouts/SiteHeader";
 import SitePageBanner from "@/components/layouts/SitePageBanner";
 import RealScoutBelowHero from "@/components/layouts/RealScoutBelowHero";
@@ -78,7 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <DomainThirdPartyScripts />
       </head>
       <body>
-        <GoogleAnalytics />
+        <DomainGoogleAnalytics />
         <DomainConfigProvider config={config}>
           <SiteHeader />
           <div className={mainOffsetClass}>

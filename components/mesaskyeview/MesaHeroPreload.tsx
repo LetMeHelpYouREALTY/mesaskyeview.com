@@ -11,6 +11,7 @@ export default async function MesaHeroPreload() {
     <link
       rel="preload"
       as="image"
+      type="image/webp"
       href={mesaGeneratedHeroes.flagship.src}
       fetchPriority="high"
     />

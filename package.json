@@ -2,6 +2,7 @@
   "name": "faq-gen",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.14.0",
   "scripts": {
     "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328",
     "next-dev": "next dev",
@@ -37,7 +38,7 @@
     "@anthropic-ai/sdk": "^0.24.0",
     "@hookform/resolvers": "^3.3.4",
     "@marsidev/react-turnstile": "^1.4.2",
-    "@next/third-parties": "^16.2.7",
+    "@next/third-parties": "^15.5.18",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@sentry/nextjs": "^10.38.0",

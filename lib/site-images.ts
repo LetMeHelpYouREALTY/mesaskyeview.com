@@ -11,6 +11,10 @@ export type SiteImageAsset = {
   alt: string;
   width: number;
   height: number;
+  /** Optional narrow WebP for mobile LCP (staticMobileLcp path). */
+  mobileSrc?: string;
+  mobileWidth?: number;
+  mobileHeight?: number;
 };
 
 const legacy = {

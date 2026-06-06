@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
+import MesaDeferredListingsBlock from "@/components/performance/MesaDeferredListingsBlock";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
-import LazyRealScoutListingsSection from "@/components/realscout/LazyRealScoutListingsSection";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 
@@ -17,9 +17,9 @@ export default async function RealScoutBelowHero() {
 
   if (isMesa) {
     return (
-      <LazyRealScoutListingsSection>
+      <MesaDeferredListingsBlock>
         <RealScoutListingsSection />
-      </LazyRealScoutListingsSection>
+      </MesaDeferredListingsBlock>
     );
   }
 

@@ -11,6 +11,9 @@ type HeroAsset = {
   alt: string;
   width: number;
   height: number;
+  mobileSrc?: string;
+  mobileWidth?: number;
+  mobileHeight?: number;
 };
 
 const c = mesaAtSkyeviewCommunity;
@@ -19,6 +22,9 @@ export const mesaGeneratedHeroes = {
   /** Primary OG / Twitter / homepage hero */
   flagship: {
     src: "/Image/hero_mesa_flagship.webp",
+    mobileSrc: "/Image/hero_mesa_flagship-828.webp",
+    mobileWidth: 828,
+    mobileHeight: 466,
     alt: `Incredible desert contemporary home at ${c.name} in ${c.masterPlan}, Las Vegas NV ${c.zip} — Homes by Dr. Jan Duffy`,
     width: 1920,
     height: 1080,

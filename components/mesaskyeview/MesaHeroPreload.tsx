@@ -7,13 +7,28 @@ export default async function MesaHeroPreload() {
   const config = await getPageDomainConfig();
   if (!isMesaskyeviewDomain(config)) return null;
 
+  const { flagship } = mesaGeneratedHeroes;
+
   return (
-    <link
-      rel="preload"
-      as="image"
-      type="image/webp"
-      href={mesaGeneratedHeroes.flagship.src}
-      fetchPriority="high"
-    />
+    <>
+      {flagship.mobileSrc ? (
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          href={flagship.mobileSrc}
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
+      ) : null}
+      <link
+        rel="preload"
+        as="image"
+        type="image/webp"
+        href={flagship.src}
+        media={flagship.mobileSrc ? "(min-width: 768px)" : undefined}
+        fetchPriority="high"
+      />
+    </>
   );
 }

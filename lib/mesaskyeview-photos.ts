@@ -55,6 +55,9 @@ export const mesaHeroPhotos = mesaHomeHeroRotation.map((img) => ({
   category: "community" as const,
   width: img.width,
   height: img.height,
+  mobileSrc: img.mobileSrc,
+  mobileWidth: img.mobileWidth,
+  mobileHeight: img.mobileHeight,
 }));
 
 export const mesaGalleryPhotos = mesaHyperlocalPhotos;

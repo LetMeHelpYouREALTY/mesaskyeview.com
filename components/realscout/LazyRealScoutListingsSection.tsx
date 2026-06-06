@@ -6,18 +6,22 @@ import { loadRealScoutScript } from "@/lib/load-realscout-script";
 
 type LazyRealScoutListingsSectionProps = {
   children: ReactNode;
+  rootMargin?: string;
+  minHeight?: string;
 };
 
 /** Defers RealScout script + listings block until near viewport (mesaskyeview perf). */
 export default function LazyRealScoutListingsSection({
   children,
+  rootMargin = "250px 0px",
+  minHeight = "420px",
 }: LazyRealScoutListingsSectionProps) {
   const onVisible = useCallback(() => {
     void loadRealScoutScript();
   }, []);
 
   return (
-    <LazyWhenVisible minHeight="420px" rootMargin="250px 0px" onVisible={onVisible}>
+    <LazyWhenVisible minHeight={minHeight} rootMargin={rootMargin} onVisible={onVisible}>
       {children}
     </LazyWhenVisible>
   );

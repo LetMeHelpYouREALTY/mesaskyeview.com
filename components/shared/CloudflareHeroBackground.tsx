@@ -42,6 +42,9 @@ export default function CloudflareHeroBackground({
   if (images.length === 0) return null;
 
   const primary = images[0];
+  const mobileLcpSrc = primary.mobileSrc ?? primary.src;
+  const mobileLcpWidth = primary.mobileWidth ?? primary.width;
+  const mobileLcpHeight = primary.mobileHeight ?? primary.height;
 
   return (
     <div className={className} aria-hidden>
@@ -50,10 +53,10 @@ export default function CloudflareHeroBackground({
           {/* Direct static WebP — avoids /_next/image re-encode on the LCP path */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={primary.src}
+            src={mobileLcpSrc}
             alt={primary.alt}
-            width={primary.width}
-            height={primary.height}
+            width={mobileLcpWidth}
+            height={mobileLcpHeight}
             className="absolute inset-0 h-full w-full object-cover"
             fetchPriority="high"
             decoding="async"

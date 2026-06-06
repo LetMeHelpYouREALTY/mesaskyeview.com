@@ -17,7 +17,7 @@ import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackgrou
 import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
-import LazyRealScoutListingsSection from "@/components/realscout/LazyRealScoutListingsSection";
+import MesaDeferredListingsBlock from "@/components/performance/MesaDeferredListingsBlock";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 
@@ -108,9 +108,9 @@ export default async function Home() {
         </section>
 
         {isMesa ? (
-          <LazyRealScoutListingsSection>
+          <MesaDeferredListingsBlock>
             <RealScoutListingsSection />
-          </LazyRealScoutListingsSection>
+          </MesaDeferredListingsBlock>
         ) : (
           <RealScoutListingsSection />
         )}

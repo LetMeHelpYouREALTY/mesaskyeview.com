@@ -1,4 +1,4 @@
-# Dependabot configuration
+# Dependabot configuration — corrected per verified 2026 best practices.
 # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 
 version: 2
@@ -17,15 +17,25 @@ updates:
       - "automated"
     commit-message:
       prefix: "deps"
+    cooldown:
+      semver-patch-days: 3
+      semver-minor-days: 7
+      semver-major-days: 14
     groups:
-      # Group minor and patch updates together
       minor-and-patch:
-        patterns:
-          - "*"
-        update-types:
-          - "minor"
-          - "patch"
-
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+        exclude-patterns:
+          - "@anthropic-ai/sdk"
+          - "@sentry/*"
+          - "next"
+          - "react"
+          - "react-dom"
+    ignore:
+      - dependency-name: "@anthropic-ai/sdk"
+        update-types: ["version-update:semver-minor"]
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"

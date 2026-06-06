@@ -8,6 +8,14 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { LeadCaptureForm } from './LeadCaptureForm'
 
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/contact',
+}))
+
+vi.mock('@/lib/analytics', () => ({
+  trackLead: vi.fn(),
+}))
+
 // Mock fetch globally
 global.fetch = vi.fn()
 

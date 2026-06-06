@@ -12,9 +12,11 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Turnstile } from '@marsidev/react-turnstile';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { trackLead } from '@/lib/analytics';
 
 export interface LeadCaptureFormProps {
   source?: string;
@@ -33,6 +35,7 @@ export function LeadCaptureForm({
   onSuccess,
   onError,
 }: LeadCaptureFormProps) {
+  const pathname = usePathname();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -93,6 +96,18 @@ export function LeadCaptureForm({
       }
 
       setSuccess(true);
+      if (formType === 'home-valuation') {
+        trackLead('valuation_request_submit', {
+          form_location: pathname,
+          form_type: formType,
+        });
+      } else if (formType === 'contact') {
+        trackLead('contact_form_submit', {
+          form_location: pathname,
+          form_type: formType,
+        });
+      }
+
       setFormData({
         firstName: '',
         lastName: '',

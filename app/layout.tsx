@@ -9,6 +9,7 @@ import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { GoogleTagManager } from "@next/third-parties/google";
+import MesaDeferredGoogleTagManager from "@/components/analytics/MesaDeferredGoogleTagManager";
 import UsPrivacyOptOutBanner from "@/components/analytics/UsPrivacyOptOutBanner";
 import { getGtmId } from "@/lib/env";
 import SiteHeader from "@/components/layouts/SiteHeader";
@@ -92,7 +93,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </DomainConfigProvider>
         <Analytics />
         <UsPrivacyOptOutBanner />
-        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
+        {gtmId ? (
+          isMesaskyeviewDomain(config) ? (
+            <MesaDeferredGoogleTagManager gtmId={gtmId} />
+          ) : (
+            <GoogleTagManager gtmId={gtmId} />
+          )
+        ) : null}
       </body>
     </html>
   );

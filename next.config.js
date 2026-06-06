@@ -92,7 +92,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://em.realscout.com https://www.realscout.com https://assets.calendly.com",
               "img-src 'self' data: blob: https: http:",
               "font-src 'self' data: https://assets.calendly.com",
-              "connect-src 'self' https://em.realscout.com https://www.realscout.com https://openrouter.ai https://api.openai.com https://calendly.com https://widgetbe.com https://www.google-analytics.com https://analytics.google.com https://*.ingest.sentry.io https://*.supabase.co wss://*.supabase.co",
+              "connect-src 'self' https://em.realscout.com https://www.realscout.com https://openrouter.ai https://api.openai.com https://calendly.com https://widgetbe.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.ingest.sentry.io https://*.supabase.co wss://*.supabase.co",
               "frame-src 'self' https://em.realscout.com https://www.realscout.com https://calendly.com https://assets.calendly.com https://www.google.com https://maps.google.com https://*.google.com",
               "worker-src 'self' blob:",
             ].join('; '),

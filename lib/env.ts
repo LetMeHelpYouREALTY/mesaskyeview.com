@@ -3,8 +3,6 @@
  * Server-only secrets must never be prefixed with NEXT_PUBLIC_.
  */
 
-import { MESA_GA_MEASUREMENT_ID } from "@/lib/mesa-google-presence";
-
 /** Follow Up Boss — Vercel may use FOLLOW_UP_BOSS_API_KEY; code historically used FUB_API_KEY */
 export function getFubApiKey(): string {
   return process.env.FUB_API_KEY || process.env.FOLLOW_UP_BOSS_API_KEY || "";
@@ -22,13 +20,14 @@ export function getNotionToken(): string {
   return process.env.NOTION_TOKEN || process.env.NOTION_API_KEY || "";
 }
 
+/** GA4 measurement ID — used in GTM UI only (GA4 Configuration tag). Not loaded by Next.js. */
 export function getGaMeasurementId(): string | undefined {
   return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || undefined;
 }
 
-/** mesaskyeview.com GA4 — env override, else canonical property in lib/mesa-google-presence.ts */
-export function getMesaGaMeasurementId(): string {
-  return process.env.NEXT_PUBLIC_MESA_GA_MEASUREMENT_ID || MESA_GA_MEASUREMENT_ID;
+/** GTM container ID — loaded via @next/third-parties when set. TODO(jan): GTM-XXXX in Vercel. */
+export function getGtmId(): string | undefined {
+  return process.env.NEXT_PUBLIC_GTM_ID || undefined;
 }
 
 /** Google Search Console HTML tag verification (content value only, not full meta tag). */

@@ -8,7 +8,9 @@ import { getGoogleSiteVerification } from "@/lib/env";
 import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
 import SiteChrome from "@/components/layouts/SiteChrome";
-import DomainGoogleAnalytics from "@/components/analytics/DomainGoogleAnalytics";
+import { GoogleTagManager } from "@next/third-parties/google";
+import UsPrivacyOptOutBanner from "@/components/analytics/UsPrivacyOptOutBanner";
+import { getGtmId } from "@/lib/env";
 import SiteHeader from "@/components/layouts/SiteHeader";
 import SitePageBanner from "@/components/layouts/SitePageBanner";
 import RealScoutBelowHero from "@/components/layouts/RealScoutBelowHero";
@@ -69,6 +71,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const domain = headersList.get("x-domain") || headersList.get("host") || "";
   const config = getDomainConfig(domain);
   const mainOffsetClass = isMesaskyeviewDomain(config) ? "" : "pt-24";
+  const gtmId = getGtmId();
 
   return (
     <html lang="en" className={GeistSans.className}>
@@ -78,7 +81,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <DomainThirdPartyScripts />
       </head>
       <body>
-        <DomainGoogleAnalytics />
         <DomainConfigProvider config={config}>
           <SiteHeader />
           <div className={mainOffsetClass}>
@@ -89,6 +91,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SiteChrome />
         </DomainConfigProvider>
         <Analytics />
+        <UsPrivacyOptOutBanner />
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       </body>
     </html>
   );

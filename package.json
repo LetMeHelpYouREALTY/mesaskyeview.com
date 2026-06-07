@@ -30,6 +30,9 @@
     "vercel:prod": "node -e \"console.error('Use git push to main for production. vercel --prod duplicates deploys and can briefly show the wrong build.'); process.exit(1)\"",
     "cloudflare:dev": "wrangler dev",
     "cloudflare:deploy": "wrangler deploy",
+    "cloudflare:fub-pixel:deploy": "wrangler deploy -c workers/fub-pixel-injector/wrangler.jsonc",
+    "cloudflare:fub-pixel:routes": "node scripts/cloudflare/attach-fub-pixel-to-all-zones.mjs",
+    "cloudflare:fub-pixel:routes:dry-run": "node scripts/cloudflare/attach-fub-pixel-to-all-zones.mjs --dry-run",
     "cloudflare:pages": "npx @cloudflare/next-on-pages",
     "cloudflare:build": "npm run cloudflare:pages",
     "build:cloudflare": "npx @cloudflare/next-on-pages"

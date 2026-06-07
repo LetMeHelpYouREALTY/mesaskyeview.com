@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "fub-pixel-injector",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-02-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "FUB_PIXEL_ID": "WT-XQHVYQWW"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

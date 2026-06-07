@@ -12,6 +12,15 @@ export function trackLead(event: LeadEvent, params: Record<string, string | numb
   sendGTMEvent({ event, ...params });
 }
 
+/** SPA route change — GtmSpaPageView fires after the first paint (initial page_view stays on GA4 Config). */
+export function trackPageView(pagePath: string, pageTitle?: string) {
+  sendGTMEvent({
+    event: "page_view",
+    page_path: pagePath,
+    ...(pageTitle ? { page_title: pageTitle } : {}),
+  });
+}
+
 /*
  * GTM-UI-TODO: Create these in the GTM container, then publish.
  *
@@ -28,6 +37,7 @@ export function trackLead(event: LeadEvent, params: Record<string, string | numb
  * Tags (GA4 Event) for dataLayer custom events from code:
  *   - contact_form_submit     → Custom Event trigger, event name contact_form_submit
  *   - valuation_request_submit → Custom Event trigger, event name valuation_request_submit
+ *   - page_view (SPA)         → Custom Event trigger, event name page_view (GtmSpaPageView)
  *
  * Tag (GA4 Configuration):
  *   - Measurement ID from NEXT_PUBLIC_GA_MEASUREMENT_ID in Vercel (MesaSkyeView stream)

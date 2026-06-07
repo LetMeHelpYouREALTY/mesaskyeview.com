@@ -20,6 +20,7 @@ import {
 } from "@/lib/nap-addresses";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
+import { LeadCaptureForm } from "@/components/forms/LeadCaptureForm";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -112,6 +113,24 @@ export default async function ContactPage() {
               Expert guidance backed by <strong>Berkshire Hathaway HomeServices</strong>. Serving Las
               Vegas since 2008 with $127M+ in closed transactions.
             </p>
+
+            <section
+              id="contact-form"
+              className="mb-10 scroll-mt-28 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+              aria-labelledby="contact-form-heading"
+            >
+              <h3 id="contact-form-heading" className="text-xl font-bold text-slate-900 mb-2">
+                Send a Message
+              </h3>
+              <p className="text-slate-600 text-sm mb-6">
+                Prefer email over a call? Share your question and Dr. Jan Duffy will respond promptly.
+              </p>
+              <LeadCaptureForm
+                source={isMesa ? "mesaskyeview-contact" : "website-contact-page"}
+                formType="contact"
+                defaultTags={isMesa ? ["mesa-skyeview", "contact"] : ["contact"]}
+              />
+            </section>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
               <div className="flex items-start bg-slate-50 rounded-lg p-4">

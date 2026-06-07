@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { headers } from "next/headers";
@@ -10,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { GoogleTagManager } from "@next/third-parties/google";
 import MesaDeferredGoogleTagManager from "@/components/analytics/MesaDeferredGoogleTagManager";
+import GtmSpaPageView from "@/components/analytics/GtmSpaPageView";
 import UsPrivacyOptOutBanner from "@/components/analytics/UsPrivacyOptOutBanner";
 import { getGtmId } from "@/lib/env";
 import SiteHeader from "@/components/layouts/SiteHeader";
@@ -94,11 +96,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Analytics />
         <UsPrivacyOptOutBanner />
         {gtmId ? (
-          isMesaskyeviewDomain(config) ? (
-            <MesaDeferredGoogleTagManager gtmId={gtmId} />
-          ) : (
-            <GoogleTagManager gtmId={gtmId} />
-          )
+          <>
+            <Suspense fallback={null}>
+              <GtmSpaPageView />
+            </Suspense>
+            {isMesaskyeviewDomain(config) ? (
+              <MesaDeferredGoogleTagManager gtmId={gtmId} />
+            ) : (
+              <GoogleTagManager gtmId={gtmId} />
+            )}
+          </>
         ) : null}
       </body>
     </html>

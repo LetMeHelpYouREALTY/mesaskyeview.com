@@ -5,6 +5,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import MetroHeroBadge from "@/components/mesaskyeview/MetroHeroBadge";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
+import { LeadCaptureForm } from "@/components/forms/LeadCaptureForm";
 
 const pageMetadataBase = {
   title: "Free Home Valuation Las Vegas | What's Your Home Worth? | Berkshire Hathaway HomeServices",
@@ -113,6 +114,26 @@ export default function HomeValuationPage() {
               Use the calendar at the bottom of this page — no obligation.
             </p>
           </div>
+
+          <section
+            id="valuation-form"
+            className="max-w-xl mx-auto mb-16 scroll-mt-28 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+            aria-labelledby="valuation-form-heading"
+          >
+            <h2 id="valuation-form-heading" className="text-2xl font-bold text-slate-900 mb-2 text-center">
+              Request Your Free Home Valuation
+            </h2>
+            <p className="text-slate-600 text-sm mb-6 text-center">
+              Include your property address in the message. Dr. Jan will prepare a personalized CMA within
+              24–48 hours.
+            </p>
+            <LeadCaptureForm
+              source="website-home-valuation"
+              formType="home-valuation"
+              stage="Seller Lead"
+              defaultTags={["home-valuation", "seller-lead"]}
+            />
+          </section>
 
           <div className="max-w-6xl mx-auto mb-16">
             <div className="space-y-8 max-w-3xl mx-auto">

@@ -15,10 +15,11 @@ Previews without `NEXT_PUBLIC_GTM_ID` render no container (silent no-op).
 
 | Event | Source |
 |-------|--------|
-| `contact_form_submit` | `LeadCaptureForm` after successful `/api/leads/capture` (`formType: contact`) |
-| `valuation_request_submit` | `LeadCaptureForm` after success (`formType: home-valuation`) |
+| `contact_form_submit` | `LeadCaptureForm` on `/contact` after successful `/api/leads/capture` |
+| `valuation_request_submit` | `LeadCaptureForm` on `/home-valuation` after success |
+| `page_view` | `GtmSpaPageView` on App Router client navigations (not first paint) |
 
-Parameters include `form_location` (pathname) and `form_type`.
+Parameters include `form_location` (pathname) and `form_type` on lead events; `page_path` on SPA `page_view`.
 
 ## GTM-UI-TODO — create in container, then publish
 
@@ -42,6 +43,9 @@ Parameters include `form_location` (pathname) and `form_type`.
 |--------------|------------|
 | `ce_contact_form_submit` | `contact_form_submit` |
 | `ce_valuation_request_submit` | `valuation_request_submit` |
+| `ce_page_view` | `page_view` |
+
+**SPA note:** Do **not** rely on GTM’s History Change trigger alone — Next.js App Router client navigations are handled by `GtmSpaPageView` pushing `page_view` to the dataLayer. The GA4 Configuration tag still fires the initial page view when GTM loads.
 
 ### 4. Tags
 
@@ -53,6 +57,7 @@ Parameters include `form_location` (pathname) and `form_type`.
 | GA4 Event | `GA4 - realscout_search_click` | `realscout_search_click` | `event_name` = `realscout_search_click`, param `page_path` |
 | GA4 Event | `GA4 - contact_form_submit` | `ce_contact_form_submit` | Pass through `form_location`, `form_type` |
 | GA4 Event | `GA4 - valuation_request_submit` | `ce_valuation_request_submit` | Pass through `form_location`, `form_type` |
+| GA4 Event | `GA4 - page_view (SPA)` | `ce_page_view` | Map `page_path` → event param; optional `page_title` |
 
 ### 5. GA4 Admin — key events
 
@@ -71,6 +76,23 @@ Home search handoff: `https://drjanduffy.realscout.com/`. If Jan controls that G
 
 US-focused site; full EEA Consent Mode v2 not required today. **TODO(jan): confirm CMP** before Consent Mode in GTM. Enable **Basic** Consent Mode only when Google Ads runs broadly — not Advanced mode.
 
+### 8. Calendly bookings (GTM UI only)
+
+Calendly loads via `CalendlyWidget` (`strategy="lazyOnload"`) on pages with `#schedule-appointment`. No booking events are pushed from code.
+
+**Option A — Calendly + GTM integration (recommended if Jan uses Calendly’s GTM connector):**
+
+1. Calendly → Integrations → Google Tag Manager → connect container.  
+2. Publish container after Calendly creates its tags/triggers.
+
+**Option B — Custom Event from Calendly embed (if connector unavailable):**
+
+1. Calendly → Event type → **Invitee questions** or embed settings → add postMessage / redirect not available natively; prefer Option A or Calendly’s webhook → Zapier → GA4 Measurement Protocol (outside GTM).
+
+**Suggested GA4 event name:** `calendly_event_scheduled` (key event #5 after form submits).
+
+**GTM-UI-TODO:** After connector or manual tag exists, mark `calendly_event_scheduled` as a key event in GA4 Admin.
+
 ## Verification
 
 1. Set `NEXT_PUBLIC_GTM_ID` locally.  
@@ -83,5 +105,5 @@ US-focused site; full EEA Consent Mode v2 not required today. **TODO(jan): confi
 - **Phone:** `tel:+17025001942` — header, footer, CTAs site-wide  
 - **RealScout outbound:** `drjanduffy.realscout.com` — navbar, footer, CTAs  
 - **Email:** domain contact email via `mailto:` — footer, contact page  
-- **Forms:** `LeadCaptureForm` → `/api/leads/capture` (component exists; mount where needed)  
-- **Scheduling:** Calendly embed (`ScheduleSection`) — track in GTM only if Jan adds Calendly integration tags  
+- **Forms:** `LeadCaptureForm` on `/contact` and `/home-valuation` → `/api/leads/capture`  
+- **Scheduling:** Calendly embed (`ScheduleSection`) — track via GTM Calendly integration (see §8)

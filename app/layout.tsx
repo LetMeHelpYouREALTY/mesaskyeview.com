@@ -21,6 +21,7 @@ import { DomainConfigProvider } from "@/components/providers/DomainConfigProvide
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import DomainThirdPartyScripts from "@/components/performance/DomainThirdPartyScripts";
 import MesaHeroPreload from "@/components/mesaskyeview/MesaHeroPreload";
+import GlobalHeroBanner from "@/components/layout/GlobalHeroBanner";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -86,6 +87,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <DomainConfigProvider config={config}>
           <SiteHeader />
+          <GlobalHeroBanner />
           <div className={mainOffsetClass}>
             <SitePageBanner />
             <RealScoutBelowHero />

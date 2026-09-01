@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Shield, TrendingUp, Users, Award, Clock, Home } from "lucide-react";
 import { cloudflareImages } from "@/lib/site-images";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 const features = [
   {
@@ -61,6 +62,7 @@ export default function WhyChooseUs() {
         </div>
 
         <div className="text-center mb-12">
+          <DrJanDuffyAvatar size={80} className="mx-auto mb-4 shadow-md" />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
             Why Choose Us
           </h2>

@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 import { getPageBannerImage } from "@/lib/site-images";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 /** Contextual Cloudflare image band on inner pages (every route except home). */
 export default async function SitePageBanner() {
@@ -29,9 +30,10 @@ export default async function SitePageBanner() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-slate-900/10" />
       {isMesa && (
-        <p className="absolute bottom-3 left-0 right-0 text-center text-white/90 text-sm px-4">
-          Mesa at Skyeview · Skye Canyon · Dr. Jan Duffy, REALTOR®
-        </p>
+        <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2 text-white/90 text-sm px-4">
+          <DrJanDuffyAvatar size={36} className="ring-1 ring-amber-400/80" />
+          <p>Mesa at Skyeview · Skye Canyon · Dr. Jan Duffy, REALTOR®</p>
+        </div>
       )}
     </div>
   );

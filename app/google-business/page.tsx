@@ -21,6 +21,7 @@ import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
 import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 import {
   businessInfo,
   gbpDescription,
@@ -115,6 +116,7 @@ export default async function GoogleBusinessPage() {
                 
                 {/* Rating & CTA */}
                 <div className="text-center bg-white/10 rounded-xl p-8">
+                  <DrJanDuffyAvatar size={128} className="mx-auto mb-6 ring-2 ring-amber-400/90" />
                   {isMesa ? (
                     <>
                       <p className="text-lg text-blue-100 mb-6">

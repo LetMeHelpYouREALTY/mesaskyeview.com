@@ -20,6 +20,7 @@ import {
 } from "@/lib/nap-addresses";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 import CalendlyButton from "@/components/calendly/CalendlyButton";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -69,6 +70,7 @@ export default async function ContactPage() {
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="text-center mb-12">
+            <DrJanDuffyAvatar size={96} className="mx-auto mb-6 shadow-md ring-2 ring-amber-400/80" />
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
               {isMesa ? MESA_HOME_BRAND : "Berkshire Hathaway HomeServices Nevada Properties"}
             </div>

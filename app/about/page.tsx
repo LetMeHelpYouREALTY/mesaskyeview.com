@@ -17,6 +17,7 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import DrJanDuffyPhoto from "@/components/agent/DrJanDuffyPhoto";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { agentInfo, officeInfo } from "@/lib/site-config";
@@ -147,6 +148,7 @@ export default async function AboutPage() {
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-16">
+            <DrJanDuffyAvatar size={112} className="mx-auto mb-6 shadow-md ring-2 ring-amber-400/80" priority />
             <MetroHeroBadge />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
               Meet Your Berkshire Hathaway HomeServices Agent

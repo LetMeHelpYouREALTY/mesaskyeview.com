@@ -135,6 +135,7 @@ export async function MesaskyeviewRealtorServicesSection() {
     >
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-10">
+          <DrJanDuffyAvatar size={80} className="mx-auto mb-4 shadow-md" />
           <h2 id="mesa-realtor-services" className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
             Realtor services at Mesa at Skyeview
           </h2>

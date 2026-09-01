@@ -8,6 +8,7 @@ import SitePageSchema from "@/components/seo/SitePageSchema";
 import { getGoogleSiteVerification } from "@/lib/env";
 import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { GoogleTagManager } from "@next/third-parties/google";
 import MesaDeferredGoogleTagManager from "@/components/analytics/MesaDeferredGoogleTagManager";
@@ -94,6 +95,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <SiteChrome />
         </DomainConfigProvider>
         <Analytics />
+        <SpeedInsights />
         <UsPrivacyOptOutBanner />
         {gtmId ? (
           <>

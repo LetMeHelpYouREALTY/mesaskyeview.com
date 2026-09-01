@@ -19,7 +19,7 @@ interface CalendlyBadgeProps {
 export default function CalendlyBadge({
   url = CALENDLY_SHOWING_URL,
   text = "Schedule a tour",
-  color = "#1d4ed8",
+  color = "#152238",
   textColor = "#ffffff",
   branding = false,
 }: CalendlyBadgeProps) {

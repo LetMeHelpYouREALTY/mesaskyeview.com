@@ -30,6 +30,10 @@
     @apply text-balance;
   }
 
+  header a {
+    @apply text-inherit no-underline bg-transparent hover:bg-transparent;
+  }
+
   p {
     @apply text-pretty;
   }

@@ -58,9 +58,9 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
     <nav
       className={`${
         isEmbedded
-          ? "relative bg-white border-t border-slate-200"
-          : "fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
-      } transition-all duration-300 ${isScrolled && !isEmbedded ? "py-2" : "py-3"}`}
+          ? "relative bg-transparent"
+          : "fixed top-0 left-0 right-0 z-50 bg-[#F6F1E8] shadow-md"
+      } transition-all duration-300 ${isScrolled && !isEmbedded ? "py-2" : "py-3.5"}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
@@ -73,17 +73,17 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
             <Image
               src={drJanDuffyPhotos.headshot.src}
               alt={drJanDuffyPhotos.headshot.alt}
-              width={44}
-              height={44}
-              className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover bg-black shrink-0"
+              width={52}
+              height={52}
+              className="h-12 w-12 sm:h-[3.25rem] sm:w-[3.25rem] rounded-full object-cover bg-black shrink-0 ring-2 ring-[#C4A35A]"
               priority
             />
             {isMesa ? (
               <span className="flex flex-col min-w-0">
-                <span className="text-base md:text-lg lg:text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors leading-tight">
+                <span className="font-display text-lg md:text-xl lg:text-[1.35rem] font-semibold text-[#152238] hover:text-[#1B365D] transition-colors leading-tight">
                   Mesa at Skyeview
                 </span>
-                <span className="text-xs md:text-sm text-blue-600 font-semibold">
+                <span className="text-[11px] md:text-xs tracking-wide text-[#8A6D32] uppercase">
                   Homes by Dr. Jan Duffy
                 </span>
               </span>
@@ -107,7 +107,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors text-sm"
+                  className="text-[#152238]/80 hover:text-[#152238] font-medium transition-colors text-sm no-underline"
                 >
                   {link.label}
                 </a>
@@ -115,7 +115,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-slate-700 hover:text-blue-600 font-medium transition-colors text-sm"
+                  className="text-[#152238]/80 hover:text-[#152238] font-medium transition-colors text-sm no-underline"
                 >
                   {link.label}
                 </Link>
@@ -125,7 +125,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
             {/* Services Dropdown */}
             <div className="relative">
               <button
-                className="flex items-center text-slate-700 hover:text-blue-600 font-medium transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 rounded-md px-2 py-1"
+                className="flex items-center text-[#152238]/80 hover:text-[#152238] font-medium transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C4A35A] focus-visible:ring-offset-2 rounded-md px-2 py-1 no-underline"
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onKeyDown={(e) => {
@@ -166,7 +166,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
               )}
             </div>
 
-            <Button asChild className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild className="bg-[#152238] hover:bg-[#1B365D] text-white">
               <Link
                 href="tel:+17025001942"
                 className="flex items-center gap-2"
@@ -181,7 +181,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-3">
-            <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild size="sm" className="bg-[#152238] hover:bg-[#1B365D] text-white">
               <Link
                 href="tel:+17025001942"
                 aria-label="Call Dr. Jan Duffy at (702) 500-1942"

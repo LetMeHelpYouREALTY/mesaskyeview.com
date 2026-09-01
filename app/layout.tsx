@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { GeistSans } from "geist/font/sans";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { headers } from "next/headers";
 import { getCanonicalSiteUrl, getDomainConfig, getContactEmail } from "@/lib/domain-config";
@@ -24,6 +25,12 @@ import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand"
 import DomainThirdPartyScripts from "@/components/performance/DomainThirdPartyScripts";
 import MesaHeroPreload from "@/components/mesaskyeview/MesaHeroPreload";
 import GlobalHeroBanner from "@/components/layout/GlobalHeroBanner";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -84,7 +91,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gtmId = getGtmId();
 
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en" className={`${GeistSans.variable} ${playfair.variable} ${GeistSans.className}`}>
       <head>
         <SitePageSchema />
         <MesaHeroPreload />

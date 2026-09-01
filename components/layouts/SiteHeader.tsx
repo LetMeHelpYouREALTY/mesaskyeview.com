@@ -11,7 +11,7 @@ export default async function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 shadow-md">
+    <header className="sticky top-0 z-50 bg-[#F6F1E8] shadow-[0_1px_0_rgba(196,163,90,0.45),0_8px_24px_rgba(15,23,42,0.08)]">
       <MesaskyeviewContextBar variant="compact" />
       <Navbar position="embedded" />
     </header>

@@ -7,10 +7,11 @@ import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 
 type MesaHeroSearchProps = {
   agentEncodedId: string;
+  align?: "center" | "start";
 };
 
 /** Tap-to-load RealScout search — keeps UMD off the critical LCP path on mesaskyeview. */
-export default function MesaHeroSearch({ agentEncodedId }: MesaHeroSearchProps) {
+export default function MesaHeroSearch({ agentEncodedId, align = "center" }: MesaHeroSearchProps) {
   const [expanded, setExpanded] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -24,13 +25,15 @@ export default function MesaHeroSearch({ agentEncodedId }: MesaHeroSearchProps) 
     }
   }
 
+  const alignClass = align === "start" ? "justify-center lg:justify-start" : "justify-center";
+
   if (!expanded) {
     return (
-      <div className="mb-8 flex justify-center">
+      <div className={`mb-2 flex ${alignClass}`}>
         <button
           type="button"
           onClick={() => void openSearch()}
-          className="inline-flex items-center gap-2 rounded-md bg-white text-slate-900 px-8 py-4 font-bold text-lg shadow-lg hover:bg-blue-50 transition-colors"
+          className="inline-flex items-center gap-2 rounded-sm bg-white text-[#152238] px-8 py-3.5 font-semibold text-base tracking-wide shadow-lg hover:bg-amber-50 transition-colors"
         >
           <Search className="h-5 w-5" aria-hidden />
           Search Homes
@@ -40,7 +43,7 @@ export default function MesaHeroSearch({ agentEncodedId }: MesaHeroSearchProps) 
   }
 
   return (
-    <div className="mb-8 flex justify-center realscout-wrapper min-h-[56px] w-full max-w-xl mx-auto">
+    <div className={`mb-2 flex ${alignClass} realscout-wrapper min-h-[56px] w-full max-w-xl lg:mx-0 mx-auto`}>
       {ready ? (
         <div
           className="w-full"

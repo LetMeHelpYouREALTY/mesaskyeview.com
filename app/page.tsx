@@ -9,10 +9,9 @@ import { createPageMetadata } from "@/lib/page-metadata";
 import { agentInfo } from "@/lib/site-config";
 import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { mesaHomepageFaqsUi, mesaHomepageReviews } from "@/lib/mesa-homepage-content";
-import MesaskyeviewHeroBackground from "@/components/mesaskyeview/MesaskyeviewHeroBackground";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
-import MesaHeroSearch from "@/components/mesaskyeview/MesaHeroSearch";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackground";
 import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
@@ -20,7 +19,7 @@ import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSe
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 import MesaHowToTour from "@/components/mesaskyeview/MesaHowToTour";
-import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
+import MesaLuxuryHero from "@/components/mesaskyeview/MesaLuxuryHero";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -39,16 +38,14 @@ export default async function Home() {
   return (
     <>
       <main>
-        {/* Domain-Aware Hero */}
+        {isMesa ? (
+          <MesaLuxuryHero config={config} />
+        ) : (
         <section className="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">
-          {isMesa ? (
-            <MesaskyeviewHeroBackground overlayClassName="absolute inset-0 bg-slate-900/70" />
-          ) : (
             <CloudflareHeroBackground
               images={siteHeroRotations}
               overlayClassName="absolute inset-0 bg-slate-900/70"
             />
-          )}
           <div className="relative z-10 container mx-auto px-4 text-center">
             <DrJanDuffyAvatar
               size={112}
@@ -60,17 +57,12 @@ export default async function Home() {
                 {config.ctaBadge}
               </span>
             )}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 leading-tight">
               {config.heroHeadline}
             </h1>
             <p className="text-xl md:text-2xl text-white aeo-lead-answer mb-10 max-w-3xl mx-auto">
               {config.heroSubheadline}
             </p>
-
-            {/* RealScout Search Widget */}
-            {isMesa ? (
-              <MesaHeroSearch agentEncodedId={config.realscoutAgentId} />
-            ) : (
               <div className="mb-8 flex justify-center realscout-wrapper">
                 <div
                   dangerouslySetInnerHTML={{
@@ -78,40 +70,19 @@ export default async function Home() {
                   }}
                 />
               </div>
-            )}
-
-            {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-6 text-white text-sm">
-              {isMesa ? (
-                <>
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">89166</span>
-                    <span>Skye Canyon focus</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">New + resale</span>
-                    <span>Mesa at Skyeview</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">BHHS</span>
-                    <span>Nevada Properties</span>
-                  </div>
-                </>
-              ) : (
-                <>
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-white">500+</span>
-                    <span>Families Helped</span>
+                    <span>Clients served</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">30+ Years</span>
-                    <span>Las Vegas Experience</span>
+                    <span className="font-semibold text-white">Since 2008</span>
+                    <span>Las Vegas</span>
                   </div>
-                </>
-              )}
             </div>
           </div>
         </section>
+        )}
 
         <RealScoutListingsSection />
 

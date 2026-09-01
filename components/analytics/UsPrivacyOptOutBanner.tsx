@@ -47,9 +47,9 @@ export default function UsPrivacyOptOutBanner() {
     <div
       role="region"
       aria-label="Privacy choices"
-      className="fixed bottom-0 inset-x-0 z-[100] border-t border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-lg"
+      className="fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-sm z-[100] rounded-lg border border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-xl"
     >
-      <div className="container mx-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between max-w-4xl">
+      <div className="flex flex-col gap-3">
         <p className="text-sm text-slate-700">
           We use analytics to understand how visitors use this site and improve lead
           follow-up. California residents may opt out of analytics cookies.

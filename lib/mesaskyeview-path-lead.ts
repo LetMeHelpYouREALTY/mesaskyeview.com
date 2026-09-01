@@ -54,7 +54,7 @@ const pathLeads: { pattern: RegExp; lead: PathLead }[] = [
     lead: {
       headline: "Skye Canyon & Mesa at Skyeview guide",
       subhead:
-        "Master-planned amenities, schools, and villages—including one-story homes at Mesa at Skyeview on Vanhoy Creek.",
+        "Master-planned amenities, recreation, and villages—including one-story homes at Mesa at Skyeview on Vanhoy Creek.",
       serviceFocus: "Skye Canyon neighborhood expertise",
     },
   },

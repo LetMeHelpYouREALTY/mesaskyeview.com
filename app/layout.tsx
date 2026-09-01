@@ -101,7 +101,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <DomainConfigProvider config={config}>
           <SiteHeader />
           <GlobalHeroBanner />
-          <div className={mainOffsetClass}>
+          <div className={`${mainOffsetClass} bg-white`}>
             <SitePageBanner />
             {children}
             <RealScoutBelowHero />

@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    @apply bg-white text-slate-900;
+  }
+
   a,
   button {
     @apply transition;

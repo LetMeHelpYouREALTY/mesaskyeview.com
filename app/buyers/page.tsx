@@ -107,7 +107,7 @@ export default function BuyersPage() {
   return (
     <>
       <LegacyRouteJsonLd schema={buyerSchema} />
-            <main className="pb-16">
+            <main className="pb-16 bg-white">
         <div className="container mx-auto px-4">
           {/* Hero */}
           <div className="max-w-4xl mx-auto text-center mb-16">

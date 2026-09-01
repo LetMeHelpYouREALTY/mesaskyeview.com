@@ -20,6 +20,7 @@ import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSe
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 import MesaHowToTour from "@/components/mesaskyeview/MesaHowToTour";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -49,6 +50,11 @@ export default async function Home() {
             />
           )}
           <div className="relative z-10 container mx-auto px-4 text-center">
+            <DrJanDuffyAvatar
+              size={112}
+              className="mx-auto mb-6 shadow-xl ring-2 ring-amber-400/90"
+              priority
+            />
             {config.ctaBadge && (
               <span className="inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-6">
                 {config.ctaBadge}

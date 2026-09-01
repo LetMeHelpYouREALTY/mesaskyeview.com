@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDomainConfig } from "@/components/providers/DomainConfigProvider";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
+import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import {
   DR_JAN_REALSCOUT_SEARCH_URL,
   getRealscoutPropertySearchUrl,
@@ -65,26 +67,34 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex flex-col max-w-[min(100%,20rem)] lg:max-w-md"
+            className="flex items-center gap-2.5 max-w-[min(100%,22rem)] lg:max-w-lg"
             aria-label={isMesa ? "Mesa at Skyeview home — Homes by Dr. Jan Duffy" : "Berkshire Hathaway HomeServices Nevada Properties home"}
           >
+            <Image
+              src={drJanDuffyPhotos.headshot.src}
+              alt={drJanDuffyPhotos.headshot.alt}
+              width={44}
+              height={44}
+              className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover bg-black shrink-0"
+              priority
+            />
             {isMesa ? (
-              <>
+              <span className="flex flex-col min-w-0">
                 <span className="text-base md:text-lg lg:text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors leading-tight">
                   Mesa at Skyeview
                 </span>
                 <span className="text-xs md:text-sm text-blue-600 font-semibold">
                   Homes by Dr. Jan Duffy
                 </span>
-              </>
+              </span>
             ) : (
-              <>
+              <span className="flex flex-col min-w-0">
                 <span className="text-lg md:text-xl lg:text-2xl font-bold text-slate-900 hover:text-blue-600 transition-colors leading-tight">
                   Berkshire Hathaway
                   <span className="text-blue-600"> HomeServices</span>
                 </span>
                 <span className="text-xs text-slate-500 hidden sm:block">Nevada Properties</span>
-              </>
+              </span>
             )}
           </Link>
 

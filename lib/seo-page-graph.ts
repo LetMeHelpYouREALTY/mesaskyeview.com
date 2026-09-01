@@ -14,6 +14,7 @@ import { mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import { combineSchemas } from "@/lib/schema";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
 import { agentId, websiteId } from "@/lib/schema-ids";
+import { drJanDuffyPhotos } from "@/lib/agent-photos";
 
 const SEGMENT_LABELS: Record<string, string> = {
   about: "About Dr. Jan Duffy",
@@ -104,7 +105,7 @@ function buildWebPageSchema(
     ? hero.src.startsWith("http")
       ? hero.src
       : `${siteUrl}${hero.src}`
-    : `${siteUrl}/images/dr-jan-duffy-headshot.jpg`;
+    : `${siteUrl}${drJanDuffyPhotos.headshot.src}`;
 
   const page: Record<string, unknown> = {
     "@context": "https://schema.org",

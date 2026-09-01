@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { headers } from "next/headers";
 import { GLOBAL_HERO } from "@/lib/global-hero";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 /**
  * Compact full-width hero band on inner pages.
@@ -33,7 +34,9 @@ export default async function GlobalHeroBanner() {
           aria-hidden="true"
         />
         <div className="relative z-10 flex h-full items-end">
-          <div className="container mx-auto px-4 pb-5 md:pb-6">
+          <div className="container mx-auto px-4 pb-5 md:pb-6 flex items-end gap-4">
+            <DrJanDuffyAvatar size={64} className="shadow-lg ring-2 ring-amber-400/80" priority />
+            <div>
             <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] max-w-3xl text-balance">
               {tagline}
             </p>
@@ -46,6 +49,7 @@ export default async function GlobalHeroBanner() {
                 Call or text {phoneDisplay}
               </a>
             )}
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock, Star } from "lucide-react";
 import { agentInfo, officeInfo } from "@/lib/site-config";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 const GOOGLE_REVIEWS_URL = "https://g.page/r/heyberkshire/review";
 const DIRECTIONS_URL =
@@ -22,6 +23,7 @@ export default async function OfficeSection() {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
+          <DrJanDuffyAvatar size={112} className="mx-auto mb-4 shadow-md" />
           <h2 id="office-heading" className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
             Visit Our Office
           </h2>

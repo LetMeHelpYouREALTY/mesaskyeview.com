@@ -4,7 +4,7 @@
 
 | File | Use |
 |------|-----|
-| `agent1.png` | Dr. Jan Duffy headshot |
+| `agent1.png` | Dr. Jan Duffy headshot (site favicon, nav, footer, schema) |
 | `hero_bg_1.jpg` | Modern luxury home exterior |
 | `hero_bg_2.jpg` | Home with pool and patio |
 | `hero_bg_3.jpg` | Estate-style home and backyard |

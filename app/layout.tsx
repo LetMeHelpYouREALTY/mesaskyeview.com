@@ -55,6 +55,10 @@ export async function generateMetadata(): Promise<Metadata> {
     ...(googleVerification
       ? { verification: { google: googleVerification } }
       : {}),
+    icons: {
+      icon: [{ url: "/Image/agent1.png", type: "image/png" }],
+      apple: [{ url: "/Image/agent1.png", type: "image/png" }],
+    },
     openGraph: {
       title: config.heroHeadline,
       description: config.description,

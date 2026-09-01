@@ -2,12 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Home } from "lucide-react";
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 export default function CTASection() {
   return (
     <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
+          <DrJanDuffyAvatar size={96} className="mx-auto mb-6 ring-2 ring-white/80" />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             Ready to Find Your Dream Home?
           </h2>

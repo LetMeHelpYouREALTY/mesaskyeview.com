@@ -1,9 +1,9 @@
-import { Calendar } from "lucide-react";
 import CalendlyWidget from "@/components/calendly/CalendlyWidget";
 import LazyWhenVisible from "@/components/shared/LazyWhenVisible";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
 import { CALENDLY_SHOWING_URL } from "@/lib/calendly-url";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 export default async function ScheduleSection() {
   const config = await getPageDomainConfig();
@@ -20,7 +20,7 @@ export default async function ScheduleSection() {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
           <div className="bg-blue-600 text-white p-6 md:p-8 text-center">
-            <Calendar className="h-10 w-10 mx-auto mb-3" aria-hidden />
+            <DrJanDuffyAvatar size={80} className="mx-auto mb-3 ring-2 ring-white/80" />
             <h2 id="schedule-heading" className="text-2xl md:text-3xl font-bold mb-2">
               Schedule an Appointment
             </h2>

@@ -8,6 +8,7 @@ import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
 import { officeInfo } from "@/lib/site-config";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import { businessInfo } from "@/lib/gbp-schema";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 const SOCIAL_LINKS = {
   facebook: businessInfo.socialProfiles[0],
@@ -28,6 +29,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
+            <DrJanDuffyAvatar size={80} className="mb-4" />
             <h3 className="font-bold text-xl mb-4">
               {isMesa ? "Mesa at Skyeview" : "Berkshire Hathaway HomeServices"}
             </h3>

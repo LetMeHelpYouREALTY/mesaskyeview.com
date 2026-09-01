@@ -11,6 +11,7 @@ import {
 import { getMesaskyeviewPathLead } from "@/lib/mesaskyeview-path-lead";
 import { getMesaCommunityDirectionsUrl } from "@/lib/mesa-at-skyeview-schema";
 import { agentInfo } from "@/lib/site-config";
+import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
 type MesaskyeviewContextBarProps = {
   /** compact = single row inside sticky header; full = legacy block (deprecated) */
@@ -31,6 +32,7 @@ export default async function MesaskyeviewContextBar({
       <div className="bg-slate-900 text-white border-b border-slate-700">
         <div className="container mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs sm:text-sm">
           <div className="flex items-center gap-2 min-w-0">
+            <DrJanDuffyAvatar size={24} />
             <MapPin className="h-3.5 w-3.5 text-blue-400 flex-shrink-0" aria-hidden />
             <span className="font-semibold truncate">{MESA_SITE_BRAND}</span>
             <span className="text-slate-300 hidden md:inline truncate max-w-[14rem] lg:max-w-none">
@@ -66,6 +68,7 @@ export default async function MesaskyeviewContextBar({
     <div className="bg-slate-900 text-white border-b border-slate-700">
       <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm">
         <div className="flex items-center gap-2 min-w-0">
+          <DrJanDuffyAvatar size={28} />
           <MapPin className="h-4 w-4 text-blue-400 flex-shrink-0" aria-hidden />
           <span className="font-semibold truncate">{MESA_SITE_BRAND}</span>
           <span className="text-slate-300 hidden lg:inline">

@@ -63,7 +63,11 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Brand Logo */}
-          <Link href="/" className="flex flex-col max-w-[min(100%,20rem)] lg:max-w-md">
+          <Link
+            href="/"
+            className="flex flex-col max-w-[min(100%,20rem)] lg:max-w-md"
+            aria-label={isMesa ? "Mesa at Skyeview home — Homes by Dr. Jan Duffy" : "Berkshire Hathaway HomeServices Nevada Properties home"}
+          >
             {isMesa ? (
               <>
                 <span className="text-base md:text-lg lg:text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors leading-tight">
@@ -153,8 +157,12 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
             </div>
 
             <Button asChild className="bg-blue-600 hover:bg-blue-700">
-              <Link href="tel:+17025001942" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
+              <Link
+                href="tel:+17025001942"
+                className="flex items-center gap-2"
+                aria-label="Call Dr. Jan Duffy at (702) 500-1942"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 <span className="hidden xl:inline">(702) 500-1942</span>
                 <span className="xl:hidden">Call</span>
               </Link>
@@ -164,8 +172,12 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-3">
             <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
-              <Link href="tel:+17025001942">
-                <Phone className="h-4 w-4" />
+              <Link
+                href="tel:+17025001942"
+                aria-label="Call Dr. Jan Duffy at (702) 500-1942"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">Call Dr. Jan Duffy at (702) 500-1942</span>
               </Link>
             </Button>
             <button

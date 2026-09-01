@@ -8,8 +8,9 @@ import { getCanonicalSiteUrl } from "@/lib/domain-config";
 import { gbpFAQs, generateFAQSchema as generateGbpFaqSchema } from "@/lib/gbp-schema";
 import { mesaDefaultSocialHero } from "@/lib/mesa-hero-images";
 import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand";
-import { MESA_SPEAKABLE_CSS_SELECTORS } from "@/lib/mesa-aeo-content";
-import { mesaFaqsToSchema, mesaHomepageFaqs } from "@/lib/mesa-page-faqs";
+import { mesaHowToTour, MESA_SPEAKABLE_CSS_SELECTORS } from "@/lib/mesa-aeo-content";
+import { mesaHomepageFaqsUi } from "@/lib/mesa-homepage-content";
+import { mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import { combineSchemas } from "@/lib/schema";
 import { generateSearchConsoleJsonLd } from "@/lib/search-console-schema";
 import { agentId, websiteId } from "@/lib/schema-ids";
@@ -115,6 +116,7 @@ function buildWebPageSchema(
     isPartOf: { "@id": websiteId(siteUrl) },
     about: { "@id": mesa ? agentId(siteUrl) : `${siteUrl}/#organization` },
     inLanguage: "en-US",
+    dateModified: new Date().toISOString().slice(0, 10),
     primaryImageOfPage: {
       "@type": "ImageObject",
       "@id": `${pageUrl}#primaryimage`,
@@ -125,11 +127,15 @@ function buildWebPageSchema(
     },
   };
 
-  if (mesa && path === "/") {
+  if (mesa) {
     page.speakable = {
       "@type": "SpeakableSpecification",
       cssSelector: [...MESA_SPEAKABLE_CSS_SELECTORS],
     };
+  }
+
+  if (mesa && path === "/") {
+    page.mainEntity = [{ "@id": `${siteUrl}/#faq` }, { "@id": `${siteUrl}/#howto-tour` }];
   }
 
   return page;
@@ -152,13 +158,35 @@ function buildBreadcrumbSchema(siteUrl: string, pathname: string) {
   };
 }
 
-/** Homepage FAQ graph (AEO); /faq keeps its own page-level FAQPage. */
-function buildHomepageFaqSchema(pathname: string, config: DomainConfig) {
+/** Homepage FAQ graph (AEO); /faq keeps its own page-level FAQPage. Markup matches visible FAQSection. */
+function buildHomepageFaqSchema(pathname: string, config: DomainConfig, siteUrl: string) {
   if (pathname !== "/") return null;
   if (isMesaskyeviewDomain(config)) {
-    return mesaFaqsToSchema(mesaHomepageFaqs);
+    return {
+      ...mesaFaqsToSchema(mesaHomepageFaqsUi),
+      "@id": `${siteUrl}/#faq`,
+      url: siteUrl,
+    };
   }
   return generateGbpFaqSchema(gbpFAQs);
+}
+
+function buildHomepageHowToSchema(pathname: string, config: DomainConfig, siteUrl: string) {
+  if (pathname !== "/" || !isMesaskyeviewDomain(config)) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${siteUrl}/#howto-tour`,
+    name: mesaHowToTour.heading,
+    description: mesaHowToTour.lead,
+    url: siteUrl,
+    step: mesaHowToTour.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
 }
 
 /**
@@ -175,8 +203,11 @@ export function buildPageJsonLdGraph(config: DomainConfig, pathname: string) {
     buildBreadcrumbSchema(siteUrl, normalizedPath),
   ];
 
-  const faq = buildHomepageFaqSchema(normalizedPath, config);
+  const faq = buildHomepageFaqSchema(normalizedPath, config, siteUrl);
   if (faq) pieces.push(faq);
+
+  const howTo = buildHomepageHowToSchema(normalizedPath, config, siteUrl);
+  if (howTo) pieces.push(howTo);
 
   return combineSchemas(...pieces);
 }

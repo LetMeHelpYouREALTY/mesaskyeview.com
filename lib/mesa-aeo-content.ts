@@ -14,4 +14,26 @@ export const mesaExtractableFacts: string[] = [
 export const MESA_SPEAKABLE_CSS_SELECTORS = [
   "#mesa-extractable-facts",
   "main h1",
+  ".aeo-lead-answer",
+  "#how-to-tour-mesa",
 ] as const;
+
+/** Visible HowTo + JSON-LD — keep these strings in sync with MesaHowToTour. */
+export const mesaHowToTour = {
+  heading: "How do I tour Mesa at Skyeview homes?",
+  lead: `Register Dr. Jan Duffy as your buyer agent before the first model visit, then tour at ${c.salesOfficeAddress} in ${c.masterPlan} (ZIP ${c.zip}).`,
+  steps: [
+    {
+      name: "Call or book a showing",
+      text: "Call (702) 500-1942 or use the contact page to schedule. Tell Dr. Jan which Mesa at Skyeview plans you want to see.",
+    },
+    {
+      name: "Register your agent first",
+      text: "Have Dr. Jan Duffy registered with the builder before you walk into the model so you keep buyer representation on the contract.",
+    },
+    {
+      name: "Tour the community",
+      text: `Meet at ${c.salesOfficeAddress} to walk ${c.stories.toLowerCase()} plans (about ${c.sqftRange} sq ft, ${c.bedroomRange} bedrooms).`,
+    },
+  ],
+} as const;

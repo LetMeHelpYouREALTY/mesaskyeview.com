@@ -33,12 +33,12 @@ export default async function MesaskyeviewContextBar({
           <div className="flex items-center gap-2 min-w-0">
             <MapPin className="h-3.5 w-3.5 text-blue-400 flex-shrink-0" aria-hidden />
             <span className="font-semibold truncate">{MESA_SITE_BRAND}</span>
-            <span className="text-slate-400 hidden md:inline truncate max-w-[14rem] lg:max-w-none">
+            <span className="text-slate-300 hidden md:inline truncate max-w-[14rem] lg:max-w-none">
               · {mesaAtSkyeviewCommunity.salesOfficeAddress}
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-blue-300">
-            <span className="text-slate-400 hidden sm:inline">{lead.serviceFocus}</span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-blue-200">
+            <span className="text-slate-300 hidden sm:inline">{lead.serviceFocus}</span>
             <Link
               href="/new-construction"
               className="hover:text-white underline-offset-2 hover:underline"
@@ -51,6 +51,7 @@ export default async function MesaskyeviewContextBar({
             <a
               href={agentInfo.phoneTel}
               className="inline-flex items-center gap-1 hover:text-white font-medium"
+              aria-label={`Call Dr. Jan Duffy at ${agentInfo.phoneFormatted}`}
             >
               <Phone className="h-3.5 w-3.5" aria-hidden />
               {agentInfo.phoneFormatted}
@@ -67,13 +68,14 @@ export default async function MesaskyeviewContextBar({
         <div className="flex items-center gap-2 min-w-0">
           <MapPin className="h-4 w-4 text-blue-400 flex-shrink-0" aria-hidden />
           <span className="font-semibold truncate">{MESA_SITE_BRAND}</span>
-          <span className="text-slate-400 hidden lg:inline">
+          <span className="text-slate-300 hidden lg:inline">
             · {mesaAtSkyeviewCommunity.salesOfficeAddress}
           </span>
         </div>
         <a
           href={agentInfo.phoneTel}
-          className="inline-flex items-center gap-2 text-blue-300 hover:text-white font-medium"
+          className="inline-flex items-center gap-2 text-blue-200 hover:text-white font-medium"
+          aria-label={`Call Dr. Jan Duffy at ${agentInfo.phoneFormatted}`}
         >
           <Phone className="h-4 w-4" aria-hidden />
           {agentInfo.phoneFormatted}

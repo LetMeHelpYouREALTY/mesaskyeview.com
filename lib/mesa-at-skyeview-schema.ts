@@ -1,17 +1,19 @@
 import { businessInfo } from "@/lib/gbp-schema";
 import {
   BHHS_BROKERAGE_NAP,
-  getAgentSchemaPostalAddress,
   getBhhsBrokeragePostalAddress,
   getMesaCommunityDirectionsUrl,
 } from "@/lib/nap-addresses";
-import { DR_JAN_GOOGLE_PRESENCE } from "@/lib/mesa-google-presence";
+import { DR_JAN_GOOGLE_PRESENCE, getDrJanGoogleSameAs } from "@/lib/mesa-google-presence";
+import { drJanDuffyPhotos } from "@/lib/agent-photos";
 import {
   agentId,
   brokerageId,
   communityPlaceId,
   googleReviewsRefId,
   mesaCommunityComplexId,
+  organizationId,
+  personId,
   websiteId,
 } from "@/lib/schema-ids";
 import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
@@ -99,6 +101,10 @@ export function generateMesaAtSkyeviewPlaceSchema(siteUrl: string) {
         containedInPlace: { "@type": "State", name: c.state },
       },
     },
+    amenityFeature: c.amenities.map((name) => ({
+      "@type": "LocationFeatureSpecification",
+      name,
+    })),
   };
 }
 
@@ -127,5 +133,52 @@ export function generateMesaResidentialCommunitySchema(siteUrl: string) {
       longitude: c.longitude,
     },
     containedInPlace: { "@id": communityPlaceId(siteUrl) },
+    amenityFeature: c.amenities.map((name) => ({
+      "@type": "LocationFeatureSpecification",
+      name,
+    })),
+  };
+}
+
+/** Person node for GEO (#person) — distinct from RealEstateAgent #agent. */
+export function generateDrJanPersonSchema(siteUrl: string, email: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": personId(siteUrl),
+    name: "Dr. Jan Duffy",
+    jobTitle: "REALTOR®",
+    image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
+    url: `${siteUrl}/about`,
+    telephone: businessInfo.phone.tel,
+    email,
+    worksFor: { "@id": brokerageId(siteUrl) },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "Real Estate License",
+      identifier: "S.0197614.LLC",
+    },
+    sameAs: getDrJanGoogleSameAs(businessInfo.socialProfiles),
+    knowsAbout: [
+      "Mesa at Skyeview",
+      "Skye Canyon",
+      "Las Vegas new construction",
+      "89166 real estate",
+    ],
+  };
+}
+
+/** Website publisher Organization (#org) — site brand, not the brokerage. */
+export function generateSiteBrandOrganizationSchema(siteUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": organizationId(siteUrl),
+    name: MESA_SITE_BRAND,
+    url: siteUrl,
+    telephone: businessInfo.phone.tel,
+    logo: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,
+    employee: { "@id": personId(siteUrl) },
+    parentOrganization: { "@id": brokerageId(siteUrl) },
   };
 }

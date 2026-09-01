@@ -5,18 +5,19 @@ import { isMesaskyeviewDomain, MESA_SITE_BRAND } from "@/lib/mesaskyeview-brand"
 import { DR_JAN_REALSCOUT_SEARCH_URL } from "@/lib/realscout-config";
 import {
   generateBhhsBrokerageOrganizationSchema,
+  generateDrJanPersonSchema,
   generateGoogleReviewsReferenceSchema,
   generateMesaAtSkyeviewPlaceSchema,
   generateMesaResidentialCommunitySchema,
+  generateSiteBrandOrganizationSchema,
 } from "@/lib/mesa-at-skyeview-schema";
-import { agentId, communityPlaceId, websiteId } from "@/lib/schema-ids";
+import { communityPlaceId, organizationId, websiteId } from "@/lib/schema-ids";
 
 /** JSON-LD graphs for GSC / Rich Results: RealEstateAgent + WebSite publisher link. */
 export function generateSearchConsoleJsonLd(config: DomainConfig) {
   const siteUrl = getCanonicalSiteUrl(config);
-  const organization = generateLocalBusinessSchemaForSite(config, {
-    email: getContactEmail(config),
-  });
+  const email = getContactEmail(config);
+  const organization = generateLocalBusinessSchemaForSite(config, { email });
 
   const website = {
     "@context": "https://schema.org",
@@ -27,13 +28,15 @@ export function generateSearchConsoleJsonLd(config: DomainConfig) {
       ? MESA_SITE_BRAND
       : `Dr. Jan Duffy — ${config.neighborhood} Real Estate`,
     description: config.description,
-    publisher: { "@id": isMesaskyeviewDomain(config) ? agentId(siteUrl) : `${siteUrl}/#organization` },
+    publisher: {
+      "@id": isMesaskyeviewDomain(config) ? organizationId(siteUrl) : `${siteUrl}/#organization`,
+    },
     inLanguage: "en-US",
     potentialAction: isMesaskyeviewDomain(config)
       ? {
-          "@type": "SearchAction",
+          "@type": "ViewAction",
+          name: "Search Mesa at Skyeview and Skye Canyon homes",
           target: DR_JAN_REALSCOUT_SEARCH_URL,
-          name: "Search homes with Dr. Jan Duffy on RealScout",
         }
       : {
           "@type": "SearchAction",
@@ -50,6 +53,8 @@ export function generateSearchConsoleJsonLd(config: DomainConfig) {
   }
 
   const brokerage = generateBhhsBrokerageOrganizationSchema(siteUrl);
+  const person = generateDrJanPersonSchema(siteUrl, email);
+  const siteOrg = generateSiteBrandOrganizationSchema(siteUrl);
   const place = generateMesaAtSkyeviewPlaceSchema(siteUrl);
   const community = generateMesaResidentialCommunitySchema(siteUrl);
   const agent = {
@@ -61,5 +66,14 @@ export function generateSearchConsoleJsonLd(config: DomainConfig) {
     ],
   };
 
-  return [brokerage, agent, website, place, community, generateGoogleReviewsReferenceSchema(siteUrl)];
+  return [
+    brokerage,
+    siteOrg,
+    person,
+    agent,
+    website,
+    place,
+    community,
+    generateGoogleReviewsReferenceSchema(siteUrl),
+  ];
 }

@@ -20,6 +20,7 @@ import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSe
 import MesaDeferredListingsBlock from "@/components/performance/MesaDeferredListingsBlock";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
+import MesaHowToTour from "@/components/mesaskyeview/MesaHowToTour";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -57,7 +58,7 @@ export default async function Home() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {config.heroHeadline}
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white aeo-lead-answer mb-10 max-w-3xl mx-auto">
               {config.heroSubheadline}
             </p>
 
@@ -75,7 +76,7 @@ export default async function Home() {
             )}
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
+            <div className="flex flex-wrap justify-center gap-6 text-white text-sm">
               {isMesa ? (
                 <>
                   <div className="flex items-center gap-2">
@@ -116,6 +117,7 @@ export default async function Home() {
         )}
 
         {isMesa && <MesaExtractableFacts />}
+        {isMesa && <MesaHowToTour />}
         {isMesa && <MesaskyeviewPhotoGallery />}
         {isMesa && <MesaExploreLinks />}
         {isMesa && <DrJanDuffyProfileCard config={config} showPortrait />}
@@ -125,9 +127,9 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                Why Work With Dr. Jan Duffy?
+                {isMesa ? "Why hire Dr. Jan Duffy for Mesa at Skyeview?" : "Why Work With Dr. Jan Duffy?"}
               </h2>
-              <p className="text-lg text-slate-600">
+              <p className="text-lg text-slate-700 aeo-lead-answer">
                 {isMesa
                   ? "Realtor representation for Mesa at Skyeview and Skye Canyon—buying, selling, and new construction advocacy with Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties."
                   : "Berkshire Hathaway HomeServices Nevada Properties — the most trusted name in Las Vegas real estate."}
@@ -157,9 +159,11 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold mb-3">
-                {config.neighborhood} Real Estate Market
+                {isMesa
+                  ? "What are Mesa at Skyeview home sizes and listed prices?"
+                  : `${config.neighborhood} Real Estate Market`}
               </h2>
-              <p className="text-slate-400">
+              <p className="text-slate-300 aeo-lead-answer">
                 {isMesa
                   ? "Community highlights — ask Dr. Jan for current MLS pricing in 89166"
                   : "Current data — updated regularly"}
@@ -234,7 +238,7 @@ export default async function Home() {
                 href="/contact"
                 className="inline-block bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-md font-bold text-lg transition-colors"
               >
-                Send a Message
+                Schedule a tour
               </Link>
             </div>
             <p className="mt-6 text-blue-200 text-sm">

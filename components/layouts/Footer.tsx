@@ -41,7 +41,7 @@ export default async function Footer() {
                 href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors"
                 aria-label="Dr. Jan Duffy on Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -50,7 +50,7 @@ export default async function Footer() {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors"
                 aria-label="Dr. Jan Duffy on Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -59,7 +59,7 @@ export default async function Footer() {
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-300 hover:text-white transition-colors"
                 aria-label="Dr. Jan Duffy on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -230,7 +230,7 @@ export default async function Footer() {
                     {officeInfo.address.city}, {officeInfo.address.state} {officeInfo.address.zip}
                   </span>
                   {isMesa ? (
-                    <span className="block text-slate-400 text-xs">
+                    <span className="block text-slate-300 text-xs">
                       Licensed agent office (schema NAP): {BHHS_BROKERAGE_NAP.street},{" "}
                       {BHHS_BROKERAGE_NAP.city}, {BHHS_BROKERAGE_NAP.state} {BHHS_BROKERAGE_NAP.zip}
                     </span>
@@ -274,24 +274,24 @@ export default async function Footer() {
         {/* Copyright */}
         <div className="border-t border-slate-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm text-center md:text-left">
+            <p className="text-slate-300 text-sm text-center md:text-left">
               © {currentYear} Berkshire Hathaway HomeServices Nevada Properties. All Rights
               Reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <Link href="/faq" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/faq" className="text-slate-300 hover:text-white transition-colors">
                 FAQ
               </Link>
-              <Link href="/sitemap.xml" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/sitemap.xml" className="text-slate-300 hover:text-white transition-colors">
                 Sitemap
               </Link>
             </div>
           </div>
-          <p className="text-slate-500 text-xs mt-4 text-center">
+          <p className="text-slate-300 text-xs mt-4 text-center">
             Dr. Jan Duffy, REALTOR® | License S.0197614.LLC | Berkshire Hathaway HomeServices Nevada
             Properties
           </p>
-          <p className="text-slate-600 text-xs mt-2 text-center max-w-3xl mx-auto">
+          <p className="text-slate-300 text-xs mt-2 text-center max-w-3xl mx-auto">
             When you work with a Berkshire Hathaway HomeServices agent, you're backed by a name
             synonymous with trust, ethical standards, and financial strength.
           </p>

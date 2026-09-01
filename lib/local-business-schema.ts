@@ -5,7 +5,7 @@ import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyevie
 import { getAgentSchemaGeo, getAgentSchemaPostalAddress } from "@/lib/nap-addresses";
 import { getDrJanGoogleSameAs } from "@/lib/mesa-google-presence";
 import { drJanDuffyPhotos } from "@/lib/agent-photos";
-import { agentId, brokerageId, communityPlaceId, googleReviewsRefId } from "@/lib/schema-ids";
+import { agentId, brokerageId, communityPlaceId, googleReviewsRefId, personId } from "@/lib/schema-ids";
 import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 
 export type LocalBusinessSchemaOptions = {
@@ -115,8 +115,34 @@ export function generateLocalBusinessSchemaForSite(
     sameAs: mesa ? getDrJanGoogleSameAs(businessInfo.socialProfiles) : businessInfo.socialProfiles,
     worksFor: { "@id": brokerageId(siteUrl) },
     memberOf: { "@id": brokerageId(siteUrl) },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: businessInfo.phone.tel,
+      contactType: "customer service",
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+    potentialAction: [
+      {
+        "@type": "CommunicateAction",
+        name: "Call Dr. Jan Duffy",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "tel:+17025001942",
+        },
+      },
+      {
+        "@type": "ReserveAction",
+        name: mesa ? "Schedule a Mesa at Skyeview tour" : "Schedule a showing",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://calendly.com/drjanduffy/showing",
+        },
+      },
+    ],
     ...(mesa
       ? {
+          employee: { "@id": personId(siteUrl) },
           knowsAbout: [
             "Mesa at Skyeview new construction",
             "Skye Canyon homes",

@@ -20,6 +20,16 @@ export function websiteId(siteUrl: string): string {
   return `${siteUrl}/#website`;
 }
 
+/** Licensed agent as a Person (GEO entity graph; distinct from RealEstateAgent #agent). */
+export function personId(siteUrl: string): string {
+  return `${siteUrl}/#person`;
+}
+
+/** Site brand Organization — publisher of the website, not the brokerage. */
+export function organizationId(siteUrl: string): string {
+  return `${siteUrl}/#org`;
+}
+
 export function googleReviewsRefId(siteUrl: string): string {
   return `${siteUrl}/#google-reviews`;
 }

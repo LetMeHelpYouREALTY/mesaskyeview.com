@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
+import { CALENDLY_SHOWING_URL } from "@/lib/calendly-url";
 
 interface CalendlyWidgetProps {
   url?: string;
@@ -10,7 +10,7 @@ interface CalendlyWidgetProps {
 }
 
 export default function CalendlyWidget({
-  url = "https://calendly.com/drjanduffy/showing",
+  url = CALENDLY_SHOWING_URL,
   minWidth = "320px",
   height = "700px",
 }: CalendlyWidgetProps) {
@@ -56,10 +56,6 @@ export default function CalendlyWidget({
       <link
         href="https://assets.calendly.com/assets/external/widget.css"
         rel="stylesheet"
-      />
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
       />
       <div ref={widgetRef} style={{ minWidth, height, width: "100%" }} />
     </>

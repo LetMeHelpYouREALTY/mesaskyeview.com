@@ -17,7 +17,6 @@ import CloudflareHeroBackground from "@/components/shared/CloudflareHeroBackgrou
 import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
-import MesaDeferredListingsBlock from "@/components/performance/MesaDeferredListingsBlock";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 import MesaHowToTour from "@/components/mesaskyeview/MesaHowToTour";
@@ -42,7 +41,7 @@ export default async function Home() {
         {/* Domain-Aware Hero */}
         <section className="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">
           {isMesa ? (
-            <MesaskyeviewHeroBackground />
+            <MesaskyeviewHeroBackground overlayClassName="absolute inset-0 bg-slate-900/70" />
           ) : (
             <CloudflareHeroBackground
               images={siteHeroRotations}
@@ -108,13 +107,7 @@ export default async function Home() {
           </div>
         </section>
 
-        {isMesa ? (
-          <MesaDeferredListingsBlock>
-            <RealScoutListingsSection />
-          </MesaDeferredListingsBlock>
-        ) : (
-          <RealScoutListingsSection />
-        )}
+        <RealScoutListingsSection />
 
         {isMesa && <MesaExtractableFacts />}
         {isMesa && <MesaHowToTour />}

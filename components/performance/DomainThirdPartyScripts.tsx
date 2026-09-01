@@ -17,13 +17,15 @@ export default async function DomainThirdPartyScripts() {
     <>
       <FubPixelScript />
       <Script
+        id="realscout-web-components"
         src={REALSCOUT_WEB_COMPONENTS_SCRIPT}
         type="module"
         strategy="afterInteractive"
       />
       <Script
+        id="calendly-widget-js"
         src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </>
   );

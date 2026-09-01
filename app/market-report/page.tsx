@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
+import { jsonLdPersonAuthor } from "@/lib/jsonld-author";
 
 const pageMetadataBase = {
   title: "Las Vegas Real Estate Market Report January 2026 | Berkshire Hathaway HomeServices",
@@ -34,11 +35,7 @@ const reportSchema = {
   "@context": "https://schema.org",
   "@type": "Report",
   name: "Las Vegas Real Estate Market Report - January 2026",
-  author: {
-    "@type": "RealEstateAgent",
-    name: "Dr. Jan Duffy",
-    worksFor: "Berkshire Hathaway HomeServices Nevada Properties",
-  },
+  author: jsonLdPersonAuthor(),
   datePublished: "2026-01-23",
   about: {
     "@type": "Place",

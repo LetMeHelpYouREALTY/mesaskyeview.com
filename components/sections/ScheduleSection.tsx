@@ -3,14 +3,13 @@ import CalendlyWidget from "@/components/calendly/CalendlyWidget";
 import LazyWhenVisible from "@/components/shared/LazyWhenVisible";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { isMesaskyeviewDomain } from "@/lib/mesaskyeview-brand";
-
-const CALENDLY_URL = "https://calendly.com/drjanduffy/showing";
+import { CALENDLY_SHOWING_URL } from "@/lib/calendly-url";
 
 export default async function ScheduleSection() {
   const config = await getPageDomainConfig();
   const isMesa = isMesaskyeviewDomain(config);
 
-  const widget = <CalendlyWidget url={CALENDLY_URL} height="650px" />;
+  const widget = <CalendlyWidget url={CALENDLY_SHOWING_URL} height="650px" />;
 
   return (
     <section

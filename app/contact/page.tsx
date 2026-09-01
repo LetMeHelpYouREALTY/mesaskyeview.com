@@ -20,7 +20,7 @@ import {
 } from "@/lib/nap-addresses";
 import MesaskyeviewPhotoGallery from "@/components/mesaskyeview/MesaskyeviewPhotoGallery";
 import DrJanDuffyProfileCard from "@/components/agent/DrJanDuffyProfileCard";
-import { LeadCaptureForm } from "@/components/forms/LeadCaptureForm";
+import CalendlyButton from "@/components/calendly/CalendlyButton";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -115,21 +115,26 @@ export default async function ContactPage() {
             </p>
 
             <section
-              id="contact-form"
-              className="mb-10 scroll-mt-28 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
-              aria-labelledby="contact-form-heading"
+              id="contact-schedule"
+              className="mb-10 scroll-mt-28 rounded-xl border border-slate-200 bg-white p-6 shadow-sm text-center"
+              aria-labelledby="contact-schedule-heading"
             >
-              <h3 id="contact-form-heading" className="text-xl font-bold text-slate-900 mb-2">
-                Send a Message
+              <h3 id="contact-schedule-heading" className="text-xl font-bold text-slate-900 mb-2">
+                Schedule a showing or consult
               </h3>
-              <p className="text-slate-600 text-sm mb-6">
-                Prefer email over a call? Share your question and Dr. Jan Duffy will respond promptly.
+              <p className="text-slate-600 text-sm mb-6 max-w-lg mx-auto">
+                Book a Mesa at Skyeview tour or a phone consult with Dr. Jan Duffy. Appointments
+                sync to Follow Up Boss through Calendly.
               </p>
-              <LeadCaptureForm
-                source={isMesa ? "mesaskyeview-contact" : "website-contact-page"}
-                formType="contact"
-                defaultTags={isMesa ? ["mesa-skyeview", "contact"] : ["contact"]}
-              />
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <CalendlyButton text="Book a time with Dr. Jan" />
+                <a
+                  href="#schedule-appointment"
+                  className="inline-flex items-center justify-center border border-slate-300 bg-white text-slate-800 px-6 py-3 rounded-md font-semibold hover:bg-slate-50 transition-colors"
+                >
+                  Jump to calendar
+                </a>
+              </div>
             </section>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">

@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
+import { jsonLdBrokeragePublisher, jsonLdPersonAuthor } from "@/lib/jsonld-author";
 
 const pageMetadataBase = {
   title: "Berkshire Hathaway HomeServices Las Vegas Market Update | January 2026",
@@ -47,20 +48,8 @@ const articleSchema = {
     "Weekly market analysis from Berkshire Hathaway HomeServices Nevada Properties covering Las Vegas Valley real estate trends, statistics, and expert insights.",
   datePublished: "2026-01-20",
   dateModified: "2026-01-24",
-  author: {
-    "@type": "Person",
-    name: "Dr. Jan Duffy",
-    jobTitle: "REALTOR®",
-    worksFor: {
-      "@type": "RealEstateAgent",
-      name: "Berkshire Hathaway HomeServices Nevada Properties",
-    },
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Berkshire Hathaway HomeServices Nevada Properties",
-    url: "https://heyberkshire.com",
-  },
+  author: jsonLdPersonAuthor(),
+  publisher: jsonLdBrokeragePublisher(),
 };
 
 export default function MarketUpdatePage() {

@@ -1,12 +1,15 @@
 import Image from "next/image";
+import { headers } from "next/headers";
 import { GLOBAL_HERO } from "@/lib/global-hero";
 
 /**
- * Compact full-width hero band in the root layout (every page).
- * Intentionally shorter than PageHero so it does not collide with
- * page-level full-bleed heroes on the homepage.
+ * Compact full-width hero band on inner pages.
+ * Homepage keeps the full-bleed Mesa hero so the two bands do not stack.
  */
-export default function GlobalHeroBanner() {
+export default async function GlobalHeroBanner() {
+  const pathname = (await headers()).get("x-pathname") || "/";
+  if (pathname === "/") return null;
+
   const { src, alt, tagline, phoneDisplay, phoneTel } = GLOBAL_HERO;
 
   return (
@@ -22,7 +25,7 @@ export default function GlobalHeroBanner() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={75}
+          quality={70}
           className="object-cover object-center"
         />
         <div

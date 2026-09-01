@@ -91,11 +91,11 @@ export const mesaGeneratedHeroes = {
   },
 } as const satisfies Record<string, HeroAsset>;
 
-/** Homepage hero rotation for mesaskyeview.com */
+/** Homepage hero rotation for mesaskyeview.com — vista first (proven Cloudflare /Image asset). */
 export const mesaHomeHeroRotation: HeroAsset[] = [
+  mesaGeneratedHeroes.skyeVista,
   mesaGeneratedHeroes.flagship,
   mesaGeneratedHeroes.community,
-  mesaGeneratedHeroes.skyeVista,
   mesaGeneratedHeroes.newBuild,
 ];
 

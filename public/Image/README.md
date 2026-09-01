@@ -9,7 +9,7 @@
 | `hero_bg_2.jpg` | Home with pool and patio |
 | `hero_bg_3.jpg` | Estate-style home and backyard |
 
-Configured in `lib/site-images.ts`.
+Configured in `lib/site-images.ts`. Compact site-wide banner uses `hero_skye_mountains.webp` via `lib/global-hero.ts` (same `/Image/` Cloudflare path — do not add a second image tree under `public/images/`).
 
 ## Deprecated (do not reference in code)
 

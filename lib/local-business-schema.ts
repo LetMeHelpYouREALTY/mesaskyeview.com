@@ -42,7 +42,9 @@ export function generateLocalBusinessSchemaForSite(
 
   return {
     "@context": "https://schema.org",
-    "@type": ["Person", "RealEstateAgent"],
+    // RealEstateAgent only — Person lives at #person. Dual type made Google treat
+    // this node as a Review author (GSC: Invalid object type for field "author").
+    "@type": "RealEstateAgent",
     "@id": agentId(siteUrl),
     name: DR_JAN_GBP_BRAND_NAME,
     image: `${siteUrl}${drJanDuffyPhotos.headshot.src}`,

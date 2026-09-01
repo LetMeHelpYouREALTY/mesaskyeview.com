@@ -7,7 +7,7 @@ import { getCanonicalSiteUrl, getDomainConfig, getContactEmail } from "@/lib/dom
 import SitePageSchema from "@/components/seo/SitePageSchema";
 import { getGoogleSiteVerification } from "@/lib/env";
 import { getDefaultSocialImageMetadata } from "@/lib/google-search-console";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { GoogleTagManager } from "@next/third-parties/google";
 import MesaDeferredGoogleTagManager from "@/components/analytics/MesaDeferredGoogleTagManager";

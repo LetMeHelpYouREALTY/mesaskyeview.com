@@ -3,6 +3,8 @@
  * Distinct from full-bleed PageHero (homepage / page-level heroes).
  */
 
+import { agentInfo } from "@/lib/site-config";
+
 export type GlobalHeroConfig = {
   src: string;
   alt: string;
@@ -13,8 +15,8 @@ export type GlobalHeroConfig = {
 
 export const GLOBAL_HERO: GlobalHeroConfig = {
   src: "/images/global-hero/mesa-skye-view.jpg",
-  alt: "Elevated view homes overlooking the Las Vegas Valley desert basin, Las Vegas, NV",
-  tagline: "Mesa Skye View Homes by Dr. Jan Duffy",
-  phoneDisplay: "(702) 222-1964",
-  phoneTel: "tel:+17022221964",
+  alt: "Mesa at Skyeview homes overlooking the Las Vegas Valley, Skye Canyon, NV 89166",
+  tagline: "Mesa at Skyeview | Homes by Dr. Jan Duffy",
+  phoneDisplay: agentInfo.phoneFormatted,
+  phoneTel: agentInfo.phoneTel,
 };

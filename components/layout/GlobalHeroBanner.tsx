@@ -38,6 +38,7 @@ export default function GlobalHeroBanner() {
               <a
                 href={phoneTel}
                 className="mt-2 inline-block text-sm sm:text-base font-medium text-blue-100 hover:text-white underline-offset-2 hover:underline [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]"
+                aria-label={`Call Dr. Jan Duffy at ${phoneDisplay}`}
               >
                 Call or text {phoneDisplay}
               </a>

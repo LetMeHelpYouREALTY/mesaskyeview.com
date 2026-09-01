@@ -103,8 +103,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <GlobalHeroBanner />
           <div className={mainOffsetClass}>
             <SitePageBanner />
-            <RealScoutBelowHero />
             {children}
+            <RealScoutBelowHero />
           </div>
           <SiteChrome />
           <CalendlyBadge />

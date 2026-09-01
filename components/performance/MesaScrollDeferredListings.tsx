@@ -30,7 +30,13 @@ export default function MesaScrollDeferredListings({
   }, []);
 
   if (!ready) {
-    return <div aria-hidden style={{ minHeight }} />;
+    return (
+      <div
+        aria-hidden
+        className="bg-[#F6F1E8]"
+        style={{ minHeight }}
+      />
+    );
   }
 
   return <>{children}</>;

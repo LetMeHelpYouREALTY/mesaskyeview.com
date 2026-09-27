@@ -22,6 +22,7 @@ import { DR_JAN_GBP_BRAND_NAME } from "@/lib/site-config";
 import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 
 const pageMetadataBase = {
   title: "Las Vegas Homes for Sale | MLS Property Search | Berkshire Hathaway HomeServices",
@@ -492,6 +493,8 @@ export default async function ListingsPage() {
               </div>
             </div>
           </section>
+
+          {isMesa && <MesaNearbySection variant="compact" initialCategory="grocery" className="!py-12" />}
 
           {/* CTA */}
           <section className="text-center bg-blue-600 text-white rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">

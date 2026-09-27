@@ -27,6 +27,11 @@ export const MESA_EXPLORE_PAGES: MesaExploreLink[] = [
     description: `${c.sqftRange} sq ft, ${c.bedroomRange} bedrooms—current inventory from Dr. Jan.`,
   },
   {
+    href: "/nearby-amenities",
+    title: "Nearby amenities map",
+    description: "Interactive map of grocery, parks, healthcare, and schools near Mesa at Skyeview.",
+  },
+  {
     href: "/mesa-at-skyeview/amenities",
     title: "Amenities & lifestyle",
     description: "Community pool, fitness, and Skye Canyon master-plan recreation.",

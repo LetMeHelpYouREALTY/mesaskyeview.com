@@ -10,6 +10,7 @@ import {
 import { MESA_EXPLORE_PAGES } from "@/lib/mesa-site-pages";
 import { mesaCommunityFaqs, mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import MesaPageShell from "@/components/mesaskyeview/MesaPageShell";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -32,6 +33,7 @@ export default function MesaAtSkyeviewCommunityPage() {
   const c = mesaAtSkyeviewCommunity;
 
   return (
+    <>
     <MesaPageShell
       breadcrumbs={[
         { name: "Home", href: "/" },
@@ -60,6 +62,10 @@ export default function MesaAtSkyeviewCommunityPage() {
       <p>
         <Link href="/mesa-at-skyeview/amenities" className="text-blue-600 font-semibold">
           See amenities & lifestyle guide →
+        </Link>
+        {" · "}
+        <Link href="/nearby-amenities" className="text-blue-600 font-semibold">
+          Interactive nearby amenities map →
         </Link>
       </p>
 
@@ -101,5 +107,7 @@ export default function MesaAtSkyeviewCommunityPage() {
         .
       </p>
     </MesaPageShell>
+    <MesaNearbySection variant="compact" initialCategory="grocery" />
+  </>
   );
 }

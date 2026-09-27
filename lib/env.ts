@@ -52,6 +52,11 @@ export function getGoogleMapsApiKey(): string | undefined {
   return process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || undefined;
 }
 
+/** Optional Map ID for Advanced Markers (Google Cloud Console). */
+export function getGoogleMapsMapId(): string | undefined {
+  return process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || undefined;
+}
+
 export function getV0ApiKey(): string {
   return process.env.V0_API_KEY || "";
 }

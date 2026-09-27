@@ -36,6 +36,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   area: "Area",
   "89166-homes": "ZIP 89166 Homes",
   map: "ZIP 89166 Map",
+  "nearby-amenities": "Nearby Amenities",
   "skye-canyon": "Skye Canyon",
   summerlin: "Summerlin",
   henderson: "Henderson",

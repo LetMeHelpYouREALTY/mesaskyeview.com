@@ -4,9 +4,29 @@ import { MESA_AMENITY_MAP_CENTER } from "@/lib/mesa-amenity-map-config";
 import {
   MESA_NEARBY_AMENITIES_FAQS,
   MESA_VERIFIED_NEARBY_PLACES,
+  type VerifiedNearbyPlace,
 } from "@/lib/mesa-nearby-amenities-data";
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { communityPlaceId } from "@/lib/schema-ids";
+
+function placeSchemaItem(place: VerifiedNearbyPlace) {
+  const item: Record<string, unknown> = {
+    "@type": place.schemaType,
+    name: place.name,
+    url: place.sourceUrl,
+  };
+  if (place.address) {
+    item.address = {
+      "@type": "PostalAddress",
+      streetAddress: place.address.split(",")[0]?.trim() ?? place.address,
+      addressLocality: mesaAtSkyeviewCommunity.city,
+      addressRegion: mesaAtSkyeviewCommunity.state,
+      postalCode: place.address.match(/\b(\d{5})\b/)?.[1] ?? mesaAtSkyeviewCommunity.zip,
+      addressCountry: "US",
+    };
+  }
+  return item;
+}
 
 export function generateNearbyAmenitiesFaqSchema() {
   return mesaFaqsToSchema(MESA_NEARBY_AMENITIES_FAQS);
@@ -17,23 +37,12 @@ export function generateNearbyAmenitiesItemListSchema(_siteUrl: string) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: `Nearby amenities near ${mesaAtSkyeviewCommunity.name}`,
-    description: `Verified grocery, parks, healthcare, dining, and schools near ${mesaAtSkyeviewCommunity.name}, Las Vegas NV ${mesaAtSkyeviewCommunity.zip}.`,
+    description: `Featured grocery, parks, healthcare, dining, and schools near ${mesaAtSkyeviewCommunity.name}, Las Vegas NV ${mesaAtSkyeviewCommunity.zip}.`,
     numberOfItems: MESA_VERIFIED_NEARBY_PLACES.length,
     itemListElement: MESA_VERIFIED_NEARBY_PLACES.map((place, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: {
-        "@type": place.schemaType,
-        name: place.name,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: place.address.split(",")[0]?.trim() ?? place.address,
-          addressLocality: mesaAtSkyeviewCommunity.city,
-          addressRegion: mesaAtSkyeviewCommunity.state,
-          postalCode: place.address.match(/\b(\d{5})\b/)?.[1] ?? mesaAtSkyeviewCommunity.zip,
-          addressCountry: "US",
-        },
-      },
+      item: placeSchemaItem(place),
     })),
   };
 }

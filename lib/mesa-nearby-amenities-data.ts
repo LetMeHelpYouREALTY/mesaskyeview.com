@@ -1,14 +1,17 @@
 /**
- * Verified nearby places for Mesa at Skyeview — static HTML, map fallback, and ItemList schema.
- * Sources: skyecanyon.com, centennialhillshospital.com, public listings (2026).
+ * Curated nearby places for Mesa at Skyeview — static HTML, map fallback, and ItemList schema.
+ * Each entry includes a primary-source URL used to verify name and address.
  */
 
 import type { AmenityCategoryId } from "@/lib/mesa-amenity-map-config";
+import { agentInfo } from "@/lib/site-config";
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 
 export type VerifiedNearbyPlace = {
   name: string;
-  address: string;
+  /** Omit from JSON-LD when street address is not verified on sourceUrl */
+  address?: string;
+  sourceUrl: string;
   category: AmenityCategoryId;
   schemaType:
     | "Place"
@@ -20,8 +23,8 @@ export type VerifiedNearbyPlace = {
     | "Pharmacy"
     | "Store"
     | "GolfCourse"
-    | "School"
-    | "ExerciseGym";
+    | "ExerciseGym"
+    | "School";
   note?: string;
 };
 
@@ -29,6 +32,7 @@ export const MESA_VERIFIED_NEARBY_PLACES: VerifiedNearbyPlace[] = [
   {
     name: mesaAtSkyeviewCommunity.name,
     address: mesaAtSkyeviewCommunity.salesOfficeAddress,
+    sourceUrl: "https://www.centurycommunities.com/find-your-new-home/nevada/las-vegas-metro/las-vegas/skye-canyon/mesa-at-skyeview",
     category: "parks",
     schemaType: "Place",
     note: "Community sales center and tour address",
@@ -36,6 +40,7 @@ export const MESA_VERIFIED_NEARBY_PLACES: VerifiedNearbyPlace[] = [
   {
     name: "Skye Canyon Park",
     address: "10111 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl: "https://skyecanyon.com/amenities/parks/",
     category: "parks",
     schemaType: "Park",
     note: "15-acre master-plan park with trails, sports courts, and splash pad (Skye Canyon)",
@@ -43,13 +48,15 @@ export const MESA_VERIFIED_NEARBY_PLACES: VerifiedNearbyPlace[] = [
   {
     name: "Skye Center",
     address: "10111 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl: "https://skyecanyon.com/amenities/parks/",
     category: "fitness",
     schemaType: "Place",
-    note: "Skye Canyon community hub (skyecanyon.com)",
+    note: "Skye Canyon community hub (resident access for some amenities)",
   },
   {
     name: "Skye Fitness",
     address: "10111 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl: "https://skyecanyon.com/amenities/parks/",
     category: "fitness",
     schemaType: "ExerciseGym",
     note: "Resident fitness club and pool at Skye Canyon Park",
@@ -57,51 +64,67 @@ export const MESA_VERIFIED_NEARBY_PLACES: VerifiedNearbyPlace[] = [
   {
     name: "Smith's Marketplace",
     address: "9710 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl:
+      "https://www.smithsfoodanddrug.com/stores/grocery/nv/las-vegas/smiths-marketplace/706/00367",
     category: "grocery",
     schemaType: "GroceryStore",
-    note: "Full grocery, pharmacy, and Skye Canyon Marketplace anchor (skyecanyon.com)",
+    note: "Skye Canyon Marketplace grocery anchor (Smith's Food and Drug store locator)",
   },
   {
     name: "Starbucks",
     address: "9710 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl: "https://skyecanyon.com/amenities/shopping/",
     category: "cafes",
     schemaType: "CafeOrCoffeeShop",
-    note: "Inside Smith's Marketplace at Skye Canyon",
+    note: "Listed at Skye Canyon Marketplace on skyecanyon.com",
+  },
+  {
+    name: "Skye Canyon Marketplace",
+    address: "9710 W Skye Canyon Park Dr, Las Vegas, NV 89166",
+    sourceUrl: "https://skyecanyon.com/amenities/shopping/",
+    category: "shopping",
+    schemaType: "Store",
+    note: "Retail and dining center anchored by Smith's Marketplace",
   },
   {
     name: "Centennial Hills Hospital Medical Center",
     address: "6900 N Durango Dr, Las Vegas, NV 89149",
+    sourceUrl: "https://www.centennialhillshospital.com/about",
     category: "healthcare",
     schemaType: "Hospital",
-    note: "Full-service hospital northwest Las Vegas (Valley Health System)",
+    note: "Valley Health System acute care hospital in northwest Las Vegas",
   },
   {
-    name: "Dignity Health – St. Rose Dominican North Durango Campus",
+    name: "Dignity Health – St. Rose Dominican Centennial Campus",
     address: "6675 N Durango Dr, Las Vegas, NV 89149",
+    sourceUrl: "https://strosenh.org/locations/centennial/",
     category: "healthcare",
     schemaType: "Hospital",
-    note: "Emergency and inpatient care on North Durango Dr.",
+    note: "24/7 neighborhood hospital on North Durango Dr.",
   },
   {
     name: "Kenneth Divich Elementary School",
-    address: "9100 W Maule Ave, Las Vegas, NV 89148",
+    address: "9851 Donald Nelson Ave, Las Vegas, NV 89149",
+    sourceUrl: "https://www.divichelementary.org/about-us1/contact/contact-us",
     category: "schools",
     schemaType: "School",
     note: "Clark County School District — confirm attendance zone for your address",
   },
   {
     name: "Arbor View High School",
-    address: "7365 W Buffalo Dr, Las Vegas, NV 89113",
+    address: "7500 Whispering Sands Dr, Las Vegas, NV 89131",
+    sourceUrl: "https://www.arborviewhs.org/apps/contact/",
     category: "schools",
     schemaType: "School",
-    note: "Clark County high school serving northwest Las Vegas areas",
+    note: "Clark County high school in northwest Las Vegas — confirm your zone with CCSD",
   },
   {
-    name: "Badlands Golf Course",
-    address: "9119 Alta Dr, Las Vegas, NV 89145",
+    name: "TPC Las Vegas",
+    address: "9851 Canyon Run Dr, Las Vegas, NV 89144",
+    sourceUrl: "https://tpc.com/lasvegas/",
     category: "golf",
     schemaType: "GolfCourse",
-    note: "Public golf west of the Strip — common outing for Skye Canyon residents",
+    note: "Public PGA TOUR golf course in Summerlin — typical weekend drive from Skye Canyon",
   },
 ];
 
@@ -120,7 +143,7 @@ export const MESA_NEARBY_AMENITIES_FAQS: MesaNearbyFaq[] = [
   },
   {
     question: `Are there hospitals near ${c.name}?`,
-    answer: `Yes — Centennial Hills Hospital (6900 N Durango Dr) and Dignity Health St. Rose North Durango (6675 N Durango Dr) are major northwest valley hospitals within approximately 15–20 minutes of Skye Canyon.`,
+    answer: `Yes — Centennial Hills Hospital (6900 N Durango Dr) and Dignity Health St. Rose Centennial Campus (6675 N Durango Dr) are major northwest valley hospitals within approximately 15–20 minutes of Skye Canyon.`,
   },
   {
     question: `Where do Skye Canyon residents work out and swim?`,
@@ -140,7 +163,7 @@ export const MESA_NEARBY_AMENITIES_FAQS: MesaNearbyFaq[] = [
   },
   {
     question: `Who helps buyers compare ${c.name} to other Skye Canyon villages?`,
-    answer: `Dr. Jan Duffy represents buyers and sellers at ${c.name} and across 89166 — call (702) 500-1942 or schedule a tour at /contact.`,
+    answer: `Dr. Jan Duffy represents buyers and sellers at ${c.name} and across 89166 — call ${agentInfo.phoneFormatted} or schedule a tour at /contact.`,
   },
 ];
 

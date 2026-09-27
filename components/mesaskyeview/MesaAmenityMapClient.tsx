@@ -6,123 +6,26 @@ import {
   MESA_AMENITY_CATEGORIES,
   MESA_AMENITY_MAP_CENTER,
   MESA_AMENITY_MAP_DEFAULT_CATEGORY,
-  MESA_AMENITY_SEARCH_RADIUS_M,
   type AmenityCategoryId,
 } from "@/lib/mesa-amenity-map-config";
 import { getGoogleMapsApiKey, getGoogleMapsMapId } from "@/lib/env";
-import { getMesaCommunityDirectionsUrl, getMesaCommunityMapsEmbedUrl } from "@/lib/nap-addresses";
+import { getMesaCommunityDirectionsUrl, getMesaCommunityKeylessMapsEmbedUrl } from "@/lib/nap-addresses";
+import { loadGoogleMaps, mapsAuthFailed } from "@/lib/google-maps-loader";
+import {
+  getDefaultAmenitySearchCenter,
+  searchAmenityCategory,
+} from "@/lib/mesa-amenity-places-search";
+import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import MesaAmenityStaticList from "@/components/mesaskyeview/MesaAmenityStaticList";
 
 type MapPlace = {
   id: string;
   name: string;
   address?: string;
-  rating?: number;
   lat: number;
   lng: number;
   directionsUrl: string;
 };
-
-type GoogleMapsNamespace = {
-  maps: {
-    Map: new (el: HTMLElement, opts: Record<string, unknown>) => GoogleMapInstance;
-    LatLng: new (lat: number, lng: number) => unknown;
-    LatLngBounds: new () => {
-      extend: (latLng: unknown) => void;
-    };
-    importLibrary: (name: string) => Promise<unknown>;
-    places?: {
-      PlacesService: new (map: GoogleMapInstance) => PlacesServiceInstance;
-      PlacesServiceStatus: { OK: string };
-    };
-    marker?: {
-      AdvancedMarkerElement: new (opts: Record<string, unknown>) => GoogleMarker;
-    };
-    Marker: new (opts: Record<string, unknown>) => GoogleMarker;
-    InfoWindow: new (opts?: Record<string, unknown>) => GoogleInfoWindow;
-  };
-};
-
-type GoogleMapInstance = {
-  setCenter: (center: { lat: number; lng: number }) => void;
-  fitBounds: (bounds: unknown) => void;
-};
-
-type GoogleMarker = {
-  map: GoogleMapInstance | null;
-  position?: { lat: number; lng: number };
-  addListener: (event: string, handler: () => void) => void;
-};
-
-type GoogleInfoWindow = {
-  open: (opts: { map: GoogleMapInstance; anchor?: GoogleMarker }) => void;
-  setContent: (html: string) => void;
-};
-
-type PlacesServiceInstance = {
-  nearbySearch: (
-    request: Record<string, unknown>,
-    callback: (results: LegacyPlaceResult[] | null, status: string) => void
-  ) => void;
-};
-
-type LegacyPlaceResult = {
-  place_id?: string;
-  name?: string;
-  vicinity?: string;
-  formatted_address?: string;
-  rating?: number;
-  geometry?: { location: { lat: () => number; lng: () => number } };
-};
-
-type NewPlaceResult = {
-  id?: string;
-  displayName?: string;
-  formattedAddress?: string;
-  rating?: number;
-  location?: { lat: () => number; lng: () => number };
-  googleMapsURI?: string;
-};
-
-function getGoogle(): GoogleMapsNamespace | undefined {
-  if (typeof window === "undefined") return undefined;
-  return (window as Window & { google?: GoogleMapsNamespace }).google;
-}
-
-function loadGoogleMapsScript(apiKey: string): Promise<void> {
-  const existing = getGoogle();
-  if (existing?.maps) return Promise.resolve();
-
-  const scriptId = "mesa-google-maps-js";
-  if (document.getElementById(scriptId)) {
-    return new Promise((resolve, reject) => {
-      const started = Date.now();
-      const tick = () => {
-        if (getGoogle()?.maps) {
-          resolve();
-          return;
-        }
-        if (Date.now() - started > 15000) {
-          reject(new Error("Google Maps script timeout"));
-          return;
-        }
-        window.setTimeout(tick, 100);
-      };
-      tick();
-    });
-  }
-
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.id = scriptId;
-    script.async = true;
-    script.defer = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places,marker&loading=async`;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error("Google Maps script failed to load"));
-    document.head.appendChild(script);
-  });
-}
 
 function placeDirectionsUrl(lat: number, lng: number, placeId?: string): string {
   if (placeId) {
@@ -131,127 +34,92 @@ function placeDirectionsUrl(lat: number, lng: number, placeId?: string): string 
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
 
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+function displayNameFromPlace(place: google.maps.places.Place): string {
+  const dn = place.displayName;
+  if (!dn) return "Place";
+  if (typeof dn === "string") return dn;
+  const text = (dn as { text?: string }).text;
+  return text ?? "Place";
 }
 
-function infoWindowHtml(place: MapPlace): string {
-  const ratingLine =
-    place.rating !== undefined
-      ? `<p style="margin:4px 0;font-size:13px;">Rating: ${place.rating.toFixed(1)}</p>`
-      : "";
-  const addressLine = place.address
-    ? `<p style="margin:4px 0;font-size:13px;">${escapeHtml(place.address)}</p>`
-    : "";
-  return `<div style="max-width:240px;padding:4px 0;">
-    <strong>${escapeHtml(place.name)}</strong>
-    ${ratingLine}
-    ${addressLine}
-    <a href="${place.directionsUrl}" target="_blank" rel="noopener noreferrer" style="font-size:13px;">Directions</a>
-  </div>`;
+function mapPlaceFromGooglePlace(place: google.maps.places.Place, fallbackId: string): MapPlace | null {
+  const loc = place.location;
+  if (!loc) return null;
+  const json = loc.toJSON?.() ?? { lat: loc.lat(), lng: loc.lng() };
+  const lat = json.lat;
+  const lng = json.lng;
+  if (lat === undefined || lng === undefined) return null;
+  return {
+    id: place.id ?? fallbackId,
+    name: displayNameFromPlace(place),
+    address: place.formattedAddress ?? undefined,
+    lat,
+    lng,
+    directionsUrl: place.googleMapsURI ?? placeDirectionsUrl(lat, lng, place.id),
+  };
 }
 
-async function fetchNearbyPlaces(categoryId: AmenityCategoryId): Promise<MapPlace[]> {
-  const google = getGoogle();
-  if (!google?.maps) return [];
+function setInfoWindowContent(infoWindow: google.maps.InfoWindow, place: MapPlace): void {
+  const wrap = document.createElement("div");
+  wrap.style.maxWidth = "240px";
+  wrap.style.padding = "4px 0";
 
-  const category = getAmenityCategoryById(categoryId);
-  const center = MESA_AMENITY_MAP_CENTER;
+  const title = document.createElement("strong");
+  title.textContent = place.name;
+  wrap.appendChild(title);
 
-  try {
-    const placesLib = (await google.maps.importLibrary("places")) as {
-      Place?: {
-        searchNearby: (req: Record<string, unknown>) => Promise<{ places: NewPlaceResult[] }>;
-      };
-    };
-    if (placesLib.Place?.searchNearby) {
-      const { places } = await placesLib.Place.searchNearby({
-        fields: ["displayName", "location", "formattedAddress", "rating", "googleMapsURI", "id"],
-        locationRestriction: {
-          center: { lat: center.lat, lng: center.lng },
-          radius: MESA_AMENITY_SEARCH_RADIUS_M,
-        },
-        includedPrimaryTypes: category.primaryTypes,
-        maxResultCount: 12,
-      });
-
-      return (places ?? []).flatMap((p, index) => {
-          const lat = p.location?.lat();
-          const lng = p.location?.lng();
-          if (lat === undefined || lng === undefined) return [];
-          const name =
-            typeof p.displayName === "string"
-              ? p.displayName
-              : ((p.displayName as { text?: string } | undefined)?.text ?? "Place");
-          const item: MapPlace = {
-            id: p.id ?? `new-${categoryId}-${index}`,
-            name,
-            address: p.formattedAddress,
-            rating: p.rating,
-            lat,
-            lng,
-            directionsUrl: p.googleMapsURI ?? placeDirectionsUrl(lat, lng, p.id),
-          };
-          return [item];
-        });
-    }
-  } catch {
-    // Fall through to legacy PlacesService
+  if (place.address) {
+    const addr = document.createElement("p");
+    addr.style.margin = "4px 0";
+    addr.style.fontSize = "13px";
+    addr.textContent = place.address;
+    wrap.appendChild(addr);
   }
 
-  return new Promise((resolve) => {
-    const mapEl = document.createElement("div");
-    const map = new google.maps.Map(mapEl, {
-      center: { lat: center.lat, lng: center.lng },
-      zoom: 13,
-    });
-    const service = google.maps.places?.PlacesService;
-    if (!service) {
-      resolve([]);
-      return;
-    }
-    const placesService = new service(map);
-    placesService.nearbySearch(
-      {
-        location: new google.maps.LatLng(center.lat, center.lng),
-        radius: MESA_AMENITY_SEARCH_RADIUS_M,
-        type: category.legacyPlaceType,
-      },
-      (results, status) => {
-        if (status !== google.maps.places?.PlacesServiceStatus.OK || !results?.length) {
-          resolve([]);
-          return;
-        }
-        resolve(
-          results.map((r, index) => {
-            const lat = r.geometry?.location.lat() ?? center.lat;
-            const lng = r.geometry?.location.lng() ?? center.lng;
-            return {
-              id: r.place_id ?? `legacy-${categoryId}-${index}`,
-              name: r.name ?? "Place",
-              address: r.vicinity ?? r.formatted_address,
-              rating: r.rating,
-              lat,
-              lng,
-              directionsUrl: placeDirectionsUrl(lat, lng, r.place_id),
-            };
-          })
-        );
-      }
-    );
-  });
+  const link = document.createElement("a");
+  link.href = place.directionsUrl;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.style.fontSize = "13px";
+  link.textContent = "Directions";
+  wrap.appendChild(link);
+
+  infoWindow.setContent(wrap);
 }
 
 type MesaAmenityMapProps = {
-  /** When true, hide the static list below the map (full page renders its own). */
   hideStaticList?: boolean;
-  /** Initial category when the map loads */
   initialCategory?: AmenityCategoryId;
 };
+
+function MapFallbackPanel({
+  activeCategory,
+  hideStaticList,
+}: {
+  activeCategory: AmenityCategoryId;
+  hideStaticList: boolean;
+}) {
+  return (
+    <div className="space-y-6">
+      <div className="rounded-xl border border-slate-200 overflow-hidden bg-slate-50">
+        <div className="aspect-video w-full min-h-[320px]">
+          <iframe
+            title={`Map near ${MESA_AMENITY_MAP_CENTER.label}`}
+            src={getMesaCommunityKeylessMapsEmbedUrl()}
+            className="h-full w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <p className="px-4 py-3 text-sm text-slate-600">
+          Featured places near {mesaAtSkyeviewCommunity.name} — use the list for addresses and
+          directions.
+        </p>
+      </div>
+      {!hideStaticList && <MesaAmenityStaticList category={activeCategory} />}
+    </div>
+  );
+}
 
 export default function MesaAmenityMapClient({
   hideStaticList = false,
@@ -259,30 +127,71 @@ export default function MesaAmenityMapClient({
 }: MesaAmenityMapProps) {
   const apiKey = getGoogleMapsApiKey();
   const mapId = getGoogleMapsMapId();
+  const sectionRef = useRef<HTMLDivElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<GoogleMapInstance | null>(null);
-  const markersRef = useRef<GoogleMarker[]>([]);
-  const communityMarkerRef = useRef<GoogleMarker | null>(null);
-  const infoWindowRef = useRef<GoogleInfoWindow | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const markersRef = useRef<(google.maps.Marker | google.maps.marker.AdvancedMarkerElement)[]>([]);
+  const communityMarkerRef = useRef<
+    google.maps.Marker | google.maps.marker.AdvancedMarkerElement | null
+  >(null);
+  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
   const [activeCategory, setActiveCategory] = useState<AmenityCategoryId>(initialCategory);
-  const [loadState, setLoadState] = useState<"idle" | "loading" | "ready" | "fallback">(
-    apiKey ? "idle" : "fallback"
+  const [loadState, setLoadState] = useState<"idle" | "loading" | "ready" | "fallback">(() =>
+    !apiKey || mapsAuthFailed ? "fallback" : "idle"
   );
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [sectionVisible, setSectionVisible] = useState(false);
   const tablistId = useId();
+
+  const enterFallback = useCallback(() => {
+    mapRef.current = null;
+    if (mapContainerRef.current) {
+      mapContainerRef.current.replaceChildren();
+    }
+    markersRef.current = [];
+    communityMarkerRef.current = null;
+    setLoadState("fallback");
+  }, []);
+
+  useEffect(() => {
+    const onAuthFailure = () => enterFallback();
+    window.addEventListener("gmaps:auth-failure", onAuthFailure);
+    return () => window.removeEventListener("gmaps:auth-failure", onAuthFailure);
+  }, [enterFallback]);
+
+  useEffect(() => {
+    if (loadState === "fallback" || !apiKey) return;
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px", threshold: 0.01 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [apiKey, loadState]);
 
   const clearMarkers = useCallback(() => {
     markersRef.current.forEach((marker) => {
-      marker.map = null;
+      if ("map" in marker) marker.map = null;
     });
     markersRef.current = [];
+    if (communityMarkerRef.current && "map" in communityMarkerRef.current) {
+      communityMarkerRef.current.map = null;
+    }
+    communityMarkerRef.current = null;
   }, []);
 
   const renderPlaces = useCallback(
     async (categoryId: AmenityCategoryId) => {
-      const google = getGoogle();
       const map = mapRef.current;
-      if (!google?.maps || !map) return;
+      if (!map) return;
 
       setStatusMessage("Loading nearby places…");
       clearMarkers();
@@ -297,16 +206,29 @@ export default function MesaAmenityMapClient({
         directionsUrl: getMesaCommunityDirectionsUrl(),
       };
 
-      const places = await fetchNearbyPlaces(categoryId);
+      let places: MapPlace[] = [];
+      let placesSearchFailed = false;
+      try {
+        const googlePlaces = await searchAmenityCategory(getDefaultAmenitySearchCenter(), categoryId);
+        places = googlePlaces.flatMap((p, index) => {
+          const mapped = mapPlaceFromGooglePlace(p, `place-${categoryId}-${index}`);
+          return mapped ? [mapped] : [];
+        });
+      } catch {
+        places = [];
+        placesSearchFailed = true;
+      }
+
       const infoWindow = infoWindowRef.current ?? new google.maps.InfoWindow();
       infoWindowRef.current = infoWindow;
 
-      const AdvancedMarker = google.maps.marker?.AdvancedMarkerElement;
+      const markerLib = (await google.maps.importLibrary("marker")) as google.maps.MarkerLibrary;
+      const AdvancedMarker = markerLib.AdvancedMarkerElement;
       const useAdvanced = Boolean(mapId && AdvancedMarker);
 
       const addMarker = (place: MapPlace, isCommunity: boolean) => {
         const position = { lat: place.lat, lng: place.lng };
-        let marker: GoogleMarker;
+        let marker: google.maps.Marker | google.maps.marker.AdvancedMarkerElement;
 
         if (useAdvanced && AdvancedMarker) {
           const pin = document.createElement("div");
@@ -331,11 +253,11 @@ export default function MesaAmenityMapClient({
             map,
             position,
             title: place.name,
-          }) as unknown as GoogleMarker;
+          });
         }
 
         marker.addListener("click", () => {
-          infoWindow.setContent(infoWindowHtml(place));
+          setInfoWindowContent(infoWindow, place);
           infoWindow.open({ map, anchor: marker });
         });
 
@@ -350,25 +272,37 @@ export default function MesaAmenityMapClient({
       places.forEach((place) => addMarker(place, false));
 
       const bounds = new google.maps.LatLngBounds();
-      bounds.extend(new google.maps.LatLng(center.lat, center.lng));
-      places.forEach((p) => bounds.extend(new google.maps.LatLng(p.lat, p.lng)));
+      bounds.extend({ lat: center.lat, lng: center.lng });
+      places.forEach((p) => bounds.extend({ lat: p.lat, lng: p.lng }));
       if (places.length > 0) {
         map.fitBounds(bounds);
       } else {
         map.setCenter({ lat: center.lat, lng: center.lng });
       }
 
-      setStatusMessage(
-        places.length > 0
-          ? `Showing ${places.length} ${getAmenityCategoryById(categoryId).label.toLowerCase()} near ${center.label}.`
-          : `No ${getAmenityCategoryById(categoryId).label.toLowerCase()} markers returned — see the curated list below.`
-      );
+      if (places.length > 0) {
+        setStatusMessage(
+          `Showing ${places.length} ${getAmenityCategoryById(categoryId).label.toLowerCase()} near ${center.label}.`
+        );
+      } else if (placesSearchFailed) {
+        setStatusMessage(
+          `Showing featured ${getAmenityCategoryById(categoryId).label.toLowerCase()} near ${center.label} — live search unavailable.`
+        );
+      } else {
+        setStatusMessage(
+          `No ${getAmenityCategoryById(categoryId).label.toLowerCase()} markers returned — see the featured list below.`
+        );
+      }
     },
     [clearMarkers, mapId]
   );
 
   useEffect(() => {
-    if (!apiKey || loadState === "fallback") return;
+    if (!apiKey || loadState === "fallback" || !sectionVisible) return;
+    if (mapsAuthFailed) {
+      enterFallback();
+      return;
+    }
 
     const mapsKey = apiKey;
     let cancelled = false;
@@ -376,14 +310,12 @@ export default function MesaAmenityMapClient({
     async function init() {
       setLoadState("loading");
       try {
-        await loadGoogleMapsScript(mapsKey);
-        if (cancelled || !mapContainerRef.current) return;
-
-        const google = getGoogle();
-        if (!google?.maps) {
-          setLoadState("fallback");
+        await loadGoogleMaps(mapsKey);
+        if (cancelled || mapsAuthFailed) {
+          if (!cancelled) enterFallback();
           return;
         }
+        if (!mapContainerRef.current) return;
 
         const map = new google.maps.Map(mapContainerRef.current, {
           center: { lat: MESA_AMENITY_MAP_CENTER.lat, lng: MESA_AMENITY_MAP_CENTER.lng },
@@ -397,7 +329,7 @@ export default function MesaAmenityMapClient({
         setLoadState("ready");
         await renderPlaces(activeCategory);
       } catch {
-        if (!cancelled) setLoadState("fallback");
+        if (!cancelled) enterFallback();
       }
     }
 
@@ -405,8 +337,8 @@ export default function MesaAmenityMapClient({
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- init once when api key present
-  }, [apiKey]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- init once when section visible
+  }, [apiKey, sectionVisible]);
 
   useEffect(() => {
     if (loadState !== "ready") return;
@@ -415,30 +347,12 @@ export default function MesaAmenityMapClient({
 
   if (loadState === "fallback" || !apiKey) {
     return (
-      <div className="space-y-6">
-        <div className="rounded-xl border border-slate-200 overflow-hidden bg-slate-50">
-          <div className="aspect-video w-full min-h-[320px]">
-            <iframe
-              title={`Map near ${MESA_AMENITY_MAP_CENTER.label}`}
-              src={getMesaCommunityMapsEmbedUrl()}
-              className="h-full w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-          <p className="px-4 py-3 text-sm text-slate-600">
-            Interactive amenity search requires{" "}
-            <code className="text-xs">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> in Vercel. Showing
-            community map embed plus verified nearby places.
-          </p>
-        </div>
-        {!hideStaticList && <MesaAmenityStaticList category={activeCategory} />}
-      </div>
+      <MapFallbackPanel activeCategory={activeCategory} hideStaticList={hideStaticList} />
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div ref={sectionRef} className="space-y-4">
       <div
         role="tablist"
         id={tablistId}

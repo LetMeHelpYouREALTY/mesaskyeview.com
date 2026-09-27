@@ -45,11 +45,11 @@ export default function MesaAmenityStaticList({
               <ul className="space-y-3">
                 {items.map((place) => (
                   <li
-                    key={`${catId}-${place.name}-${place.address}`}
+                    key={`${catId}-${place.name}-${place.address ?? place.sourceUrl}`}
                     className="rounded-lg border border-slate-200 bg-white p-4 text-sm"
                   >
                     <p className="font-semibold text-slate-900">{place.name}</p>
-                    <p className="text-slate-600">{place.address}</p>
+                    {place.address && <p className="text-slate-600">{place.address}</p>}
                     {place.note && <p className="text-slate-500 mt-1">{place.note}</p>}
                   </li>
                 ))}
@@ -70,16 +70,16 @@ export default function MesaAmenityStaticList({
   return (
     <section aria-labelledby="mesa-amenity-static-list">
       <h3 id="mesa-amenity-static-list" className="text-lg font-bold text-slate-900 mb-3">
-        Verified nearby — {getAmenityCategoryById(cat).label}
+        Featured places — {getAmenityCategoryById(cat).label}
       </h3>
       <ul className="space-y-3">
         {items.map((place) => (
           <li
-            key={`${place.name}-${place.address}`}
+            key={`${place.name}-${place.address ?? place.sourceUrl}`}
             className="rounded-lg border border-slate-200 bg-white p-4 text-sm"
           >
             <p className="font-semibold text-slate-900">{place.name}</p>
-            <p className="text-slate-600">{place.address}</p>
+            {place.address && <p className="text-slate-600">{place.address}</p>}
             {place.note && <p className="text-slate-500 mt-1">{place.note}</p>}
           </li>
         ))}

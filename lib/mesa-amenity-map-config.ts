@@ -33,77 +33,64 @@ export type AmenityCategoryConfig = {
   label: string;
   /** Places API (New) primary types — first match drives searchNearby. */
   primaryTypes: string[];
-  /** Legacy PlacesService type fallback (first entry used). */
-  legacyPlaceType?: string;
 };
 
-/** Family master-planned community — parks, daily errands, and healthcare before schools. */
+/** Skye Canyon daily errands — parks, grocery, and healthcare before schools. */
 export const MESA_AMENITY_CATEGORIES: AmenityCategoryConfig[] = [
   {
     id: "parks",
     label: "Parks",
     primaryTypes: ["park", "national_park"],
-    legacyPlaceType: "park",
   },
   {
     id: "grocery",
     label: "Grocery",
     primaryTypes: ["grocery_store", "supermarket"],
-    legacyPlaceType: "grocery_or_supermarket",
   },
   {
     id: "fitness",
     label: "Fitness",
     primaryTypes: ["gym", "fitness_center"],
-    legacyPlaceType: "gym",
   },
   {
     id: "healthcare",
     label: "Healthcare",
     primaryTypes: ["hospital", "doctor", "medical_clinic"],
-    legacyPlaceType: "hospital",
   },
   {
     id: "restaurants",
     label: "Restaurants",
     primaryTypes: ["restaurant"],
-    legacyPlaceType: "restaurant",
   },
   {
     id: "cafes",
     label: "Cafes",
     primaryTypes: ["cafe", "coffee_shop"],
-    legacyPlaceType: "cafe",
   },
   {
     id: "shopping",
     label: "Shopping",
     primaryTypes: ["shopping_mall", "department_store", "store"],
-    legacyPlaceType: "shopping_mall",
   },
   {
     id: "pharmacies",
     label: "Pharmacies",
     primaryTypes: ["pharmacy", "drugstore"],
-    legacyPlaceType: "pharmacy",
   },
   {
     id: "golf",
     label: "Golf",
     primaryTypes: ["golf_course"],
-    legacyPlaceType: "golf_course",
   },
   {
     id: "parking",
     label: "Parking",
     primaryTypes: ["parking", "parking_garage"],
-    legacyPlaceType: "parking",
   },
   {
     id: "schools",
     label: "Schools",
     primaryTypes: ["school", "primary_school", "secondary_school"],
-    legacyPlaceType: "school",
   },
 ];
 

@@ -103,9 +103,9 @@ export default async function NearbyAmenitiesPage() {
 
           <h2>Golf</h2>
           <p>
-            Skye Canyon is not a golf-course community; public courses such as Badlands Golf Course
-            (9119 Alta Dr) are a longer drive toward the west side of the valley for weekend
-            outings.
+            Skye Canyon is not a golf-course community; public courses such as TPC Las Vegas (9851
+            Canyon Run Dr, Summerlin) are a longer drive for weekend outings — see tpc.com/lasvegas
+            for tee times and hours.
           </p>
 
           <h2>Healthcare</h2>
@@ -138,7 +138,9 @@ export default async function NearbyAmenitiesPage() {
 
         <section className="bg-white py-16 border-t border-slate-200">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8">Verified places list</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-8">
+              Featured places near {c.name}
+            </h2>
             <MesaAmenityStaticList showAllCategories />
           </div>
         </section>

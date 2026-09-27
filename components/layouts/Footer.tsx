@@ -114,6 +114,16 @@ export default async function Footer() {
               {isMesa && (
                 <li>
                   <Link
+                    href="/nearby-amenities"
+                    className="text-slate-300 hover:text-white transition-colors text-sm"
+                  >
+                    Nearby Amenities Map
+                  </Link>
+                </li>
+              )}
+              {isMesa && (
+                <li>
+                  <Link
                     href="/area/89166/map"
                     className="text-slate-300 hover:text-white transition-colors text-sm"
                   >

@@ -17,6 +17,7 @@ import {
   getZip89166GoogleMapsSearchUrl,
   getZip89166MapsEmbedUrl,
 } from "@/lib/zip-89166-map";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -183,8 +184,15 @@ export default async function Zip89166MapPage() {
                   Skye Canyon neighborhood guide
                 </Link>
               </li>
+              <li>
+                <Link href="/nearby-amenities" className="text-blue-600 font-semibold">
+                  Nearby amenities map &amp; FAQ
+                </Link>
+              </li>
             </ul>
           </section>
+
+          <MesaNearbySection variant="compact" initialCategory="parks" />
 
           <section className="max-w-4xl mx-auto bg-blue-600 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold mb-3">Questions about the {ZIP_89166} area?</h2>

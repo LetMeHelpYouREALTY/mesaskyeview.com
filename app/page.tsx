@@ -17,6 +17,7 @@ import { siteHeroRotations } from "@/lib/site-images";
 import { getRealscoutSimpleSearchHtml } from "@/lib/realscout-config";
 import RealScoutListingsSection from "@/components/realscout/RealScoutListingsSection";
 import MesaExploreLinks from "@/components/mesaskyeview/MesaExploreLinks";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 import MesaExtractableFacts from "@/components/mesaskyeview/MesaExtractableFacts";
 import MesaHowToTour from "@/components/mesaskyeview/MesaHowToTour";
 import MesaLuxuryHero from "@/components/mesaskyeview/MesaLuxuryHero";
@@ -90,6 +91,7 @@ export default async function Home() {
         {isMesa && <MesaHowToTour />}
         {isMesa && <MesaskyeviewPhotoGallery />}
         {isMesa && <MesaExploreLinks />}
+        {isMesa && <MesaNearbySection variant="compact" />}
         {isMesa && <DrJanDuffyProfileCard config={config} showPortrait />}
 
         {/* Value Proposition */}

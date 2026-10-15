@@ -6,6 +6,7 @@ import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import { mesaZipFaqs, mesaFaqsToSchema } from "@/lib/mesa-page-faqs";
 import { MESA_EXPLORE_PAGES } from "@/lib/mesa-site-pages";
 import MesaPageShell from "@/components/mesaskyeview/MesaPageShell";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 import { getRealscoutPropertySearchUrl } from "@/lib/realscout-config";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -29,6 +30,7 @@ export default async function Zip89166HomesPage() {
   const c = mesaAtSkyeviewCommunity;
 
   return (
+    <>
     <MesaPageShell
       breadcrumbs={[
         { name: "Home", href: "/" },
@@ -68,5 +70,7 @@ export default async function Zip89166HomesPage() {
         </a>
       </p>
     </MesaPageShell>
+    <MesaNearbySection variant="compact" initialCategory="grocery" />
+    </>
   );
 }

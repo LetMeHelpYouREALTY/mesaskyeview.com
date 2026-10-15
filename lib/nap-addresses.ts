@@ -54,6 +54,12 @@ export function getMesaCommunityMapsEmbedUrl(): string {
   return mapsEmbedUrl(`${latitude},${longitude}`);
 }
 
+/** Keyless embed fallback for amenity maps (no Maps JavaScript API). */
+export function getMesaCommunityKeylessMapsEmbedUrl(): string {
+  const { latitude, longitude } = MESA_COMMUNITY_NAP;
+  return `https://www.google.com/maps?q=${latitude},${longitude}&z=14&output=embed`;
+}
+
 export function getMesaCommunityDirectionsUrl(): string {
   const { latitude, longitude } = MESA_COMMUNITY_NAP;
   return directionsUrl(`${latitude},${longitude}`);

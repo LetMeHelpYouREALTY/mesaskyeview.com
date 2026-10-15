@@ -4,6 +4,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { createPageMetadata } from "@/lib/page-metadata";
 import { mesaAtSkyeviewCommunity } from "@/lib/mesaskyeview-brand";
 import MesaPageShell from "@/components/mesaskyeview/MesaPageShell";
+import MesaNearbySection from "@/components/mesaskyeview/MesaNearbySection";
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
@@ -24,6 +25,7 @@ export default function MesaAmenitiesPage() {
   const c = mesaAtSkyeviewCommunity;
 
   return (
+    <>
     <MesaPageShell
       breadcrumbs={[
         { name: "Home", href: "/" },
@@ -33,6 +35,7 @@ export default function MesaAmenitiesPage() {
       title={`Amenities & lifestyle at ${c.name}`}
       intro={`Resort-style recreation at the community and across the ${c.masterPlan} master plan—minutes from trails toward Kyle Canyon and the Spring Mountains.`}
       showGallery
+      showMap={false}
     >
       <h2>At {c.name}</h2>
       <ul>
@@ -50,7 +53,13 @@ export default function MesaAmenitiesPage() {
         <Link href="/neighborhoods/skye-canyon" className="text-blue-600 font-semibold">
           Full Skye Canyon neighborhood guide →
         </Link>
+        {" · "}
+        <Link href="/nearby-amenities" className="text-blue-600 font-semibold">
+          Nearby amenities map &amp; FAQ →
+        </Link>
       </p>
     </MesaPageShell>
+    <MesaNearbySection variant="full" initialCategory="parks" />
+    </>
   );
 }

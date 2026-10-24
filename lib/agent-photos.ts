@@ -16,7 +16,7 @@ export const drJanDuffyPhotos = {
     src: headshotSrc,
     width: headshotMeta.width,
     height: headshotMeta.height,
-    alt: `${agentInfo.name}, ${agentInfo.title} | ${agentInfo.brokerage} — Las Vegas & Mesa at Skyeview`,
+    alt: `${agentInfo.name}, ${agentInfo.title} — Las Vegas & Mesa at Skyeview`,
   },
   portrait: {
     src: headshotSrc,

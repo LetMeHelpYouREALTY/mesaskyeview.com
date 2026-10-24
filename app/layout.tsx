@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const defaultTitle = isMesaskyeviewDomain(config)
     ? MESA_SITE_BRAND
-    : `${config.neighborhood} | Dr. Jan Duffy, REALTOR® | BHHS Nevada`;
+    : `${config.neighborhood} | Dr. Jan Duffy, REALTOR®`;
 
   const social = getDefaultSocialImageMetadata(config);
 

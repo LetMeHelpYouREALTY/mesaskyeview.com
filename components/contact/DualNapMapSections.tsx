@@ -101,8 +101,8 @@ export default function DualNapMapSections() {
       />
       <LocationBlock
         id="office"
-        heading="BHHS Nevada Properties — brokerage office"
-        subheading="Contract signings, consultations, and general meetings at the Berkshire Hathaway HomeServices Nevada Properties office."
+        heading="Dr. Jan Duffy — office"
+        subheading="Contract signings, consultations, and general meetings at Dr. Jan Duffy's office."
         napLabel="Licensed agent office (NAP in structured data / Google Business Profile)"
         street={BHHS_BROKERAGE_NAP.street}
         cityStateZip={`${BHHS_BROKERAGE_NAP.city}, ${BHHS_BROKERAGE_NAP.state} ${BHHS_BROKERAGE_NAP.zip}`}

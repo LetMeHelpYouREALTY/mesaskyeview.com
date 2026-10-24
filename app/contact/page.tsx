@@ -26,13 +26,12 @@ import CalendlyButton from "@/components/calendly/CalendlyButton";
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getPageDomainConfig();
   return createPageMetadata(config, {
-    title: `Contact Dr. Jan Duffy | ${config.neighborhood} | BHHS Nevada`,
+    title: `Contact Dr. Jan Duffy | ${config.neighborhood}`,
     description:
-      "Contact Dr. Jan Duffy at Berkshire Hathaway HomeServices Nevada Properties. Schedule an appointment, get directions, or call (702) 500-1942.",
+      "Contact Dr. Jan Duffy. Schedule an appointment, get directions, or call (702) 500-1942.",
     pathname: "/contact",
     keywords: [
       "contact real estate agent Las Vegas",
-      "Berkshire Hathaway contact",
       "Dr. Jan Duffy phone",
       `${config.neighborhood} realtor contact`,
       "schedule real estate appointment",
@@ -72,7 +71,7 @@ export default async function ContactPage() {
           <div className="text-center mb-12">
             <DrJanDuffyAvatar size={96} className="mx-auto mb-6 shadow-md ring-2 ring-amber-400/80" />
             <div className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              {isMesa ? MESA_HOME_BRAND : "Berkshire Hathaway HomeServices Nevada Properties"}
+              {isMesa ? MESA_HOME_BRAND : "Dr. Jan Duffy, REALTOR®"}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6">
               {isMesa ? `Contact Dr. Jan Duffy | ${MESA_SITE_BRAND}` : "Contact Dr. Jan Duffy"}
@@ -112,8 +111,7 @@ export default async function ContactPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Get In Touch</h2>
             <p className="text-slate-700 mb-8 text-center">
-              Expert guidance backed by <strong>Berkshire Hathaway HomeServices</strong>. Serving Las
-              Vegas since 2008 with $127M+ in closed transactions.
+              Expert guidance from a REALTOR® in real estate since 1983, with $127M+ in closed transactions.
             </p>
 
             <section
@@ -167,13 +165,12 @@ export default async function ContactPage() {
             </div>
 
             <div className="bg-slate-900 text-white rounded-xl p-6">
-              <h3 className="font-bold text-lg mb-4">Why Contact Berkshire Hathaway HomeServices?</h3>
+              <h3 className="font-bold text-lg mb-4">Why Contact Dr. Jan Duffy?</h3>
               <div className="space-y-3">
                 <div className="flex items-start">
                   <Shield className="h-5 w-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
                   <p className="text-slate-300 text-sm">
-                    <strong className="text-white">Trusted Brand:</strong> Backed by Berkshire
-                    Hathaway Inc.
+                    <strong className="text-white">Experience:</strong> In real estate since 1983.
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -183,13 +180,7 @@ export default async function ContactPage() {
                     Vegas.
                   </p>
                 </div>
-                <div className="flex items-start">
-                  <Users className="h-5 w-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <p className="text-slate-300 text-sm">
-                    <strong className="text-white">Global Network:</strong> 50,000+ agents
-                    worldwide.
-                  </p>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -253,7 +244,7 @@ export default async function ContactPage() {
             <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
               Dr. Jan Duffy provides expert real estate services throughout the Las Vegas Valley. 
               Whether you're buying, selling, or investing in any of these communities, contact us 
-              for personalized guidance backed by Berkshire Hathaway HomeServices.
+              for personalized guidance from a REALTOR® in real estate since 1983.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[

@@ -189,8 +189,7 @@ export default async function Zip89166MapPage() {
           <section className="max-w-4xl mx-auto bg-blue-600 text-white rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold mb-3">Questions about the {ZIP_89166} area?</h2>
             <p className="text-blue-100 mb-6">
-              Dr. Jan Duffy · License S.0197614.LLC · Berkshire Hathaway HomeServices Nevada
-              Properties
+              Dr. Jan Duffy, REALTOR® · In real estate since 1983
             </p>
             <a
               href={agentInfo.phoneTel}

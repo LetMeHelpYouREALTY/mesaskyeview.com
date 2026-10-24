@@ -38,7 +38,7 @@ export default function DrJanDuffyProfileCard({
           />
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-2">
-              {isMesa ? "Your Mesa at Skyeview REALTOR®" : "Berkshire Hathaway HomeServices Nevada Properties"}
+              {isMesa ? "Your Mesa at Skyeview REALTOR®" : "Your Las Vegas REALTOR®"}
             </p>
             <h2
               id="dr-jan-profile-heading"
@@ -47,12 +47,12 @@ export default function DrJanDuffyProfileCard({
               {agentInfo.name}
             </h2>
             <p className="text-blue-600 font-medium mb-4">
-              {agentInfo.title} · License {agentInfo.license}
+              Top 1% Las Vegas REALTOR® · In real estate since 1983
             </p>
             <p className="text-slate-600 mb-6 leading-relaxed">
               {isMesa
-                ? "Dr. Jan Duffy represents buyers and sellers at Mesa at Skyeview in Skye Canyon (89166)—new construction tours, contract advocacy, and MLS search with Berkshire Hathaway HomeServices Nevada Properties."
-                : "Dr. Jan Duffy has served Las Vegas and Henderson since 2008 with personalized buyer and seller representation, luxury expertise, and new construction advocacy."}
+                ? "Dr. Jan Duffy represents buyers and sellers at Mesa at Skyeview in Skye Canyon (89166)—new construction tours, contract advocacy, and MLS search."
+                : "Dr. Jan Duffy has been in real estate since 1983, serving Las Vegas and Henderson with personalized buyer and seller representation, luxury expertise, and new construction advocacy."}
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -74,8 +74,7 @@ export default function DrJanDuffyProfileCard({
               <a href={`mailto:${email}`} className="text-blue-600 hover:underline">
                 {email}
               </a>
-              {" · "}
-              {agentInfo.brokerage}
+              
             </p>
           </div>
         </div>

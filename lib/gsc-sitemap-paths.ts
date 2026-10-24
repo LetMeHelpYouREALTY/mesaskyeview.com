@@ -11,7 +11,6 @@ export const GSC_SITEMAP_PATHS: SitemapEntry[] = [
   { path: "/about", priority: 0.9, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.9, changeFrequency: "monthly" },
   { path: "/listings", priority: 0.9, changeFrequency: "daily" },
-  { path: "/why-berkshire-hathaway", priority: 0.85, changeFrequency: "monthly" },
   { path: "/market-report", priority: 0.85, changeFrequency: "weekly" },
   { path: "/market-update", priority: 0.85, changeFrequency: "weekly" },
   { path: "/market-insights", priority: 0.8, changeFrequency: "monthly" },

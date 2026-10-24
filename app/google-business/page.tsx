@@ -31,13 +31,13 @@ import {
 } from "@/lib/gbp-schema";
 
 const pageMetadataBase = {
-  title: "Dr. Jan Duffy, REALTOR® Las Vegas | Berkshire Hathaway HomeServices",
+  title: "Dr. Jan Duffy, REALTOR® Las Vegas",
   description:
-    "Dr. Jan Duffy is a trusted Las Vegas REALTOR® with Berkshire Hathaway HomeServices Nevada Properties. Specializing in Summerlin, Henderson, 55+ communities, California relocation, and luxury homes. Call (702) 500-1942.",
+    "Dr. Jan Duffy is a trusted Las Vegas REALTOR®. Specializing in Summerlin, Henderson, 55+ communities, California relocation, and luxury homes. Call (702) 500-1942.",
   keywords: [
     "Dr. Jan Duffy realtor",
     "Las Vegas real estate agent",
-    "Berkshire Hathaway HomeServices Las Vegas",
+    "Las Vegas real estate",
     "Summerlin realtor",
     "Henderson real estate agent",
     "55+ communities Las Vegas",
@@ -45,7 +45,7 @@ const pageMetadataBase = {
   ],
   openGraph: {
     title: businessInfo.name,
-    description: "Trusted Las Vegas REALTOR® serving since 2008. Summerlin, Henderson, luxury homes, 55+ communities.",
+    description: "Trusted Las Vegas REALTOR® in real estate since 1983. Summerlin, Henderson, luxury homes, 55+ communities.",
     url: "https://heyberkshire.com/google-business",
     type: "profile",
   },
@@ -80,15 +80,15 @@ export default async function GoogleBusinessPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <Award className="h-6 w-6 text-yellow-400" />
-                    <span className="text-yellow-400 font-semibold">Berkshire Hathaway HomeServices</span>
+                    <span className="text-yellow-400 font-semibold">Dr. Jan Duffy, REALTOR®</span>
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    {businessInfo.name}
+                                    <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                    Dr. Jan Duffy
                   </h1>
                   {isMesa ? (
                     <p className="text-lg text-blue-200 mb-4">{MESA_SITE_BRAND}</p>
                   ) : null}
-                  <p className="text-xl text-blue-200 mb-2">REALTOR® | License {businessInfo.license}</p>
+                  <p className="text-xl text-blue-200 mb-2">REALTOR® | In real estate since 1983</p>
                   
                   {/* NAP - Exact match to GBP */}
                   <div className="space-y-3">

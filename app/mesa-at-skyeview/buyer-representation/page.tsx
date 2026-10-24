@@ -49,8 +49,7 @@ export default function MesaBuyerRepresentationPage() {
           negotiates upgrades where possible, and tracks build timelines.
         </li>
         <li>
-          <strong>Close with confidence.</strong> Inspections, lender coordination, and closing
-          support through Berkshire Hathaway HomeServices Nevada Properties.
+          <strong>Close with confidence.</strong> Inspections, lender coordination, and closing support from Dr. Jan Duffy.
         </li>
       </ol>
       <p>

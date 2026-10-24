@@ -13,7 +13,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { applyMesaskyeviewToMetadata } from "@/lib/domain-metadata";
 
 const pageMetadataBase = {
-  title: "Del Webb at Lake Las Vegas Homes | Berkshire Hathaway HomeServices",
+  title: "Del Webb at Lake Las Vegas Homes | Dr. Jan Duffy",
   description:
     "Lakefront 55+ living at Del Webb Lake Las Vegas. Homes from $400K-$900K. Resort amenities, stunning lake and mountain views. Dr. Jan Duffy. Call (702) 500-1942.",
   keywords: [
@@ -21,7 +21,6 @@ const pageMetadataBase = {
     "Lake Las Vegas 55 plus",
     "Del Webb homes Henderson",
     "lakefront retirement community",
-    "Berkshire Hathaway Del Webb",
   ],
 };
 
@@ -111,8 +110,7 @@ export default function DelWebbLakeLasVegasPage() {
                 lifestyle activities.
               </p>
               <p>
-                <strong>Berkshire Hathaway HomeServices Nevada Properties</strong> helps buyers
-                navigate Del Webb's various floor plans and lot positions. Dr. Jan Duffy provides
+                Dr. Jan Duffy helps buyers navigate Del Webb's various floor plans and lot positions and provides
                 guidance on which phases offer the best value and which premium lots justify
                 their price premiums.
               </p>
@@ -255,12 +253,11 @@ export default function DelWebbLakeLasVegasPage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Del Webb at Lake Las Vegas offers something no other 55+ community can—lakefront
                 living in the desert. The homes are modern, the setting is spectacular, and the
-                Del Webb programming creates instant community. As a{" "}
-                <strong>Berkshire Hathaway HomeServices</strong> agent, I help buyers understand
+                Del Webb programming creates instant community. As a REALTOR® in real estate since 1983, I help buyers understand
                 which lots offer the best views and which floor plans work for their lifestyle."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
-                — Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties
+                — Dr. Jan Duffy, REALTOR®
               </cite>
             </div>
           </section>

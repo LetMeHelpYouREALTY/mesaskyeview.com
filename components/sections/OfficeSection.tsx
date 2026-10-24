@@ -90,7 +90,7 @@ export default async function OfficeSection() {
             </div>
 
             <p className="text-sm text-slate-600">
-              License {agentInfo.license} · {agentInfo.brokerage}
+              In real estate since 1983
             </p>
           </div>
 

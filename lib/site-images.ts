@@ -42,7 +42,7 @@ export const cloudflareImages = {
   agent: {
     drJanHeadshot: {
       src: "/Image/agent1.png",
-      alt: "Dr. Jan Duffy, REALTOR® | Berkshire Hathaway HomeServices Nevada Properties",
+      alt: "Dr. Jan Duffy, REALTOR®",
       width: 512,
       height: 512,
     },
@@ -111,7 +111,7 @@ export const pageBannerByPrefix: { prefix: string; image: SiteImageAsset }[] = [
   { prefix: "/market", image: mesaGeneratedHeroes.neighborhood },
   { prefix: "/services", image: mesaGeneratedHeroes.community },
   { prefix: "/google-business", image: cloudflareImages.agent.drJanHeadshot },
-  { prefix: "/why-berkshire", image: mesaGeneratedHeroes.skyeVista },
+  
   { prefix: "/faq", image: mesaGeneratedHeroes.interior },
   { prefix: "/about", image: mesaGeneratedHeroes.community },
   { prefix: "/contact", image: mesaGeneratedHeroes.buyers },

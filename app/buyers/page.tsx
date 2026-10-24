@@ -23,13 +23,12 @@ import MetroHeroBadge from "@/components/mesaskyeview/MetroHeroBadge";
 import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 
 const pageMetadataBase = {
-  title: "Home Buying Guide Las Vegas | Berkshire Hathaway HomeServices",
+  title: "Home Buying Guide Las Vegas | Dr. Jan Duffy",
   description:
-    "Looking to buy a home in Las Vegas? Dr. Jan Duffy with Berkshire Hathaway HomeServices Nevada Properties guides you through every step. Free buyer consultation. Call (702) 500-1942.",
+    "Looking to buy a home in Las Vegas? Dr. Jan Duffy, in real estate since 1983, guides you through every step. Free buyer consultation. Call (702) 500-1942.",
   keywords: [
     "buy home Las Vegas",
     "Las Vegas home buyer",
-    "Berkshire Hathaway buyer agent",
     "Henderson homes for sale",
     "first time home buyer Las Vegas",
     "California relocation Las Vegas",
@@ -116,8 +115,7 @@ export default function BuyersPage() {
               Buy Your Las Vegas Home with Confidence
             </h1>
             <p className="text-xl text-slate-600 mb-8">
-              When you work with a <strong>Berkshire Hathaway HomeServices</strong> buyer's agent,
-              you're backed by the most trusted name in real estate—and it costs you nothing.
+              When you work with Dr. Jan Duffy as your buyer's agent, you get representation from a REALTOR® in real estate since 1983—and it costs you nothing.
               The seller pays the commission, but the representation is yours.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-500">
@@ -135,7 +133,7 @@ export default function BuyersPage() {
                 <p className="text-slate-300 mb-6">
                   Here's what many buyers don't know: having your own agent costs you nothing. The
                   seller pays the commission, but the representation is yours.{" "}
-                  <strong>Berkshire Hathaway HomeServices</strong> agents protect your interests,
+                  Dr. Jan Duffy protects your interests,
                   not the seller's. In a competitive market like Las Vegas, having expert 
                   representation can mean the difference between winning your dream home and losing out.
                 </p>
@@ -146,7 +144,7 @@ export default function BuyersPage() {
                     "Contract and disclosure review",
                     "Inspection coordination and repair negotiation",
                     "Lender and service provider referrals",
-                    "Local market expertise since 2008",
+                    "In real estate since 1983",
                   ].map((item) => (
                     <li key={item} className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-400 mr-2 flex-shrink-0" />
@@ -163,7 +161,7 @@ export default function BuyersPage() {
                   transaction—from the first showing to the closing table and beyond.
                 </p>
                 <div className="text-sm text-slate-500">
-                  Serving Las Vegas since 2008 | $127M+ in transactions
+                  In real estate since 1983 | $127M+ in transactions
                 </div>
               </div>
             </div>
@@ -178,7 +176,7 @@ export default function BuyersPage() {
               Buying a home is one of the most significant financial decisions you'll make. 
               Understanding the process helps reduce stress and ensures you're prepared at each 
               step. Here's what to expect when purchasing a home in Las Vegas with Dr. Jan Duffy 
-              and Berkshire Hathaway HomeServices.
+              .
             </p>
             <div className="space-y-6">
               {buyingSteps.map((step, index) => {
@@ -300,43 +298,22 @@ export default function BuyersPage() {
             </div>
           </section>
 
-          {/* Why BHHS */}
+          {/* Why Dr. Jan */}
           <section className="mb-16 max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">
-              Why Buy with Berkshire Hathaway HomeServices
+              Why Buy with Dr. Jan Duffy
             </h2>
             <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
-              Not all real estate agents are created equal. When you choose a Berkshire Hathaway 
-              HomeServices agent, you're choosing the only real estate brand backed by Warren 
-              Buffett's Berkshire Hathaway Inc.—a name synonymous with trust, ethical standards, 
-              and financial strength.
+              Not all real estate agents are created equal. When you choose Dr. Jan Duffy, you're choosing a REALTOR® in real estate since 1983 who puts trust and ethical standards first.
             </p>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Award className="h-7 w-7 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2">Trusted Brand</h3>
-                <p className="text-slate-600 text-sm">
-                  The only real estate brand backed by Berkshire Hathaway Inc.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-7 w-7 text-blue-600" />
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2">Global Network</h3>
-                <p className="text-slate-600 text-sm">
-                  50,000+ agents worldwide for seamless relocations and referrals
-                </p>
-              </div>
+            <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center">
                 <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
                   <MapPin className="h-7 w-7 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Local Expertise</h3>
                 <p className="text-slate-600 text-sm">
-                  Dr. Jan has served Las Vegas since 2008 with $127M+ in transactions
+                  Dr. Jan has been in real estate since 1983, with $127M+ in transactions
                 </p>
               </div>
               <div className="text-center">
@@ -357,11 +334,11 @@ export default function BuyersPage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "My job isn't just to show you houses—it's to make sure you don't overpay, that you
                 understand what you're buying, and that you're protected through every step of the
-                transaction. That's what Berkshire Hathaway HomeServices representation means. I treat 
+                transaction. That's what real representation means. I treat 
                 every client like family and won't stop until we find the right home for your needs."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
-                — Dr. Jan Duffy, BHHS Nevada Properties | Serving Las Vegas Since 2008
+                — Dr. Jan Duffy, REALTOR® | In Real Estate Since 1983
               </cite>
             </div>
           </section>
@@ -416,12 +393,12 @@ export default function BuyersPage() {
                   a: "Yes! Pre-approval shows sellers you're serious and gives you a clear budget. In competitive situations, pre-approved buyers have a significant advantage. The process typically takes 1-3 days with proper documentation.",
                 },
                 {
-                  q: "Does BHHS help with new construction purchases?",
+                  q: "Does Dr. Jan help with new construction purchases?",
                   a: "Yes! Dr. Jan provides free representation for new construction—including Homes by Dr. Jan Duffy at Mesa at Skyeview in Skye Canyon and builders such as Toll Brothers and Lennar. The builder pays her commission, but she works for you—reviewing contracts, negotiating upgrades, and protecting your interests during the build process.",
                 },
                 {
                   q: "What if I'm relocating from another state?",
-                  a: "Berkshire Hathaway's global network of 50,000+ agents makes relocations seamless. Dr. Jan can coordinate with agents in your current city while helping you find the perfect Las Vegas home remotely through virtual tours and video calls.",
+                  a: "Dr. Jan can coordinate with agents in your current city while helping you find the perfect Las Vegas home remotely through virtual tours and video calls.",
                 },
                 {
                   q: "How competitive is the Las Vegas housing market?",
@@ -445,7 +422,7 @@ export default function BuyersPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Find Your Las Vegas Home?</h2>
             <p className="text-xl text-slate-300 mb-8">
               Questions about buying in Las Vegas? Call or text Dr. Jan Duffy for a free buyer
-              consultation. Get expert guidance backed by Berkshire Hathaway HomeServices—the 
+              consultation. Get expert guidance from a REALTOR® in real estate since 1983—the 
               seller pays the commission, so representation is free for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -463,9 +440,6 @@ export default function BuyersPage() {
                 Schedule Consultation
               </Link>
             </div>
-            <p className="mt-4 text-slate-400 text-sm">
-              Berkshire Hathaway HomeServices Nevada Properties
-            </p>
           </section>
         </div>
 

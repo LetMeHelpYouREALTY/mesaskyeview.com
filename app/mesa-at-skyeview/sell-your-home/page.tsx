@@ -32,7 +32,7 @@ export default function MesaSellYourHomePage() {
         { name: "Sell your home" },
       ]}
       title={`Sell your home in ${c.zip}`}
-      intro={`Hyperlocal comps, Skye Canyon buyer demand, and Berkshire Hathaway HomeServices marketing for ${c.name} and neighboring villages.`}
+      intro={`Hyperlocal comps, Skye Canyon buyer demand, and professional marketing for ${c.name} and neighboring villages.`}
       faqSchema={mesaFaqsToSchema(mesaSellerFaqs)}
     >
       <ul>
@@ -43,8 +43,7 @@ export default function MesaSellYourHomePage() {
           <strong>Pre-list prep</strong>—staging guidance and upgrade ROI for resale in Skye Canyon.
         </li>
         <li>
-          <strong>MLS & digital exposure</strong> through BHHS Nevada Properties and Dr. Jan&apos;s
-          buyer network.
+          <strong>MLS & digital exposure</strong> through the MLS and Dr. Jan&apos;s buyer network.
         </li>
         <li>
           <strong>Offer negotiation</strong> from list to close, including appraisal and inspection

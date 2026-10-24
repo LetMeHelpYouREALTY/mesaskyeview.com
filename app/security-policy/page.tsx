@@ -246,9 +246,6 @@ export default function SecurityPolicyPage() {
                 <strong>Dr. Jan Duffy</strong>
               </p>
               <p className="mb-2">
-                Berkshire Hathaway HomeServices Nevada Properties
-              </p>
-              <p className="mb-2">
                 Email:{' '}
                 <a href="mailto:info@heyberkshire.com" className="text-blue-600 underline">
                   info@heyberkshire.com

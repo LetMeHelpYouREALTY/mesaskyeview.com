@@ -55,7 +55,7 @@ export default function DrJanDuffyPhoto({
         />
       )}
       <figcaption className="sr-only">
-        {agentInfo.name}, {agentInfo.title}, License {agentInfo.license}
+        {agentInfo.name}, {agentInfo.title}
       </figcaption>
     </figure>
   );

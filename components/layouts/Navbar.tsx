@@ -68,7 +68,7 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
           <Link
             href="/"
             className="flex items-center gap-2.5 max-w-[min(100%,22rem)] lg:max-w-lg"
-            aria-label={isMesa ? "Mesa at Skyeview home — Homes by Dr. Jan Duffy" : "Berkshire Hathaway HomeServices Nevada Properties home"}
+            aria-label={isMesa ? "Mesa at Skyeview home — Homes by Dr. Jan Duffy" : "Dr. Jan Duffy, REALTOR® home"}
           >
             <Image
               src={drJanDuffyPhotos.headshot.src}
@@ -90,10 +90,10 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
             ) : (
               <span className="flex flex-col min-w-0">
                 <span className="text-lg md:text-xl lg:text-2xl font-bold text-slate-900 hover:text-blue-600 transition-colors leading-tight">
-                  Berkshire Hathaway
-                  <span className="text-blue-600"> HomeServices</span>
+                                    Dr. Jan Duffy
+                  <span className="text-blue-600"> REALTOR®</span>
                 </span>
-                <span className="text-xs text-slate-500 hidden sm:block">Nevada Properties</span>
+                <span className="text-xs text-slate-500 hidden sm:block">Las Vegas Real Estate</span>
               </span>
             )}
           </Link>

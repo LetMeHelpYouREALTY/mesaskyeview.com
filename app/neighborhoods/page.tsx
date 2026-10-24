@@ -7,9 +7,9 @@ import { isMesaskyeviewDomain, mesaAtSkyeviewCommunity } from "@/lib/mesaskyevie
 import MetroHeroBadge from "@/components/mesaskyeview/MetroHeroBadge";
 
 const pageMetadataBase = {
-  title: "Las Vegas Neighborhoods | Berkshire Hathaway HomeServices",
+  title: "Las Vegas Neighborhoods | Dr. Jan Duffy",
   description:
-    "Explore Las Vegas and Henderson neighborhoods with Dr. Jan Duffy at Berkshire Hathaway HomeServices Nevada Properties. Summerlin, Henderson, The Ridges, Southern Highlands & more.",
+    "Explore Las Vegas and Henderson neighborhoods with Dr. Jan Duffy. Summerlin, Henderson, The Ridges, Southern Highlands & more.",
   keywords: [
     "Las Vegas neighborhoods",
     "Henderson communities",
@@ -154,8 +154,7 @@ export default async function NeighborhoodsPage() {
               Las Vegas & Henderson Neighborhoods
             </h1>
             <p className="text-xl text-slate-600">
-              Explore the best communities in Southern Nevada with Dr. Jan Duffy, your{" "}
-              <strong>Berkshire Hathaway HomeServices</strong> neighborhood expert
+              Explore the best communities in Southern Nevada with Dr. Jan Duffy, your neighborhood expert, in real estate since 1983
             </p>
           </div>
 
@@ -203,11 +202,10 @@ export default async function NeighborhoodsPage() {
                 "Every Las Vegas neighborhood has its own personality. Whether you want the
                 family-friendly parks of Summerlin, the established charm of Green Valley, or the
                 luxury of The Ridges, I'll help you find the community that matches your lifestyle.
-                That's the Berkshire Hathaway HomeServices difference—personalized guidance backed
-                by local expertise."
+                That's the difference—personalized guidance backed by local expertise."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
-                — Dr. Jan Duffy, BHHS Nevada Properties
+                — Dr. Jan Duffy, REALTOR®
               </cite>
             </div>
           </section>
@@ -256,9 +254,6 @@ export default async function NeighborhoodsPage() {
               <Phone className="h-5 w-5 mr-2" />
               Call (702) 500-1942
             </a>
-            <p className="mt-4 text-blue-200 text-sm">
-              Berkshire Hathaway HomeServices Nevada Properties
-            </p>
           </section>
         </div>
 

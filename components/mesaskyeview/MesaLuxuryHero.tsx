@@ -19,7 +19,7 @@ export default function MesaLuxuryHero({ config }: MesaLuxuryHeroProps) {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
             <p className="text-[11px] tracking-[0.28em] uppercase text-amber-200/90 mb-5">
-              {config.ctaBadge || "Berkshire Hathaway HomeServices"}
+              {config.ctaBadge || "Homes by Dr. Jan Duffy"}
             </p>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.35rem] font-semibold leading-[1.12] mb-5">
               {config.heroHeadline}
@@ -47,8 +47,8 @@ export default function MesaLuxuryHero({ config }: MesaLuxuryHeroProps) {
               <span>
                 <span className="text-white font-medium">New + resale</span> Mesa at Skyeview
               </span>
-              <span>
-                <span className="text-white font-medium">BHHS</span> Nevada Properties
+                            <span>
+                <span className="text-white font-medium">Since 1983</span> In real estate
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function MesaLuxuryHero({ config }: MesaLuxuryHeroProps) {
               <figcaption className="mt-4">
                 <p className="font-display text-xl text-white">{agentInfo.name}</p>
                 <p className="text-sm text-amber-100/90 mt-1">
-                  {agentInfo.title} · License {agentInfo.license}
+                  {agentInfo.title} · In real estate since 1983
                 </p>
                 <p className="mt-3 inline-flex items-center gap-2 text-sm text-white/85">
                   <Phone className="h-4 w-4 text-amber-300" aria-hidden />

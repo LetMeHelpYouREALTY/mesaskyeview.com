@@ -31,12 +31,12 @@ export default async function Footer() {
           <div>
             <DrJanDuffyAvatar size={80} className="mb-4" />
             <h3 className="font-bold text-xl mb-4">
-              {isMesa ? "Mesa at Skyeview" : "Berkshire Hathaway HomeServices"}
+              {isMesa ? "Mesa at Skyeview" : "Dr. Jan Duffy, REALTOR®"}
             </h3>
             <p className="text-slate-300 mb-4 text-sm">
               {isMesa
-                ? `${MESA_SITE_BRAND} — Dr. Jan Duffy, REALTOR® with Berkshire Hathaway HomeServices Nevada Properties. Buyer and seller services in Skye Canyon (89166).`
-                : "Nevada Properties - Your trusted real estate partner in Las Vegas, Henderson, and Summerlin. Backed by Warren Buffett's legacy of trust."}
+                ? `${MESA_SITE_BRAND} — Dr. Jan Duffy, REALTOR®, in real estate since 1983. Buyer and seller services in Skye Canyon (89166).`
+                : "Your trusted real estate partner in Las Vegas, Henderson, and Summerlin, in real estate since 1983."}
             </p>
             <div className="flex space-x-4">
               <a
@@ -121,14 +121,6 @@ export default async function Footer() {
                   </Link>
                 </li>
               )}
-              <li>
-                <Link
-                  href="/why-berkshire-hathaway"
-                  className="text-slate-300 hover:text-white transition-colors text-sm"
-                >
-                  Why BHHS
-                </Link>
-              </li>
               <li>
                 <Link
                   href="/market-report"
@@ -277,8 +269,7 @@ export default async function Footer() {
         <div className="border-t border-slate-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-300 text-sm text-center md:text-left">
-              © {currentYear} Berkshire Hathaway HomeServices Nevada Properties. All Rights
-              Reserved.
+              © {currentYear} Dr. Jan Duffy, REALTOR®. All Rights Reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <Link href="/faq" className="text-slate-300 hover:text-white transition-colors">
@@ -290,12 +281,7 @@ export default async function Footer() {
             </div>
           </div>
           <p className="text-slate-300 text-xs mt-4 text-center">
-            Dr. Jan Duffy, REALTOR® | License S.0197614.LLC | Berkshire Hathaway HomeServices Nevada
-            Properties
-          </p>
-          <p className="text-slate-300 text-xs mt-2 text-center max-w-3xl mx-auto">
-            When you work with a Berkshire Hathaway HomeServices agent, you're backed by a name
-            synonymous with trust, ethical standards, and financial strength.
+            Berkshire Hathaway HomeServices Nevada Properties since September 2008 · License S.0197614.LLC
           </p>
         </div>
       </div>

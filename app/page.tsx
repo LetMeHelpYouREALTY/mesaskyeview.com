@@ -76,8 +76,8 @@ export default async function Home() {
                     <span>Clients served</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">Since 2008</span>
-                    <span>Las Vegas</span>
+                    <span className="font-semibold text-white">Since 1983</span>
+                    <span>In real estate</span>
                   </div>
             </div>
           </div>
@@ -101,15 +101,16 @@ export default async function Home() {
               </h2>
               <p className="text-lg text-slate-700 aeo-lead-answer">
                 {isMesa
-                  ? "Realtor representation for Mesa at Skyeview and Skye Canyon—buying, selling, and new construction advocacy with Dr. Jan Duffy, Berkshire Hathaway HomeServices Nevada Properties."
-                  : "Berkshire Hathaway HomeServices Nevada Properties — the most trusted name in Las Vegas real estate."}
+                  ? "Realtor representation for Mesa at Skyeview and Skye Canyon—buying, selling, and new construction advocacy with Dr. Jan Duffy."
+                  : "A Las Vegas REALTOR® in real estate since 1983."}
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
-                { icon: Shield, title: "Trusted Brand", desc: "Backed by Warren Buffett's Berkshire Hathaway — unmatched integrity" },
-                { icon: Users, title: "50K+ Network", desc: "Global referral network for seamless moves to or from any market" },
-                { icon: TrendingUp, title: "$127M+ Sold", desc: "Proven results across every Las Vegas neighborhood since 2008" },
+                { icon: Shield, title: "Since 1983", desc: "In real estate since 1983 — experience you can trust" },
+
+                
+                { icon: TrendingUp, title: "$127M+ Sold", desc: "Proven results across every Las Vegas neighborhood" },
                 { icon: HomeIcon, title: "Full Service", desc: "Buying, selling, 55+, luxury, investment — one expert handles it all" },
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="text-center p-6">
@@ -211,9 +212,7 @@ export default async function Home() {
                 Schedule a tour
               </Link>
             </div>
-            <p className="mt-6 text-blue-200 text-sm">
-              Dr. Jan Duffy | License S.0197614.LLC | Berkshire Hathaway HomeServices Nevada Properties
-            </p>
+            
           </div>
         </section>
       </main>

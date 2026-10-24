@@ -112,6 +112,6 @@ export function localizeDescriptionForMesa(description: string, config: DomainCo
     .replace(/homes@heyberkshire\.com/gi, config.contactEmail ?? "DrDuffySells@MesaSkyeview.com")
     .replace(
       /Berkshire Hathaway HomeServices Nevada Properties/gi,
-      `${MESA_HOME_BRAND} with Dr. Jan Duffy, REALTOR® | BHHS Nevada Properties`
+      `${MESA_HOME_BRAND} with Dr. Jan Duffy, REALTOR®`
     );
 }

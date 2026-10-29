@@ -144,7 +144,7 @@ export default function CentennialHillsPage() {
                 Hills' urban conveniences would suggest.
               </p>
               <p>
-                Dr. Jan Duffy, in real estate since 1983, knows
+                Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, knows
                 which streets offer the best mountain views, which school zones are most sought-after,
                 and which HOAs maintain their communities to the highest standards. This deep local knowledge ensures Centennial
                 Hills buyers and sellers receive exceptional representation.
@@ -311,7 +311,7 @@ export default function CentennialHillsPage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Centennial Hills offers something newer communities are still building: a genuine
                 sense of community. The schools have track records, the neighbors have history, and
-                the landscaping is mature. As a REALTOR® in real estate since 1983, I help families
+                the landscaping is mature. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I help families
                 see beyond the shiny new construction to communities that have proven their value
                 over time."
               </blockquote>

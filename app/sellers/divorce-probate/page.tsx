@@ -462,7 +462,7 @@ export default function DivorceProbatePage() {
                 <Shield className="h-10 w-10 text-blue-600 mx-auto mb-4" />
                 <h3 className="font-bold text-slate-900 mb-2">Credibility & Trust</h3>
                 <p className="text-slate-600 text-sm">
-                  In real estate since 1983, Dr. Jan provides valuations and processes that attorneys, judges, and opposing parties can rely on.
+                  Licensed since 2008 · 35 years in Las Vegas, Dr. Jan provides valuations and processes that attorneys, judges, and opposing parties can rely on.
                 </p>
               </div>
               <div className="bg-white border border-slate-200 rounded-xl p-6 text-center">

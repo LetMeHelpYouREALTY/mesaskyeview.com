@@ -45,7 +45,7 @@ const pageMetadataBase = {
   ],
   openGraph: {
     title: businessInfo.name,
-    description: "Trusted Las Vegas REALTOR® in real estate since 1983. Summerlin, Henderson, luxury homes, 55+ communities.",
+    description: "Trusted Las Vegas REALTOR® licensed since 2008 · 35 years in Las Vegas. Summerlin, Henderson, luxury homes, 55+ communities.",
     url: "https://heyberkshire.com/google-business",
     type: "profile",
   },
@@ -88,7 +88,7 @@ export default async function GoogleBusinessPage() {
                   {isMesa ? (
                     <p className="text-lg text-blue-200 mb-4">{MESA_SITE_BRAND}</p>
                   ) : null}
-                  <p className="text-xl text-blue-200 mb-2">REALTOR® | In real estate since 1983</p>
+                  <p className="text-xl text-blue-200 mb-2">REALTOR® | Licensed since 2008 · 35 years in Las Vegas</p>
                   
                   {/* NAP - Exact match to GBP */}
                   <div className="space-y-3">

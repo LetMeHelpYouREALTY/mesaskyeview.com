@@ -247,7 +247,7 @@ export default async function ListingsPage() {
             <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
               Each Las Vegas neighborhood offers a unique lifestyle, from the resort-style living 
               of Summerlin to the communities of Henderson. Understanding these 
-              differences is crucial to finding a home that fits your needs. As a REALTOR® in real estate since 1983, Dr. Jan Duffy provides 
+              differences is crucial to finding a home that fits your needs. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, Dr. Jan Duffy provides 
               expert guidance on which neighborhoods match your priorities—whether that's schools, 
               commute times, amenities, or investment potential.
             </p>
@@ -283,7 +283,7 @@ export default async function ListingsPage() {
             </h2>
             <p className="text-slate-300 text-center max-w-3xl mx-auto mb-8">
               In today's competitive Las Vegas market, having expert representation can mean the 
-              difference between winning your dream home and losing out. Dr. Jan Duffy brings deep local market knowledge from a career in real estate since 1983.
+              difference between winning your dream home and losing out. Dr. Jan Duffy brings deep local market knowledge from a career licensed since 2008 · 35 years in Las Vegas.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
@@ -496,7 +496,7 @@ export default async function ListingsPage() {
             </h2>
             <p className="text-xl text-blue-100 mb-8">
               Contact Dr. Jan Duffy for personalized guidance, off-market listings, and expert 
-              representation from a REALTOR® in real estate since 1983. Free buyer consultations 
+              representation from a REALTOR® licensed since 2008 · 35 years in Las Vegas. Free buyer consultations 
               available—the seller pays the commission.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

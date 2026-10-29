@@ -144,7 +144,7 @@ export default function GreenValleyPage() {
                 develops over generations.
               </p>
               <p>
-                Dr. Jan Duffy, in real estate since 1983, knows which streets offer the best
+                Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, knows which streets offer the best
                 mountain views, which school zones are most sought-after, and which HOAs maintain their
                 communities to the highest standards. This local knowledge gives Green Valley buyers and sellers a distinct advantage.
               </p>

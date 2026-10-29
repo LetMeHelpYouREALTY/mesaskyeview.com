@@ -313,7 +313,7 @@ export default function NorthLasVegasPage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "I tell first-time buyers the truth: you don't need to stretch your budget to own a
                 great home. North Las Vegas offers brand-new construction with modern features at
-                prices that let you build wealth instead of struggling with payments. As a REALTOR® in real estate since 1983, my job is to find the right fit—not the highest price."
+                prices that let you build wealth instead of struggling with payments. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, my job is to find the right fit—not the highest price."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
                 — Dr. Jan Duffy, REALTOR®

@@ -117,7 +117,7 @@ export default async function MesaPageShell({
             <h2 className="text-2xl font-bold mb-3">Work with Dr. Jan Duffy</h2>
             <p className="text-blue-100 mb-6">
               Buyer and seller representation for {mesaAtSkyeviewCommunity.name} and Skye Canyon (
-              {mesaAtSkyeviewCommunity.zip}), from a REALTOR® in real estate since 1983.
+              {mesaAtSkyeviewCommunity.zip}), from a REALTOR® licensed since 2008 · 35 years in Las Vegas.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

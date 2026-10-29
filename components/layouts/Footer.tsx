@@ -35,8 +35,8 @@ export default async function Footer() {
             </h3>
             <p className="text-slate-300 mb-4 text-sm">
               {isMesa
-                ? `${MESA_SITE_BRAND} — Dr. Jan Duffy, REALTOR®, in real estate since 1983. Buyer and seller services in Skye Canyon (89166).`
-                : "Your trusted real estate partner in Las Vegas, Henderson, and Summerlin, in real estate since 1983."}
+                ? `${MESA_SITE_BRAND} — Dr. Jan Duffy, REALTOR®, licensed since 2008 · 35 years in Las Vegas. Buyer and seller services in Skye Canyon (89166).`
+                : "Your trusted real estate partner in Las Vegas, Henderson, and Summerlin, licensed since 2008 · 35 years in Las Vegas."}
             </p>
             <div className="flex space-x-4">
               <a

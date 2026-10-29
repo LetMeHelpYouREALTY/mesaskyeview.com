@@ -453,7 +453,7 @@ export default function CaliforniaRelocatorPage() {
                 "I've helped hundreds of California families make the move to Las Vegas. The most
                 common reaction? 'Why didn't we do this sooner?' Between the tax savings, the space,
                 and the lifestyle, most clients can't believe what their California equity buys here.
-                As a REALTOR® in real estate since 1983, I coordinate with our
+                As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I coordinate with our
                 California offices to make the transition seamless—you don't have to figure this
                 out alone."
               </blockquote>

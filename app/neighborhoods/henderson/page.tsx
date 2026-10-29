@@ -75,7 +75,7 @@ const faqSchema = {
       name: "Why choose Dr. Jan Duffy for Henderson real estate?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Dr. Jan Duffy has been in real estate since 1983 and knows every Henderson community, school district, and HOA, which benefits both buyers and sellers.",
+        text: "Dr. Jan Duffy has been licensed since 2008, with 35 years in Las Vegas, and knows every Henderson community, school district, and HOA, which benefits both buyers and sellers.",
       },
     },
   ],
@@ -144,7 +144,7 @@ export default function HendersonPage() {
               <p>
                 <strong>Henderson</strong> has quietly become one of the most desirable cities in the American
                 Southwest. As Nevada's second-largest city with over 320,000 residents, Henderson offers the
-                perfect balance of suburban tranquility and urban convenience. Dr. Jan Duffy, in real estate since 1983, brings unmatched expertise to every transaction.
+                perfect balance of suburban tranquility and urban convenience. Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, brings unmatched expertise to every transaction.
               </p>
               <p>
                 What sets Henderson apart? Start with safety. Henderson consistently ranks as one of America's
@@ -318,7 +318,7 @@ export default function HendersonPage() {
             <div className="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-8">
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Henderson offers something for everyone—condos, single-story homes, and 4+ bedroom floor plans.
-                As a REALTOR® in real estate since 1983, I help clients cut through the options and find
+                As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I help clients cut through the options and find
                 the community that fits their lifestyle. There's a reason Henderson keeps winning 'Best Places
                 to Live' awards."
               </blockquote>
@@ -369,7 +369,7 @@ export default function HendersonPage() {
                   Why choose Dr. Jan Duffy for Henderson real estate?
                 </h3>
                 <p className="text-slate-600">
-                  Dr. Jan Duffy has been in real estate since 1983 and knows every Henderson community, school district, and HOA, which benefits both buyers and sellers.
+                  Dr. Jan Duffy has been licensed since 2008, with 35 years in Las Vegas, and knows every Henderson community, school district, and HOA, which benefits both buyers and sellers.
                 </p>
               </div>
             </div>

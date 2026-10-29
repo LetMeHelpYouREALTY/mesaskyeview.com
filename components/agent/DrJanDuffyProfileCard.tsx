@@ -47,12 +47,12 @@ export default function DrJanDuffyProfileCard({
               {agentInfo.name}
             </h2>
             <p className="text-blue-600 font-medium mb-4">
-              Top 1% Las Vegas REALTOR® · In real estate since 1983
+              Las Vegas REALTOR® · Licensed since 2008 · 35 years in Las Vegas
             </p>
             <p className="text-slate-600 mb-6 leading-relaxed">
               {isMesa
                 ? "Dr. Jan Duffy represents buyers and sellers at Mesa at Skyeview in Skye Canyon (89166)—new construction tours, contract advocacy, and MLS search."
-                : "Dr. Jan Duffy has been in real estate since 1983, serving Las Vegas and Henderson with personalized buyer and seller representation, luxury expertise, and new construction advocacy."}
+                : "Dr. Jan Duffy has been licensed since 2008 · 35 years in Las Vegas, serving Las Vegas and Henderson with personalized buyer and seller representation, luxury expertise, and new construction advocacy."}
             </p>
             <div className="flex flex-wrap gap-3">
               <a

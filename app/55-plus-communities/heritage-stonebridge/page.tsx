@@ -379,7 +379,7 @@ export default function HeritageAtStonebridgePage() {
                 "Heritage at Stonebridge attracts buyers who want exclusivity and
                 privacy without the sprawl of larger 55+ communities. The
                 guard-gated security is genuine—not just a code anyone can get.
-                And the location in Summerlin is simply unbeatable. As a REALTOR® in real estate since 1983, I help
+                And the location in Summerlin is simply unbeatable. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I help
                 buyers who prioritize quality over quantity find their perfect
                 fit here."
               </blockquote>

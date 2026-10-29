@@ -48,7 +48,7 @@ export default function MesaLuxuryHero({ config }: MesaLuxuryHeroProps) {
                 <span className="text-white font-medium">New + resale</span> Mesa at Skyeview
               </span>
                             <span>
-                <span className="text-white font-medium">Since 1983</span> In real estate
+                <span className="text-white font-medium">Since 2008</span> In real estate
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function MesaLuxuryHero({ config }: MesaLuxuryHeroProps) {
               <figcaption className="mt-4">
                 <p className="font-display text-xl text-white">{agentInfo.name}</p>
                 <p className="text-sm text-amber-100/90 mt-1">
-                  {agentInfo.title} · In real estate since 1983
+                  {agentInfo.title} · Licensed since 2008 · 35 years in Las Vegas
                 </p>
                 <p className="mt-3 inline-flex items-center gap-2 text-sm text-white/85">
                   <Phone className="h-4 w-4 text-amber-300" aria-hidden />

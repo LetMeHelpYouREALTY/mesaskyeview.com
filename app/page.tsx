@@ -76,7 +76,7 @@ export default async function Home() {
                     <span>Clients served</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">Since 1983</span>
+                    <span className="font-semibold text-white">Since 2008</span>
                     <span>In real estate</span>
                   </div>
             </div>
@@ -102,12 +102,12 @@ export default async function Home() {
               <p className="text-lg text-slate-700 aeo-lead-answer">
                 {isMesa
                   ? "Realtor representation for Mesa at Skyeview and Skye Canyon—buying, selling, and new construction advocacy with Dr. Jan Duffy."
-                  : "A Las Vegas REALTOR® in real estate since 1983."}
+                  : "A Las Vegas REALTOR® licensed since 2008 · 35 years in Las Vegas."}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
-                { icon: Shield, title: "Since 1983", desc: "In real estate since 1983 — experience you can trust" },
+                { icon: Shield, title: "Licensed Since 2008", desc: "35 years in Las Vegas — experience you can trust" },
 
                 
                 { icon: TrendingUp, title: "$127M+ Sold", desc: "Proven results across every Las Vegas neighborhood" },

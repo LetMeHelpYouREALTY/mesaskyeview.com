@@ -111,7 +111,7 @@ export default async function ContactPage() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Get In Touch</h2>
             <p className="text-slate-700 mb-8 text-center">
-              Expert guidance from a REALTOR® in real estate since 1983, with $127M+ in closed transactions.
+              Expert guidance from a REALTOR® licensed since 2008 · 35 years in Las Vegas, backed by $127M+ in Dr. Duffy Group career sales.
             </p>
 
             <section
@@ -170,7 +170,7 @@ export default async function ContactPage() {
                 <div className="flex items-start">
                   <Shield className="h-5 w-5 text-blue-400 mr-3 mt-0.5 flex-shrink-0" />
                   <p className="text-slate-300 text-sm">
-                    <strong className="text-white">Experience:</strong> In real estate since 1983.
+                    <strong className="text-white">Experience:</strong> Licensed since 2008 · 35 years in Las Vegas.
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -244,7 +244,7 @@ export default async function ContactPage() {
             <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
               Dr. Jan Duffy provides expert real estate services throughout the Las Vegas Valley. 
               Whether you're buying, selling, or investing in any of these communities, contact us 
-              for personalized guidance from a REALTOR® in real estate since 1983.
+              for personalized guidance from a REALTOR® licensed since 2008 · 35 years in Las Vegas.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[

@@ -148,7 +148,7 @@ export const businessInfo = {
 // 750-word GBP Description (3 sections)
 export const gbpDescription = {
   // Section 1: Who you are/mission (~250 words)
-  whoWeAre: `Dr. Jan Duffy is a trusted Las Vegas REALTOR®, in real estate since 1983. Dr. Jan combines local expertise with professional resources to deliver exceptional results for buyers and sellers alike.
+  whoWeAre: `Dr. Jan Duffy is a trusted Las Vegas REALTOR®, licensed since 2008 · 35 years in Las Vegas. Dr. Jan combines local expertise with professional resources to deliver exceptional results for buyers and sellers alike.
 
 With $127 million in closed transactions and hundreds of satisfied clients, Dr. Jan has earned a reputation for integrity, market knowledge, and personalized service. Whether you're a first-time buyer navigating the process, a luxury home seeker exploring The Ridges or MacDonald Highlands, or a California family relocating for Nevada's tax advantages, Dr. Jan provides the guidance you need to make confident real estate decisions.`,
 
@@ -199,7 +199,7 @@ export const gbpFAQs = [
   },
   {
     question: "Why choose Dr. Jan Duffy over other agents?",
-    answer: "Dr. Jan Duffy has been in real estate since 1983, with $127M+ in closed transactions. You get world-class marketing, expert negotiation, and a REALTOR® known for integrity.",
+    answer: "Dr. Jan Duffy has been licensed since 2008 · 35 years in Las Vegas, backed by $127M+ in Dr. Duffy Group career sales. You get world-class marketing, expert negotiation, and a REALTOR® known for integrity.",
   },
   {
     question: "How do I schedule a consultation with Dr. Jan Duffy?",

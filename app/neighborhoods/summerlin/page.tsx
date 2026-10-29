@@ -63,7 +63,7 @@ const summerlinFaqs = [
   {
     question: "Why should I use Dr. Jan Duffy as my Summerlin agent?",
     answer:
-      "Dr. Jan Duffy, in real estate since 1983, brings deep Summerlin expertise. This helps buyers compete in Summerlin's competitive market and helps sellers maximize their home's value.",
+      "Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, brings deep Summerlin expertise. This helps buyers compete in Summerlin's competitive market and helps sellers maximize their home's value.",
   },
 ];
 
@@ -289,7 +289,7 @@ export default function SummerlinPage() {
                 a fraction of the cost—with no state income tax.
               </p>
               <p>
-                Working with <strong>Dr. Jan Duffy</strong> gives you access to listings before they hit the market and expert negotiation skills. Dr. Jan Duffy has been in real estate since 1983, which means you'll have insights that online 
+                Working with <strong>Dr. Jan Duffy</strong> gives you access to listings before they hit the market and expert negotiation skills. Dr. Jan Duffy has been licensed since 2008 · 35 years in Las Vegas, which means you'll have insights that online 
                 searches simply can't provide—from which streets have the best mountain views to which builders 
                 offer the best construction quality.
               </p>
@@ -300,7 +300,7 @@ export default function SummerlinPage() {
           <section className="mb-16 max-w-4xl mx-auto">
             <div className="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-8">
               <blockquote className="text-lg text-slate-700 italic mb-4">
-                "Summerlin isn't just a neighborhood—it's a lifestyle. I've been in real estate since 1983, and I can tell you exactly which villages have the floor plans you want, which offer the
+                "Summerlin isn't just a neighborhood—it's a lifestyle. I've been licensed since 2008 · 35 years in Las Vegas, and I can tell you exactly which villages have the floor plans you want, which offer the
                 best investment potential, and where you'll find the hidden gems. That local knowledge is what sets me apart."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
@@ -350,7 +350,7 @@ export default function SummerlinPage() {
                   Why should I use Dr. Jan Duffy as my Summerlin agent?
                 </h3>
                 <p className="text-slate-600">
-                  Dr. Jan Duffy, in real estate since 1983, brings deep Summerlin expertise. This helps buyers compete in Summerlin's competitive market and helps sellers
+                  Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, brings deep Summerlin expertise. This helps buyers compete in Summerlin's competitive market and helps sellers
                   maximize their home's value.
                 </p>
               </div>

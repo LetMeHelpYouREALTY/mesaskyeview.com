@@ -154,7 +154,7 @@ export default async function NeighborhoodsPage() {
               Las Vegas & Henderson Neighborhoods
             </h1>
             <p className="text-xl text-slate-600">
-              Explore the best communities in Southern Nevada with Dr. Jan Duffy, your neighborhood expert, in real estate since 1983
+              Explore the best communities in Southern Nevada with Dr. Jan Duffy, your neighborhood expert, licensed since 2008 · 35 years in Las Vegas
             </p>
           </div>
 

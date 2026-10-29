@@ -488,7 +488,7 @@ export default function FirstTimeBuyersPage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Buying your first home is exciting AND overwhelming. My job is to make it less
                 overwhelming. I walk first-time buyers through every step, explain everything in
-                plain English, and make sure you're confident in your decision. As a REALTOR® in real estate since 1983, I have resources and
+                plain English, and make sure you're confident in your decision. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I have resources and
                 connections that independent agents simply don't have."
               </blockquote>
               <cite className="text-slate-900 font-semibold">

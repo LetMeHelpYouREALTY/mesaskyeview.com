@@ -8,7 +8,7 @@ type PathLead = {
 
 const defaultLead: PathLead = {
   headline: `Realtor services at ${mesaAtSkyeviewCommunity.name}`,
-  subhead: `${MESA_HOME_BRAND} — buyer and seller representation in Skye Canyon (89166), backed by Dr. Jan Duffy, in real estate since 1983.`,
+  subhead: `${MESA_HOME_BRAND} — buyer and seller representation in Skye Canyon (89166), backed by Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas.`,
   serviceFocus: "buying and selling",
 };
 

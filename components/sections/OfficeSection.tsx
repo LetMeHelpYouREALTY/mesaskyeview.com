@@ -90,7 +90,7 @@ export default async function OfficeSection() {
             </div>
 
             <p className="text-sm text-slate-600">
-              In real estate since 1983
+              Licensed since 2008 · 35 years in Las Vegas
             </p>
           </div>
 

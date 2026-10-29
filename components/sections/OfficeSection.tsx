@@ -5,7 +5,7 @@ import { getPageDomainConfig } from "@/lib/get-domain-config";
 import { getContactEmail } from "@/lib/domain-config";
 import DrJanDuffyAvatar from "@/components/agent/DrJanDuffyAvatar";
 
-const GOOGLE_REVIEWS_URL = "https://g.page/r/heyberkshire/review";
+const GOOGLE_REVIEWS_URL = "https://search.google.com/local/writereview?placeid=ChIJ7XLw8ta5yIARjTZPjgHJWVQ";
 const DIRECTIONS_URL =
   "https://www.google.com/maps/dir//9406+W+Lake+Mead+Blvd+Suite+100,+Las+Vegas,+NV+89134";
 const MAPS_EMBED_URL =

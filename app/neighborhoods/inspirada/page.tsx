@@ -306,7 +306,7 @@ export default function InspiradaPage() {
             <div className="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-8">
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Inspirada isn't just a place to live—it's a lifestyle. Families move here for the
-                pools, the trails, and the community events that make weekends special. As a REALTOR® in real estate since 1983, I help clients find the specific neighborhood
+                pools, the trails, and the community events that make weekends special. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I help clients find the specific neighborhood
                 within Inspirada that matches how they want to live, whether that's close to the
                 main pool complex or on a quiet cul-de-sac backing to open space."
               </blockquote>

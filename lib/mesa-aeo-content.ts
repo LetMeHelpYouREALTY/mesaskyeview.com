@@ -8,7 +8,7 @@ export const mesaExtractableFacts: string[] = [
   `Homes are ${c.stories} plans with about ${c.sqftRange} square feet and ${c.bedroomRange} bedrooms.`,
   `Public listings often show pricing from the ${c.priceFromPublicListings} range—ask Dr. Jan Duffy for current MLS and builder pricing.`,
   `The community address is ${c.salesOfficeAddress}.`,
-  `Dr. Jan Duffy, REALTOR®, in real estate since 1983, represents buyers and sellers.`,
+  `Dr. Jan Duffy, REALTOR®, licensed since 2008 · 35 years in Las Vegas, represents buyers and sellers.`,
 ];
 
 export const MESA_SPEAKABLE_CSS_SELECTORS = [

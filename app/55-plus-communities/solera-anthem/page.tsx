@@ -379,7 +379,7 @@ export default function SoleraAnthemPage() {
                 "Solera at Anthem is perfect for buyers who find Sun City
                 overwhelming. It's intimate, genuinely guard-gated, and everyone
                 is actually 55+. The community feels like a neighborhood, not a
-                small city. As a REALTOR® in real estate since 1983, I often
+                small city. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I often
                 recommend Solera to buyers who prioritize community connection
                 over endless amenities."
               </blockquote>

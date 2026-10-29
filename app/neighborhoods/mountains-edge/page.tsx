@@ -308,7 +308,7 @@ export default function MountainsEdgePage() {
               <blockquote className="text-lg text-slate-700 italic mb-4">
                 "Mountains Edge is where I send buyers who want master-planned living without the
                 Summerlin price tag. The park is incredible, the homes are modern, and the value
-                is undeniable. As a REALTOR® in real estate since 1983, I help clients see
+                is undeniable. As a REALTOR® licensed since 2008 · 35 years in Las Vegas, I help clients see
                 that finding the right home isn't about spending the most—it's about spending wisely."
               </blockquote>
               <cite className="text-slate-900 font-semibold">

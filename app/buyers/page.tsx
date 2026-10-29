@@ -25,7 +25,7 @@ import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 const pageMetadataBase = {
   title: "Home Buying Guide Las Vegas | Dr. Jan Duffy",
   description:
-    "Looking to buy a home in Las Vegas? Dr. Jan Duffy, in real estate since 1983, guides you through every step. Free buyer consultation. Call (702) 500-1955.",
+    "Looking to buy a home in Las Vegas? Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, guides you through every step. Free buyer consultation. Call (702) 500-1955.",
   keywords: [
     "buy home Las Vegas",
     "Las Vegas home buyer",
@@ -115,7 +115,7 @@ export default function BuyersPage() {
               Buy Your Las Vegas Home with Confidence
             </h1>
             <p className="text-xl text-slate-600 mb-8">
-              When you work with Dr. Jan Duffy as your buyer's agent, you get representation from a REALTOR® in real estate since 1983—and it costs you nothing.
+              When you work with Dr. Jan Duffy as your buyer's agent, you get representation from a REALTOR® licensed since 2008 · 35 years in Las Vegas—and it costs you nothing.
               The seller pays the commission, but the representation is yours.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-500">
@@ -144,7 +144,7 @@ export default function BuyersPage() {
                     "Contract and disclosure review",
                     "Inspection coordination and repair negotiation",
                     "Lender and service provider referrals",
-                    "In real estate since 1983",
+                    "Licensed since 2008 · 35 years in Las Vegas",
                   ].map((item) => (
                     <li key={item} className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-400 mr-2 flex-shrink-0" />
@@ -161,7 +161,7 @@ export default function BuyersPage() {
                   transaction—from the first showing to the closing table and beyond.
                 </p>
                 <div className="text-sm text-slate-500">
-                  In real estate since 1983 | $127M+ in transactions
+                  Licensed since 2008 · 35 years in Las Vegas | $127M+ in Dr. Duffy Group career sales
                 </div>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function BuyersPage() {
               Why Buy with Dr. Jan Duffy
             </h2>
             <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
-              Not all real estate agents are created equal. When you choose Dr. Jan Duffy, you're choosing a REALTOR® in real estate since 1983 who puts trust and ethical standards first.
+              Not all real estate agents are created equal. When you choose Dr. Jan Duffy, you're choosing a REALTOR® licensed since 2008 · 35 years in Las Vegas who puts trust and ethical standards first.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center">
@@ -313,7 +313,7 @@ export default function BuyersPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">Local Expertise</h3>
                 <p className="text-slate-600 text-sm">
-                  Dr. Jan has been in real estate since 1983, with $127M+ in transactions
+                  Dr. Jan has been licensed since 2008 · 35 years in Las Vegas, with $127M+ in Dr. Duffy Group career sales
                 </p>
               </div>
               <div className="text-center">
@@ -338,7 +338,7 @@ export default function BuyersPage() {
                 every client like family and won't stop until we find the right home for your needs."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
-                — Dr. Jan Duffy, REALTOR® | In Real Estate Since 1983
+                — Dr. Jan Duffy, REALTOR® | Licensed Since 2008
               </cite>
             </div>
           </section>
@@ -422,7 +422,7 @@ export default function BuyersPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Find Your Las Vegas Home?</h2>
             <p className="text-xl text-slate-300 mb-8">
               Questions about buying in Las Vegas? Call or text Dr. Jan Duffy for a free buyer
-              consultation. Get expert guidance from a REALTOR® in real estate since 1983—the 
+              consultation. Get expert guidance from a REALTOR® licensed since 2008 · 35 years in Las Vegas—the 
               seller pays the commission, so representation is free for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -192,7 +192,7 @@ export default function LuxuryHomesPage() {
                 {
                   icon: Shield,
                   title: "Experience",
-                  desc: "In real estate since 1983, attracting serious, qualified buyers to your property",
+                  desc: "Licensed since 2008 · 35 years in Las Vegas, attracting serious, qualified buyers to your property",
                 },
 
                 {
@@ -232,7 +232,7 @@ export default function LuxuryHomesPage() {
                 $1 million to over $10 million, and every transaction receives my full attention."
               </blockquote>
               <cite className="text-slate-900 font-semibold">
-                — Dr. Jan Duffy, REALTOR® | In Real Estate Since 1983
+                — Dr. Jan Duffy, REALTOR® | Licensed Since 2008
               </cite>
             </div>
           </section>

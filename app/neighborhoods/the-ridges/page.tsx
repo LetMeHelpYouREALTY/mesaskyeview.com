@@ -144,7 +144,7 @@ export default function TheRidgesPage() {
                 aesthetic throughout.
               </p>
               <p>
-                Dr. Jan Duffy, in real estate since 1983, understands that
+                Dr. Jan Duffy, licensed since 2008 · 35 years in Las Vegas, understands that
                 luxury transactions require more than market knowledge—they demand discretion, sophisticated
                 marketing, and access to qualified buyers worldwide. Her marketing connects The Ridges properties with high-net-worth individuals actively seeking premier real estate
                 investments in Las Vegas.

@@ -44,8 +44,8 @@ export const defaultReviews: Review[] = [
 
 /** Visible stats only — not emitted as AggregateRating JSON-LD on owned RealEstateAgent entities. */
 export const aggregateRating = {
-  ratingValue: 4.9,
-  reviewCount: 500,
+  ratingValue: 5.0,
+  reviewCount: 50,
   bestRating: 5,
   worstRating: 1,
 };
@@ -100,10 +100,10 @@ export default function ReviewsSection({
               ))}
             </div>
             <span className="text-lg font-semibold text-slate-900">
-              {aggregateRating.ratingValue}
+              {aggregateRating.ratingValue.toFixed(1)}
             </span>
             <span className="text-slate-600">
-              ({aggregateRating.reviewCount}+ reviews)
+              ({aggregateRating.reviewCount} Realtor.com reviews)
             </span>
           </div>
           )}

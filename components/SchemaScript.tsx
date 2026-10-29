@@ -103,7 +103,6 @@ export function FAQSchema({
  */
 export function ReviewSchema({
   reviews,
-  aggregateRating,
 }: {
   reviews?: Array<{
     author: string;
@@ -122,16 +121,6 @@ export function ReviewSchema({
     "@id": "https://heyberkshire.com#organization",
     name: DR_JAN_GBP_BRAND_NAME,
   };
-
-  if (aggregateRating) {
-    schema.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: aggregateRating.ratingValue.toString(),
-      reviewCount: aggregateRating.reviewCount.toString(),
-      bestRating: "5",
-      worstRating: "1",
-    };
-  }
 
   if (reviews && reviews.length > 0) {
     schema.review = reviews.map((review) => ({

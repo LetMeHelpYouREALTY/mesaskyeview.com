@@ -130,7 +130,7 @@ export function generateLocalBusinessSchemaForSite(
         name: "Call Dr. Jan Duffy",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "tel:+17025001942",
+          urlTemplate: "tel:+17025001955",
         },
       },
       {

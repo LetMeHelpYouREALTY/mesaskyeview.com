@@ -112,11 +112,11 @@ export default function DualNapMapSections() {
       />
       <div className="text-center">
         <a
-          href="tel:+17025001942"
+          href="tel:+17025001955"
           className="inline-flex items-center justify-center bg-slate-800 hover:bg-slate-900 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           <Phone className="h-5 w-5 mr-2" aria-hidden />
-          Call (702) 500-1942 before you visit
+          Call (702) 500-1955 before you visit
         </a>
       </div>
     </div>

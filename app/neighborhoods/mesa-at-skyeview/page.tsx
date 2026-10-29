@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const c = mesaAtSkyeviewCommunity;
   return createPageMetadata(config, {
     title: `${c.name} Homes | Skye Canyon ${c.zip} | Dr. Jan Duffy`,
-    description: `Realtor services for ${c.name} in ${c.masterPlan} (${c.zip})—${c.homeType} homes, ${c.sqftRange} sq ft, buyer & seller representation. Call (702) 500-1942.`,
+    description: `Realtor services for ${c.name} in ${c.masterPlan} (${c.zip})—${c.homeType} homes, ${c.sqftRange} sq ft, buyer & seller representation. Call (702) 500-1955.`,
     pathname: "/neighborhoods/mesa-at-skyeview",
     keywords: [
       `${c.name} homes for sale`,

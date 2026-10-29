@@ -168,12 +168,12 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
 
             <Button asChild className="bg-[#152238] hover:bg-[#1B365D] text-white">
               <Link
-                href="tel:+17025001942"
+                href="tel:+17025001955"
                 className="flex items-center gap-2"
-                aria-label="Call Dr. Jan Duffy at (702) 500-1942"
+                aria-label="Call Dr. Jan Duffy at (702) 500-1955"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                <span className="hidden xl:inline">(702) 500-1942</span>
+                <span className="hidden xl:inline">(702) 500-1955</span>
                 <span className="xl:hidden">Call</span>
               </Link>
             </Button>
@@ -183,11 +183,11 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
           <div className="lg:hidden flex items-center gap-3">
             <Button asChild size="sm" className="bg-[#152238] hover:bg-[#1B365D] text-white">
               <Link
-                href="tel:+17025001942"
-                aria-label="Call Dr. Jan Duffy at (702) 500-1942"
+                href="tel:+17025001955"
+                aria-label="Call Dr. Jan Duffy at (702) 500-1955"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only">Call Dr. Jan Duffy at (702) 500-1942</span>
+                <span className="sr-only">Call Dr. Jan Duffy at (702) 500-1955</span>
               </Link>
             </Button>
             <button
@@ -249,11 +249,11 @@ export default function Navbar({ position = "fixed" }: NavbarProps) {
               <div className="pt-4">
                 <Button asChild className="bg-blue-600 hover:bg-blue-700 w-full">
                   <Link
-                    href="tel:+17025001942"
+                    href="tel:+17025001955"
                     className="flex items-center justify-center gap-2"
                   >
                     <Phone className="h-4 w-4" />
-                    Call Dr. Jan: (702) 500-1942
+                    Call Dr. Jan: (702) 500-1955
                   </Link>
                 </Button>
               </div>

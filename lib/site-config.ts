@@ -25,9 +25,9 @@ export const agentInfo = {
   gbpBrandName: DR_JAN_GBP_BRAND_NAME,
   title: "REALTOR®",
   license: "S.0197614.LLC",
-  phone: "(702) 500-1942",
-  phoneFormatted: "(702) 500-1942",
-  phoneTel: "tel:+17025001942",
+  phone: "(702) 500-1955",
+  phoneFormatted: "(702) 500-1955",
+  phoneTel: "tel:+17025001955",
   email: "homes@heyberkshire.com",
   brokerage: "Berkshire Hathaway HomeServices Nevada Properties",
 };
@@ -46,8 +46,8 @@ export const officeInfo = {
     lat: MESA_COMMUNITY_NAP.latitude,
     lng: MESA_COMMUNITY_NAP.longitude,
   },
-  phone: "(702) 500-1942",
-  phoneTel: "tel:+17025001942",
+  phone: "(702) 500-1955",
+  phoneTel: "tel:+17025001955",
 };
 
 // Market Statistics (Updated January 2026)

@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const c = mesaAtSkyeviewCommunity;
   return createPageMetadata(config, {
     title: `Buyer Representation at ${c.name} | Dr. Jan Duffy`,
-    description: `Free buyer advocacy for ${c.name} new construction and 89166 MLS resales. Register Dr. Jan before your model visit. (702) 500-1942.`,
+    description: `Free buyer advocacy for ${c.name} new construction and 89166 MLS resales. Register Dr. Jan before your model visit. (702) 500-1955.`,
     pathname: "/mesa-at-skyeview/buyer-representation",
     keywords: [
       `${c.name} buyer agent`,

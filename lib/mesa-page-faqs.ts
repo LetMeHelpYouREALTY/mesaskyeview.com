@@ -19,7 +19,7 @@ const c = mesaAtSkyeviewCommunity;
 export const mesaCommunityFaqs: MesaFaq[] = [
   {
     question: `Where is ${c.name} located?`,
-    answer: `${c.name} is in ${c.masterPlan}, Las Vegas, NV ${c.zip}. The community address is ${c.salesOfficeAddress}. Dr. Jan Duffy provides buyer and seller representation—call (702) 500-1942.`,
+    answer: `${c.name} is in ${c.masterPlan}, Las Vegas, NV ${c.zip}. The community address is ${c.salesOfficeAddress}. Dr. Jan Duffy provides buyer and seller representation—call (702) 500-1955.`,
   },
   {
     question: `What types of homes are available at ${c.name}?`,
@@ -45,7 +45,7 @@ export const mesaBuyerFaqs: MesaFaq[] = [
 export const mesaSellerFaqs: MesaFaq[] = [
   {
     question: "How does Dr. Jan price a home in Skye Canyon?",
-    answer: "Pricing uses recent MLS closings in 89166, competing Skye Canyon inventory, and your home's plan, upgrades, and condition. Request a free valuation at /home-valuation or call (702) 500-1942.",
+    answer: "Pricing uses recent MLS closings in 89166, competing Skye Canyon inventory, and your home's plan, upgrades, and condition. Request a free valuation at /home-valuation or call (702) 500-1955.",
   },
 ];
 

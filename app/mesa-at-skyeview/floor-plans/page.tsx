@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const c = mesaAtSkyeviewCommunity;
   return createPageMetadata(config, {
     title: `${c.name} Floor Plans | ${c.sqftRange} Sq Ft Homes`,
-    description: `${c.bedroomRange} bedroom, ${c.stories.toLowerCase()} plans ${c.sqftRange} sq ft at ${c.name}. Current inventory from Dr. Jan Duffy—(702) 500-1942.`,
+    description: `${c.bedroomRange} bedroom, ${c.stories.toLowerCase()} plans ${c.sqftRange} sq ft at ${c.name}. Current inventory from Dr. Jan Duffy—(702) 500-1955.`,
     pathname: "/mesa-at-skyeview/floor-plans",
     keywords: [
       `${c.name} floor plans`,

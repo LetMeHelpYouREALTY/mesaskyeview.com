@@ -25,7 +25,7 @@ export const mesaHowToTour = {
   steps: [
     {
       name: "Call or book a showing",
-      text: "Call (702) 500-1942 or use the contact page to schedule. Tell Dr. Jan which Mesa at Skyeview plans you want to see.",
+      text: "Call (702) 500-1955 or use the contact page to schedule. Tell Dr. Jan which Mesa at Skyeview plans you want to see.",
     },
     {
       name: "Register your agent first",

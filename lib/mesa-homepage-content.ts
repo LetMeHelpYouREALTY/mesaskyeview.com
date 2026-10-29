@@ -7,7 +7,7 @@ const c = mesaAtSkyeviewCommunity;
 export const mesaHomepageFaqsUi: FAQ[] = [
   {
     question: `Where is ${c.name} and how do I tour?`,
-    answer: `${c.name} is in ${c.masterPlan} at ${c.salesOfficeAddress}. Register Dr. Jan Duffy before your first model visit—call (702) 500-1942.`,
+    answer: `${c.name} is in ${c.masterPlan} at ${c.salesOfficeAddress}. Register Dr. Jan Duffy before your first model visit—call (702) 500-1955.`,
   },
   {
     question: "Do I need a REALTOR® for new construction in 89166?",

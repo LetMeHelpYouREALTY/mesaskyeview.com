@@ -25,7 +25,7 @@ import LegacyRouteJsonLd from "@/components/seo/LegacyRouteJsonLd";
 const pageMetadataBase = {
   title: "Relocating to Las Vegas | Dr. Jan Duffy",
   description:
-    "Moving to Las Vegas? Dr. Jan Duffy provides comprehensive relocation services. Schools, neighborhoods, cost of living. Call (702) 500-1942.",
+    "Moving to Las Vegas? Dr. Jan Duffy provides comprehensive relocation services. Schools, neighborhoods, cost of living. Call (702) 500-1955.",
   keywords: [
     "relocating to Las Vegas",
     "moving to Las Vegas",
@@ -56,7 +56,7 @@ const relocationSchema = {
   provider: {
     "@type": "RealEstateAgent",
     name: DR_JAN_GBP_BRAND_NAME,
-    telephone: "+17025001942",
+    telephone: "+17025001955",
   },
   areaServed: "Las Vegas, Henderson, Summerlin, Clark County NV",
   serviceType: "Relocation Services",
@@ -397,11 +397,11 @@ export default function RelocationPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+17025001942"
+                href="tel:+17025001955"
                 className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md font-bold text-lg transition-colors"
               >
                 <Phone className="h-5 w-5 mr-2" />
-                Call (702) 500-1942
+                Call (702) 500-1955
               </a>
               <Link
                 href="/contact"

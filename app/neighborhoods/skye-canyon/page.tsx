@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata(config, {
     title: "Mesa at Skyeview & Skye Canyon Homes | Homes by Dr. Jan Duffy",
     description:
-      "Realtor services for Mesa at Skyeview in Skye Canyon (89166)—new construction tours, resale MLS search, and seller representation with Dr. Jan Duffy. Call (702) 500-1942.",
+      "Realtor services for Mesa at Skyeview in Skye Canyon (89166)—new construction tours, resale MLS search, and seller representation with Dr. Jan Duffy. Call (702) 500-1955.",
     pathname: "/neighborhoods/skye-canyon",
     keywords: [
       "Mesa at Skyeview homes",
@@ -425,11 +425,11 @@ export default async function SkyeCanyonPage() {
               for expert guidance on new construction and resale homes.
             </p>
             <a
-              href="tel:+17025001942"
+              href="tel:+17025001955"
               className="inline-flex items-center bg-white text-blue-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors"
             >
               <Phone className="h-5 w-5 mr-2" />
-              Call (702) 500-1942
+              Call (702) 500-1955
             </a>
           </section>
         </div>

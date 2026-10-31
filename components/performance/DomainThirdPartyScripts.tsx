@@ -8,14 +8,16 @@ import MesaDeferredThirdPartyScripts from "@/components/performance/MesaDeferred
 /** Domain-aware third-party script loading (mesaskyeview defers heavy bundles). */
 export default async function DomainThirdPartyScripts() {
   const config = await getPageDomainConfig();
+  // FUB Pixel only on the production deploy, so Vercel previews don't register with FUB.
+  const fubPixel = process.env.VERCEL_ENV === "production";
 
   if (isMesaskyeviewDomain(config)) {
-    return <MesaDeferredThirdPartyScripts />;
+    return <MesaDeferredThirdPartyScripts fubPixel={fubPixel} />;
   }
 
   return (
     <>
-      <FubPixelScript />
+      {fubPixel && <FubPixelScript />}
       <Script
         id="realscout-web-components"
         src={REALSCOUT_WEB_COMPONENTS_SCRIPT}

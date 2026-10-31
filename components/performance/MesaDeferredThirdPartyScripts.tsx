@@ -8,10 +8,14 @@ import { REALSCOUT_WEB_COMPONENTS_SCRIPT } from "@/lib/realscout-config";
  * mesaskyeview: FUB Pixel loads immediately (Home Activity / lead tracking).
  * RealScout + Calendly load once after the page is idle (id="calendly-widget-js").
  */
-export default function MesaDeferredThirdPartyScripts() {
+export default function MesaDeferredThirdPartyScripts({
+  fubPixel = false,
+}: {
+  fubPixel?: boolean;
+}) {
   return (
     <>
-      <FubPixelScript />
+      {fubPixel && <FubPixelScript />}
       <Script
         id="realscout-web-components"
         src={REALSCOUT_WEB_COMPONENTS_SCRIPT}
